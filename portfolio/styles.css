@@ -481,6 +481,14 @@ h1 span {
   line-height: 1.6;
 }
 
+.profile-badge small {
+  margin-top: 0.65rem;
+  color: var(--gold);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .profile-photo {
   display: block;
   width: 100%;
@@ -933,7 +941,19 @@ h1 span {
   transition: transform 0.25s ease;
 }
 
+.photo-modal {
+  width: min(560px, 100%);
+  padding: 2rem;
+  background: linear-gradient(180deg, rgba(11, 18, 37, 0.97), rgba(10, 15, 29, 0.97));
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.25s ease;
+}
+
 .modal-backdrop.open .project-modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-backdrop.open .photo-modal {
   transform: translateY(0) scale(1);
 }
 
@@ -951,6 +971,16 @@ h1 span {
   color: var(--muted);
   line-height: 1.9;
   margin: 1rem 0 1.6rem;
+}
+
+.photo-modal-image {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 28px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
 .modal-meta {

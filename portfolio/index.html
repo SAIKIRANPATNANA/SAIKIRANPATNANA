@@ -90,12 +90,13 @@
             <span class="muted">AI Systems Portfolio</span>
           </div>
           <div class="profile-showcase">
-            <div class="profile-photo-frame">
+            <button class="profile-photo-frame interactive" id="profile-photo-trigger" type="button" aria-label="Open profile photo">
               <img src="./myprofilephoto.jpeg" alt="Portrait of Sai Kiran Patnana" class="profile-photo" />
-            </div>
+            </button>
             <div class="profile-badge">
               <strong>Sai Kiran Patnana</strong>
               <span>AI Developer • GenAI • ML • Vision • NLP</span>
+              <small>Click the portrait to view larger.</small>
             </div>
           </div>
           <div class="mission-card">
@@ -458,6 +459,17 @@
             <strong>Ready for your real repo content</strong>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="photo-modal" aria-hidden="true">
+      <div class="photo-modal panel" role="dialog" aria-modal="true" aria-labelledby="photo-modal-title">
+        <button class="modal-close interactive" id="photo-modal-close" type="button" aria-label="Close profile photo">
+          Close
+        </button>
+        <p class="eyebrow">Profile Portrait</p>
+        <h2 id="photo-modal-title">Sai Kiran Patnana</h2>
+        <img src="./myprofilephoto.jpeg" alt="Portrait of Sai Kiran Patnana" class="photo-modal-image" />
       </div>
     </div>
 

@@ -231,6 +231,9 @@ const modalDomain = document.getElementById("modal-domain");
 const modalDescription = document.getElementById("modal-description");
 const modalStack = document.getElementById("modal-stack");
 const modalClose = document.getElementById("modal-close");
+const profilePhotoTrigger = document.getElementById("profile-photo-trigger");
+const photoModal = document.getElementById("photo-modal");
+const photoModalClose = document.getElementById("photo-modal-close");
 
 function openModal(card) {
   modalTitle.textContent = card.dataset.title || "Project";
@@ -247,6 +250,20 @@ function openModal(card) {
 function closeModal() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  playModalCloseSound();
+}
+
+function openPhotoModal() {
+  photoModal.classList.add("open");
+  photoModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  playModalOpenSound();
+}
+
+function closePhotoModal() {
+  photoModal.classList.remove("open");
+  photoModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
   playModalCloseSound();
 }
@@ -269,9 +286,21 @@ modal.addEventListener("click", (event) => {
   }
 });
 
+profilePhotoTrigger.addEventListener("click", openPhotoModal);
+photoModalClose.addEventListener("click", closePhotoModal);
+photoModal.addEventListener("click", (event) => {
+  if (event.target === photoModal) {
+    closePhotoModal();
+  }
+});
+
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("open")) {
     closeModal();
+  }
+
+  if (event.key === "Escape" && photoModal.classList.contains("open")) {
+    closePhotoModal();
   }
 });
 
