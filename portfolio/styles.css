@@ -454,9 +454,17 @@ h1 span {
   width: 240px;
   padding: 0.55rem;
   border-radius: 32px;
+  border: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   background:
     linear-gradient(135deg, rgba(81, 246, 210, 0.6), rgba(90, 166, 255, 0.45), rgba(255, 201, 107, 0.45));
   box-shadow: 0 26px 58px rgba(0, 0, 0, 0.34);
+}
+
+.profile-photo-frame:hover {
+  transform: translateY(-2px) scale(1.01);
 }
 
 .profile-badge {

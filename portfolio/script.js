@@ -232,6 +232,7 @@ const modalDescription = document.getElementById("modal-description");
 const modalStack = document.getElementById("modal-stack");
 const modalClose = document.getElementById("modal-close");
 const profilePhotoTrigger = document.getElementById("profile-photo-trigger");
+const profileShowcase = document.querySelector(".profile-showcase");
 const photoModal = document.getElementById("photo-modal");
 const photoModalClose = document.getElementById("photo-modal-close");
 
@@ -286,13 +287,33 @@ modal.addEventListener("click", (event) => {
   }
 });
 
-profilePhotoTrigger.addEventListener("click", openPhotoModal);
-photoModalClose.addEventListener("click", closePhotoModal);
-photoModal.addEventListener("click", (event) => {
-  if (event.target === photoModal) {
-    closePhotoModal();
-  }
-});
+if (profilePhotoTrigger) {
+  profilePhotoTrigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openPhotoModal();
+  });
+}
+
+if (profileShowcase) {
+  profileShowcase.addEventListener("click", (event) => {
+    if (event.target.closest("#profile-photo-trigger")) {
+      return;
+    }
+  });
+}
+
+if (photoModalClose) {
+  photoModalClose.addEventListener("click", closePhotoModal);
+}
+
+if (photoModal) {
+  photoModal.addEventListener("click", (event) => {
+    if (event.target === photoModal) {
+      closePhotoModal();
+    }
+  });
+}
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("open")) {
