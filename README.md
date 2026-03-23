@@ -12,6 +12,9 @@
   <a href="https://github.com/SAIKIRANPATNANA">
     <img src="https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile" />
   </a>
+  <a href="https://saikiranpatnana.github.io/SAIKIRANPATNANA/">
+    <img src="https://img.shields.io/badge/Portfolio-Live%20Site-0F766E?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio Link" />
+  </a>
   <img src="https://komarev.com/ghpvc/?username=SAIKIRANPATNANA&style=for-the-badge&color=0F766E" alt="Profile Views" />
   <img src="https://img.shields.io/badge/Focus-Generative%20AI-0F766E?style=for-the-badge" alt="Focus Generative AI" />
   <img src="https://img.shields.io/badge/Domain-Artificial%20Intelligence-1D4ED8?style=for-the-badge" alt="Domain Artificial Intelligence" />
@@ -197,8 +200,9 @@ Every repository I create is part of a larger journey: learning deeply, building
 ## Connect With Me
 
 - GitHub: [SAIKIRANPATNANA](https://github.com/SAIKIRANPATNANA)
-- LinkedIn: `Add your LinkedIn link here`
-- Email: `Add your email here`
+- LinkedIn: [SAIKIRANPATNANA](https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/)
+- Email: `saikiranpatnan5143@gmail.com`
+- Portfolio: [Live Portfolio](https://saikiranpatnana.github.io/SAIKIRANPATNANA/)
 
 ---
 
