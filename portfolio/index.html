@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sai Kiran Patnana | AI Portfolio</title>
+    <meta
+      name="description"
+      content="An immersive AI portfolio by Sai Kiran Patnana spanning Data Science, ML, DL, CV, NLP, and Generative AI."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-core">
+        <div class="loader-rings">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="loader-label">Initializing Portfolio Experience</p>
+        <div class="loader-bar">
+          <span id="loader-progress"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="noise"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <span class="brand-mark"></span>
+        <span>SKP</span>
+      </a>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#domains">Domains</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="sound-toggle" class="sound-toggle interactive" type="button" aria-pressed="false">
+        Sound Mode Off
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero panel">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Immersive Portfolio Interface</p>
+          <h1>
+            Sai Kiran Patnana
+            <span>Designing intelligent systems with cinematic energy and practical purpose.</span>
+          </h1>
+          <p class="lead">
+            A portfolio shaped by AI, driven by curiosity, and built to feel alive. I work
+            across Data Science, Machine Learning, Deep Learning, Computer Vision, NLP, and
+            Generative AI with a strong focus on impactful systems and elegant presentation.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary interactive" href="#projects">Enter Project Space</a>
+            <a
+              class="button secondary interactive"
+              href="https://github.com/SAIKIRANPATNANA"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal tilt-card">
+          <div class="panel-topline">
+            <span class="status-live">Live Build</span>
+            <span class="muted">AI Systems Portfolio</span>
+          </div>
+          <div class="mission-card">
+            <p class="mission-label">Current Mission</p>
+            <h2>Transform learning into signature projects.</h2>
+            <p>
+              Generative AI, RAG, workflow automation, and polished project storytelling.
+            </p>
+          </div>
+          <div class="metric-grid">
+            <article>
+              <span>Domains</span>
+              <strong>6</strong>
+            </article>
+            <article>
+              <span>Focus</span>
+              <strong>GenAI</strong>
+            </article>
+            <article>
+              <span>Energy</span>
+              <strong>Creative</strong>
+            </article>
+            <article>
+              <span>Approach</span>
+              <strong>Hands-On</strong>
+            </article>
+          </div>
+          <div class="ambient-panel">
+            <div class="eq">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p>Enable sound mode for ambient tone and interaction clicks.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="signal-strip reveal">
+        <div class="signal-track">
+          <span>Data Science</span>
+          <span>Machine Learning</span>
+          <span>Deep Learning</span>
+          <span>Computer Vision</span>
+          <span>NLP</span>
+          <span>Generative AI</span>
+          <span>AI Systems</span>
+          <span>RAG</span>
+          <span>AI Agents</span>
+        </div>
+      </section>
+
+      <section id="about" class="section about panel reveal">
+        <div class="section-heading">
+          <p class="eyebrow">About Me</p>
+          <h2>Building experiences where intelligence feels purposeful, modern, and memorable.</h2>
+        </div>
+        <div class="about-grid">
+          <p>
+            I am an AI-focused builder who enjoys taking ideas from raw curiosity to working
+            systems. What excites me most is the spectrum of intelligence itself: the power
+            to learn from data, understand language, perceive images, and generate something
+            new and useful.
+          </p>
+          <p>
+            This portfolio is designed to project not only what I build, but how I think. I
+            care about technical depth, strong execution, and the craft of presenting work in
+            a way that feels elevated and intentional.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Core Signals</p>
+          <h2>The energy behind my work.</h2>
+        </div>
+        <div class="signal-grid">
+          <article class="signal-card reveal tilt-card">
+            <span>01</span>
+            <h3>Analytical Depth</h3>
+            <p>Strong foundations in data, patterns, and model thinking.</p>
+          </article>
+          <article class="signal-card reveal tilt-card">
+            <span>02</span>
+            <h3>Creative Engineering</h3>
+            <p>Combining logic, aesthetics, and interaction to make work stand out.</p>
+          </article>
+          <article class="signal-card reveal tilt-card">
+            <span>03</span>
+            <h3>Modern AI Curiosity</h3>
+            <p>Exploring LLMs, RAG, agents, and the systems shaping the future.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="domains" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Domains</p>
+          <h2>The disciplines I build across.</h2>
+        </div>
+        <div class="domain-grid">
+          <article class="domain-card reveal tilt-card">
+            <span class="icon">01</span>
+            <h3>Data Science</h3>
+            <p>Insights, patterns, analytics, storytelling, and decision support.</p>
+          </article>
+          <article class="domain-card reveal tilt-card">
+            <span class="icon">02</span>
+            <h3>Machine Learning</h3>
+            <p>Classification, regression, predictive systems, and intelligent workflows.</p>
+          </article>
+          <article class="domain-card reveal tilt-card">
+            <span class="icon">03</span>
+            <h3>Deep Learning</h3>
+            <p>Neural architectures, richer representations, and advanced model behavior.</p>
+          </article>
+          <article class="domain-card reveal tilt-card">
+            <span class="icon">04</span>
+            <h3>Computer Vision</h3>
+            <p>Image understanding, detection, recognition, and visual intelligence.</p>
+          </article>
+          <article class="domain-card reveal tilt-card">
+            <span class="icon">05</span>
+            <h3>Natural Language Processing</h3>
+            <p>Language-aware systems, text understanding, and human-centric AI.</p>
+          </article>
+          <article class="domain-card reveal tilt-card">
+            <span class="icon">06</span>
+            <h3>Generative AI</h3>
+            <p>LLMs, RAG, prompt design, AI assistants, and emerging intelligent products.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Project Space</p>
+          <h2>Interactive categories ready for your actual repositories.</h2>
+        </div>
+
+        <div class="project-tabs reveal">
+          <button class="tab-button interactive active" type="button" data-filter="all">All</button>
+          <button class="tab-button interactive" type="button" data-filter="genai">GenAI</button>
+          <button class="tab-button interactive" type="button" data-filter="ml">ML</button>
+          <button class="tab-button interactive" type="button" data-filter="cv">CV</button>
+          <button class="tab-button interactive" type="button" data-filter="nlp">NLP</button>
+        </div>
+
+        <div class="project-grid">
+          <article
+            class="project-card reveal tilt-card interactive"
+            data-category="genai"
+            data-title="LLM Experience Layer"
+            data-domain="Generative AI"
+            data-stack="LLMs, RAG, Prompt Engineering, Agents"
+            data-description="A premium placeholder for your most impressive GenAI system, ideal for an assistant, chatbot, or retrieval-driven experience."
+          >
+            <div class="project-visual">
+              <span>RAG</span>
+              <span>Agents</span>
+              <span>LLM UX</span>
+            </div>
+            <p class="project-tag">GenAI</p>
+            <h3>LLM Experience Layer</h3>
+            <p>Reserved for your best RAG, chatbot, or AI assistant showcase.</p>
+            <button class="card-link interactive" type="button">Open Details</button>
+          </article>
+          <article
+            class="project-card reveal tilt-card interactive"
+            data-category="ml"
+            data-title="Prediction Engine"
+            data-domain="Machine Learning"
+            data-stack="Python, scikit-learn, Analytics"
+            data-description="A strong space for end-to-end prediction pipelines, classical ML experiments, and decision-support systems."
+          >
+            <div class="project-visual">
+              <span>Forecasting</span>
+              <span>Models</span>
+              <span>Insights</span>
+            </div>
+            <p class="project-tag">ML</p>
+            <h3>Prediction Engine</h3>
+            <p>Ideal for model-based systems focused on forecasting or classification.</p>
+            <button class="card-link interactive" type="button">Open Details</button>
+          </article>
+          <article
+            class="project-card reveal tilt-card interactive"
+            data-category="cv"
+            data-title="Visual Intelligence Module"
+            data-domain="Computer Vision"
+            data-stack="OpenCV, Deep Learning, Detection"
+            data-description="A future home for visual AI work such as object detection, recognition, segmentation, and image understanding."
+          >
+            <div class="project-visual">
+              <span>OpenCV</span>
+              <span>Detection</span>
+              <span>Vision</span>
+            </div>
+            <p class="project-tag">CV</p>
+            <h3>Visual Intelligence Module</h3>
+            <p>A future home for object detection, recognition, or image analysis work.</p>
+            <button class="card-link interactive" type="button">Open Details</button>
+          </article>
+          <article
+            class="project-card reveal tilt-card interactive"
+            data-category="nlp"
+            data-title="Language Insight Console"
+            data-domain="Natural Language Processing"
+            data-stack="NLP, Text Analytics, Transformers"
+            data-description="Built to showcase sentiment analysis, language understanding, text classification, and NLP-driven applications."
+          >
+            <div class="project-visual">
+              <span>Transformers</span>
+              <span>Text</span>
+              <span>NLP</span>
+            </div>
+            <p class="project-tag">NLP</p>
+            <h3>Language Insight Console</h3>
+            <p>Designed for sentiment, text analytics, or language processing projects.</p>
+            <button class="card-link interactive" type="button">Open Details</button>
+          </article>
+          <article
+            class="project-card reveal tilt-card interactive"
+            data-category="genai"
+            data-title="AI Workflow Automation"
+            data-domain="AI Systems"
+            data-stack="Agents, Orchestration, Tool Use"
+            data-description="Reserved for your agentic workflow projects where models, tools, and automation come together."
+          >
+            <div class="project-visual">
+              <span>Flows</span>
+              <span>Tools</span>
+              <span>Automation</span>
+            </div>
+            <p class="project-tag">Systems</p>
+            <h3>AI Workflow Automation</h3>
+            <p>A space for agentic flows, tool use, and orchestration-based applications.</p>
+            <button class="card-link interactive" type="button">Open Details</button>
+          </article>
+          <article
+            class="project-card reveal tilt-card interactive"
+            data-category="all"
+            data-title="Signature Showcase"
+            data-domain="Portfolio Design"
+            data-stack="HTML, CSS, JavaScript, Motion"
+            data-description="This portfolio itself is part of your brand story and can evolve into a polished presentation layer for all your work."
+          >
+            <div class="project-visual">
+              <span>Brand</span>
+              <span>Motion</span>
+              <span>Showcase</span>
+            </div>
+            <p class="project-tag">Portfolio</p>
+            <h3>Signature Showcase</h3>
+            <p>This layout itself is designed to become part of your brand story.</p>
+            <button class="card-link interactive" type="button">Open Details</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="section resume panel reveal" id="resume">
+        <div class="resume-copy">
+          <p class="eyebrow">Resume</p>
+          <h2>A clean professional snapshot, ready to share and download.</h2>
+          <p>
+            This section gives your portfolio a direct career-facing touchpoint. For now it
+            includes a polished placeholder resume download, and later we can replace it with
+            your final PDF version without changing the layout.
+          </p>
+          <div class="resume-actions">
+            <a class="button primary interactive" href="./Sai_Kiran_Patnana_Resume.txt" download>
+              Download Resume
+            </a>
+            <a class="button secondary interactive" href="./Sai_Kiran_Patnana_Resume.txt" target="_blank" rel="noreferrer">
+              Preview Resume
+            </a>
+          </div>
+        </div>
+        <div class="resume-card tilt-card">
+          <div class="resume-sheet">
+            <span class="resume-chip">AI Developer Profile</span>
+            <h3>Sai Kiran Patnana</h3>
+            <ul>
+              <li>Data Science, ML, DL, CV, NLP, GenAI</li>
+              <li>Strong project-based learning mindset</li>
+              <li>Focused on impactful AI systems and polished presentation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section timeline panel reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Journey Logic</p>
+          <h2>How I want my work to be seen.</h2>
+        </div>
+        <div class="timeline-rail" aria-hidden="true"></div>
+        <div class="timeline-list">
+          <article class="timeline-step reveal">
+            <span>01</span>
+            <div>
+              <h3>Learn with Intent</h3>
+              <p>Go beyond surface-level tutorials and turn learning into systems.</p>
+            </div>
+          </article>
+          <article class="timeline-step reveal">
+            <span>02</span>
+            <div>
+              <h3>Build with Craft</h3>
+              <p>Create projects that feel both technically sound and visually intentional.</p>
+            </div>
+          </article>
+          <article class="timeline-step reveal">
+            <span>03</span>
+            <div>
+              <h3>Present with Confidence</h3>
+              <p>Showcase ideas in a way that communicates depth, style, and ambition.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact panel reveal" id="contact">
+        <div class="contact-copy">
+          <p class="eyebrow">Connect</p>
+          <h2>Let’s turn this into a signature portfolio over the next few days.</h2>
+          <p>
+            We can now keep upgrading this with your real repositories, screenshots, project
+            summaries, links, and a polished publishing setup.
+          </p>
+        </div>
+        <div class="contact-links">
+          <a class="interactive" href="https://github.com/SAIKIRANPATNANA" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="interactive" href="#">LinkedIn</a>
+          <a class="interactive" href="mailto:saikiranpatnana5143@gmail.com">Email</a>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="project-modal" aria-hidden="true">
+      <div class="project-modal panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close interactive" id="modal-close" type="button" aria-label="Close project details">
+          Close
+        </button>
+        <p class="eyebrow" id="modal-domain">Project Domain</p>
+        <h2 id="modal-title">Project Title</h2>
+        <p class="modal-description" id="modal-description">
+          Project details will appear here.
+        </p>
+        <div class="modal-meta">
+          <div>
+            <span>Suggested Stack</span>
+            <strong id="modal-stack">Tech stack</strong>
+          </div>
+          <div>
+            <span>Status</span>
+            <strong>Ready for your real repo content</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

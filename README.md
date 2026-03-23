@@ -209,3 +209,6 @@ Every repository I create is part of a larger journey: learning deeply, building
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=0:7C3AED,50:1D4ED8,100:0F766E&height=120&section=footer)
 
 </div>
+
+
+<!-- xdg-open /home/user/Documents/SAIKIRANPATNANA/portfolio/index.html -->
