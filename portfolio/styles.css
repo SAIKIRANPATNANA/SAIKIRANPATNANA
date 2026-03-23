@@ -262,18 +262,9 @@ body::before {
   gap: 1.5rem;
 }
 
-.nav a,
-.sound-toggle {
+.nav a {
   font-size: 0.95rem;
   color: var(--muted);
-}
-
-.sound-toggle {
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-  padding: 0.8rem 1rem;
-  border-radius: 999px;
 }
 
 main {
@@ -1039,7 +1030,6 @@ h1 span {
   }
 
   .button,
-  .sound-toggle,
   .tab-button,
   .card-link,
   .contact-links a {

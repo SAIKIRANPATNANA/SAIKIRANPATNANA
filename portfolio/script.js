@@ -104,6 +104,71 @@ document.querySelectorAll(".tilt-card").forEach((card) => {
   });
 });
 
+let audioContext;
+let masterGain;
+let audioUnlocked = false;
+
+function ensureAudio() {
+  if (!audioContext) {
+    audioContext = new window.AudioContext();
+    masterGain = audioContext.createGain();
+    masterGain.gain.value = 0.06;
+    masterGain.connect(audioContext.destination);
+  }
+}
+
+async function unlockAudio() {
+  ensureAudio();
+
+  if (audioContext.state === "suspended") {
+    await audioContext.resume();
+  }
+
+  audioUnlocked = true;
+}
+
+function createTone(frequency, type, duration, volume, delay = 0) {
+  if (!audioUnlocked) {
+    return;
+  }
+
+  const osc = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  const now = audioContext.currentTime + delay;
+
+  osc.type = type;
+  osc.frequency.setValueAtTime(frequency, now);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(volume, now + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+  osc.connect(gain);
+  gain.connect(masterGain);
+  osc.start(now);
+  osc.stop(now + duration + 0.05);
+}
+
+function playButtonSound() {
+  createTone(640, "triangle", 0.11, 0.08);
+  createTone(920, "sine", 0.08, 0.045, 0.015);
+}
+
+function playTabSound() {
+  createTone(520, "sine", 0.08, 0.05);
+  createTone(740, "triangle", 0.12, 0.04, 0.02);
+}
+
+function playModalOpenSound() {
+  createTone(360, "sine", 0.18, 0.04);
+  createTone(540, "triangle", 0.22, 0.045, 0.04);
+  createTone(810, "sine", 0.18, 0.03, 0.08);
+}
+
+function playModalCloseSound() {
+  createTone(780, "sine", 0.09, 0.035);
+  createTone(420, "triangle", 0.14, 0.035, 0.04);
+}
+
 const tabButtons = document.querySelectorAll(".tab-button");
 const projectCards = document.querySelectorAll(".project-card");
 
@@ -113,6 +178,7 @@ tabButtons.forEach((button) => {
 
     tabButtons.forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
+    playTabSound();
 
     projectCards.forEach((card) => {
       const category = card.dataset.category;
@@ -138,12 +204,14 @@ function openModal(card) {
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  playModalOpenSound();
 }
 
 function closeModal() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
+  playModalCloseSound();
 }
 
 document.querySelectorAll(".project-card").forEach((card) => {
@@ -170,122 +238,23 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-let audioContext;
-let masterGain;
-let droneOscillators = [];
-let ambientInterval;
-let soundEnabled = false;
-const soundToggle = document.getElementById("sound-toggle");
-
-function ensureAudio() {
-  if (!audioContext) {
-    audioContext = new window.AudioContext();
-    masterGain = audioContext.createGain();
-    masterGain.gain.value = 0.08;
-    masterGain.connect(audioContext.destination);
-  }
-}
-
-function createTone(frequency, type, duration, volume, delay = 0) {
-  ensureAudio();
-
-  const osc = audioContext.createOscillator();
-  const gain = audioContext.createGain();
-  const now = audioContext.currentTime + delay;
-
-  osc.type = type;
-  osc.frequency.setValueAtTime(frequency, now);
-  gain.gain.setValueAtTime(0.0001, now);
-  gain.gain.exponentialRampToValueAtTime(volume, now + 0.02);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-  osc.connect(gain);
-  gain.connect(masterGain);
-  osc.start(now);
-  osc.stop(now + duration + 0.05);
-}
-
-function playClickSound() {
-  if (!soundEnabled) {
-    return;
-  }
-
-  createTone(620, "triangle", 0.12, 0.18);
-  createTone(880, "sine", 0.09, 0.12, 0.02);
-}
-
-function playHoverSound() {
-  if (!soundEnabled) {
-    return;
-  }
-
-  createTone(420, "sine", 0.08, 0.05);
-}
-
-function startAmbientSound() {
-  ensureAudio();
-
-  const notes = [174.61, 220.0, 261.63];
-  droneOscillators = notes.map((frequency) => {
-    const osc = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-
-    osc.type = "sine";
-    osc.frequency.value = frequency;
-    gain.gain.value = 0.012;
-    osc.connect(gain);
-    gain.connect(masterGain);
-    osc.start();
-
-    return { osc, gain };
-  });
-
-  ambientInterval = window.setInterval(() => {
-    if (!soundEnabled) {
-      return;
-    }
-
-    createTone(523.25, "sine", 1.8, 0.018);
-    createTone(659.25, "triangle", 1.4, 0.012, 0.15);
-  }, 6200);
-}
-
-function stopAmbientSound() {
-  droneOscillators.forEach(({ osc, gain }) => {
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.2);
-    osc.stop(audioContext.currentTime + 0.25);
-  });
-
-  droneOscillators = [];
-  window.clearInterval(ambientInterval);
-}
-
-soundToggle.addEventListener("click", async () => {
-  ensureAudio();
-
-  if (audioContext.state === "suspended") {
-    await audioContext.resume();
-  }
-
-  if (!soundEnabled) {
-    soundEnabled = true;
-    startAmbientSound();
-    playClickSound();
-    soundToggle.textContent = "Sound Mode On";
-    soundToggle.setAttribute("aria-pressed", "true");
-  } else {
-    playClickSound();
-    soundEnabled = false;
-    stopAmbientSound();
-    soundToggle.textContent = "Sound Mode Off";
-    soundToggle.setAttribute("aria-pressed", "false");
-  }
-});
-
 document.querySelectorAll(".interactive").forEach((element) => {
-  element.addEventListener("click", playClickSound);
-  element.addEventListener("mouseenter", playHoverSound);
+  element.addEventListener("click", () => {
+    if (!element.closest(".project-card") && !element.classList.contains("tab-button")) {
+      playButtonSound();
+    }
+  });
 });
+
+window.addEventListener(
+  "pointerdown",
+  async () => {
+    if (!audioUnlocked) {
+      await unlockAudio();
+    }
+  },
+  { once: true }
+);
 
 window.addEventListener("load", () => {
   window.clearInterval(progressTimer);
