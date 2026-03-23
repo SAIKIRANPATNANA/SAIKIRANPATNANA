@@ -77,6 +77,7 @@ window.addEventListener("resize", () => {
 
 const cursorDot = document.querySelector(".cursor-dot");
 const cursorRing = document.querySelector(".cursor-ring");
+const touchEffects = document.getElementById("touch-effects");
 
 window.addEventListener("mousemove", (event) => {
   const { clientX, clientY } = event;
@@ -88,6 +89,42 @@ document.querySelectorAll(".interactive, .tilt-card").forEach((element) => {
   element.addEventListener("mouseenter", () => cursorRing.classList.add("active"));
   element.addEventListener("mouseleave", () => cursorRing.classList.remove("active"));
 });
+
+function spawnTouchBubble(x, y) {
+  if (!touchEffects) {
+    return;
+  }
+
+  const bubble = document.createElement("span");
+  bubble.className = "touch-bubble";
+  bubble.style.left = `${x}px`;
+  bubble.style.top = `${y}px`;
+  touchEffects.appendChild(bubble);
+
+  for (let i = 0; i < 7; i += 1) {
+    const particle = document.createElement("span");
+    const angle = (Math.PI * 2 * i) / 7;
+    const distance = 24 + Math.random() * 26;
+    const driftX = Math.cos(angle) * distance;
+    const driftY = Math.sin(angle) * distance;
+
+    particle.className = "touch-particle";
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.setProperty("--drift-x", `${driftX}px`);
+    particle.style.setProperty("--drift-y", `${driftY}px`);
+    particle.style.setProperty("--particle-delay", `${Math.random() * 0.06}s`);
+    touchEffects.appendChild(particle);
+
+    window.setTimeout(() => {
+      particle.remove();
+    }, 780);
+  }
+
+  window.setTimeout(() => {
+    bubble.remove();
+  }, 760);
+}
 
 document.querySelectorAll(".tilt-card").forEach((card) => {
   card.addEventListener("mousemove", (event) => {
@@ -248,13 +285,23 @@ document.querySelectorAll(".interactive").forEach((element) => {
 
 window.addEventListener(
   "pointerdown",
-  async () => {
+  async (event) => {
     if (!audioUnlocked) {
       await unlockAudio();
+    }
+
+    if (event.pointerType === "touch") {
+      spawnTouchBubble(event.clientX, event.clientY);
     }
   },
   { once: true }
 );
+
+window.addEventListener("pointerdown", (event) => {
+  if (event.pointerType === "touch") {
+    spawnTouchBubble(event.clientX, event.clientY);
+  }
+});
 
 window.addEventListener("load", () => {
   window.clearInterval(progressTimer);
