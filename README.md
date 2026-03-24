@@ -47,9 +47,19 @@
   <img src="https://streak-stats.demolab.com?user=SAIKIRANPATNANA&theme=transparent&ring=0F766E&fire=F59E0B&currStreakLabel=1D4ED8&sideLabels=334155&dates=64748B&border=CBD5E1" alt="GitHub Streak" />
 </p>
 
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=SAIKIRANPATNANA&theme=flat&no-frame=true&row=1&column=6&margin-w=10&margin-h=10" alt="GitHub Trophies" />
-</p>
+<div align="center">
+
+## Currently Building
+
+<img src="https://img.shields.io/badge/RAG-Systems-0F766E?style=for-the-badge" alt="RAG Systems" />
+<img src="https://img.shields.io/badge/Agentic%20AI-Workflows-1D4ED8?style=for-the-badge" alt="Agentic AI Workflows" />
+<img src="https://img.shields.io/badge/LLM%20Apps-In%20Progress-7C3AED?style=for-the-badge" alt="LLM Apps In Progress" />
+
+<i>Designing retrieval-driven assistants, multi-step AI workflows, and practical GenAI systems with a focus on strong execution and polished user experience.</i>
+
+Focused on retrieval, orchestration, and practical AI experiences.
+
+</div>
 
 ---
 
