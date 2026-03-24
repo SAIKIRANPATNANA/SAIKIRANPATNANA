@@ -694,6 +694,47 @@ h1 span {
   flex-wrap: wrap;
 }
 
+.project-space {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.project-domain-section {
+  padding: 1.6rem;
+}
+
+.project-domain-section .project-grid {
+  display: none;
+  margin-top: 1.2rem;
+}
+
+.project-domain-section.is-open .project-grid {
+  display: grid;
+}
+
+.project-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-bottom: 1.3rem;
+}
+
+.project-section-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.project-section-head h3 {
+  margin: 0.15rem 0 0;
+  max-width: 700px;
+}
+
+.project-grid-dense {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .tab-button {
   padding: 0.8rem 1.1rem;
   border-radius: 999px;
@@ -713,7 +754,7 @@ h1 span {
 }
 
 .project-card {
-  min-height: 220px;
+  min-height: 260px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -724,6 +765,7 @@ h1 span {
 .project-visual {
   display: flex;
   align-items: end;
+  justify-content: space-between;
   gap: 0.45rem;
   min-height: 130px;
   padding: 1rem;
@@ -735,6 +777,16 @@ h1 span {
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
+}
+
+.project-thumb {
+  width: 92px;
+  height: 92px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.26);
+  background: rgba(9, 15, 27, 0.6);
 }
 
 .project-visual span {
@@ -749,6 +801,24 @@ h1 span {
   color: var(--text);
   font-size: 0.74rem;
   letter-spacing: 0.04em;
+}
+
+.project-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.project-stack-row span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: var(--muted);
+  font-size: 0.74rem;
 }
 
 .project-card::after {
@@ -776,6 +846,10 @@ h1 span {
   letter-spacing: 0.18em;
   font-size: 0.74rem;
   color: var(--gold);
+}
+
+.project-card h3 {
+  margin-bottom: 0.55rem;
 }
 
 .card-link {
@@ -944,6 +1018,8 @@ h1 span {
 .project-modal {
   width: min(720px, 100%);
   padding: 2rem;
+  max-height: min(88vh, 860px);
+  overflow-y: auto;
   background: linear-gradient(180deg, rgba(11, 18, 37, 0.96), rgba(10, 15, 29, 0.96));
   transform: translateY(16px) scale(0.98);
   transition: transform 0.25s ease;
@@ -981,6 +1057,17 @@ h1 span {
   margin: 1rem 0 1.6rem;
 }
 
+.modal-project-image {
+  display: block;
+  width: 100%;
+  max-height: 180px;
+  margin-bottom: 1.15rem;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(9, 15, 27, 0.7);
+}
+
 .photo-modal-image {
   display: block;
   width: 100%;
@@ -997,6 +1084,11 @@ h1 span {
   gap: 1rem;
 }
 
+.modal-meta-single {
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
 .modal-meta div {
   padding: 1rem;
   border-radius: var(--radius-sm);
@@ -1008,6 +1100,11 @@ h1 span {
   display: block;
   color: var(--muted);
   margin-bottom: 0.35rem;
+}
+
+.modal-actions {
+  margin-top: 1.2rem;
+  justify-content: flex-start;
 }
 
 .reveal {
@@ -1244,14 +1341,32 @@ h1 span {
     grid-template-columns: 1fr;
   }
 
+  .project-section-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .project-section-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   .project-visual {
     min-height: 104px;
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .project-visual span {
     min-width: 0;
     flex: 1;
     font-size: 0.68rem;
+  }
+
+  .project-thumb {
+    width: 100%;
+    height: 120px;
   }
 
   .loader-rings {

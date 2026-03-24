@@ -208,6 +208,7 @@ function playModalCloseSound() {
 
 const tabButtons = document.querySelectorAll(".tab-button");
 const projectCards = document.querySelectorAll(".project-card");
+const projectToggles = document.querySelectorAll(".project-toggle");
 
 tabButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -225,11 +226,25 @@ tabButtons.forEach((button) => {
   });
 });
 
+projectToggles.forEach((button) => {
+  button.addEventListener("click", () => {
+    const section = button.closest(".project-domain-section");
+    const isOpen = section.classList.toggle("is-open");
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.textContent = isOpen ? "Hide Projects" : "View Projects";
+    playButtonSound();
+  });
+});
+
 const modal = document.getElementById("project-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalDomain = document.getElementById("modal-domain");
 const modalDescription = document.getElementById("modal-description");
+const modalImage = document.getElementById("modal-image");
 const modalStack = document.getElementById("modal-stack");
+const modalStatus = document.getElementById("modal-status");
+const modalHighlights = document.getElementById("modal-highlights");
+const modalLink = document.getElementById("modal-link");
 const modalClose = document.getElementById("modal-close");
 const profilePhotoTrigger = document.getElementById("profile-photo-trigger");
 const profileShowcase = document.querySelector(".profile-showcase");
@@ -240,7 +255,16 @@ function openModal(card) {
   modalTitle.textContent = card.dataset.title || "Project";
   modalDomain.textContent = card.dataset.domain || "Project Domain";
   modalDescription.textContent = card.dataset.description || "Details coming soon.";
+  modalImage.src = card.dataset.image || "./assets/project-genai.svg";
+  modalImage.alt = `${card.dataset.title || "Project"} preview`;
   modalStack.textContent = card.dataset.stack || "Custom stack";
+  modalStatus.textContent = card.dataset.status || "In Progress";
+  modalHighlights.textContent = card.dataset.highlights || "Representative work will appear here.";
+
+  const link = card.dataset.link || "https://github.com/SAIKIRANPATNANA";
+  const linkLabel = card.dataset.linkLabel || "Visit Repository";
+  modalLink.href = link;
+  modalLink.textContent = linkLabel;
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
