@@ -15,6 +15,9 @@
   <a href="https://saikiranpatnana.github.io/SAIKIRANPATNANA/">
     <img src="https://img.shields.io/badge/Portfolio-Live%20Site-0F766E?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio Link" />
   </a>
+  <a href="https://github.com/SAIKIRANPATNANA/SAIKIRANPATNANA/raw/main/portfolio/CV.pdf">
+    <img src="https://img.shields.io/badge/Resume-Download-1D4ED8?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Resume Download" />
+  </a>
   <img src="https://komarev.com/ghpvc/?username=SAIKIRANPATNANA&style=for-the-badge&color=0F766E" alt="Profile Views" />
   <img src="https://img.shields.io/badge/Focus-Generative%20AI-0F766E?style=for-the-badge" alt="Focus Generative AI" />
   <img src="https://img.shields.io/badge/Domain-Artificial%20Intelligence-1D4ED8?style=for-the-badge" alt="Domain Artificial Intelligence" />
@@ -147,31 +150,71 @@ Creating modern AI applications with LLMs, prompt engineering, RAG pipelines, an
 
 ## Project Universe
 
-These sections are designed so I can keep my GitHub organized by domain and steadily expand them with polished repositories.
+These sections now map to my grouped GitHub repositories, making it easier to explore my work domain by domain while I keep expanding each collection.
 
 ### ✨ Generative AI Projects
-- Coming soon: LLM applications, RAG systems, assistants, and GenAI experiments
-- Placeholder for upcoming repositories and learning projects
+**Repository Hub:** [GENAI_PROJECTS](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS)
+
+- [ATS](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats) - ATS-focused project work and experimentation.
+- [Calorie Calc Using GPV](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/calorie-calc-using-gpv) - multimodal-style calorie estimation workflow.
+- [Disease Diagnosis Dhanvantari](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/disease-diagnosis-dhanvantari) - healthcare-oriented RAG and diagnosis support exploration.
+- [Harassment Bot](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot) - safety- and moderation-oriented assistant work.
+- [HYBD CMR EdTech](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech) - educational content generation and retrieval workflows.
+- [Med Triage Agentic AI](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai) - agent-style medical triage assistant exploration.
+- [Sadhana GenAI Project](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project) - PDF chat, MCQ, Q&A, and learning workflows.
+- [Stance Detection](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/stance-detection) - LLM-assisted stance detection experimentation.
+- [WhatsApp Chat Analyser](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/whatsapp-chat-analyser) - conversational analytics and insight generation.
 
 ### 🗣️ Natural Language Processing Projects
-- Coming soon: text analysis, NLP pipelines, and language understanding projects
-- Placeholder for future repository links
+**Repository Hub:** [NLP_PROJECTS](https://github.com/SAIKIRANPATNANA/NLP_PROJECTS)
+
+- [IMDB Sentiment Analysis](https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/imdb-sentiment-analysis) - review sentiment classification.
+- [Sentiment Analysis NLP](https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/sentiment-analysis-nlp) - applied sentiment analysis workflows.
+- [Spam Message Classifier](https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/spam-message-classifier) - NLP-based spam detection.
+- [TMDB Movie Recommendation](https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/tmdb-movie-recommendation) - recommendation and content-based similarity system.
 
 ### 👁️ Computer Vision Projects
-- Coming soon: image processing, detection, recognition, and visual intelligence projects
-- Placeholder for future repository links
+**Repository Hub:** [CV_PROJECTS](https://github.com/SAIKIRANPATNANA/CV_PROJECTS)
+
+- [Brain Tumor Detection](https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/brain-tumor-detection) - medical image classification and detection work.
+- [Face Recognition](https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/face-recognition) - face recognition pipeline development.
+- [Facial Emotion Detection](https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/facial-emotion-detection) - emotion recognition from facial inputs.
+- [Image Super Resolution GANs](https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/image-super-resolution-gans) - SRGAN and ESRGAN-based image enhancement.
+- [Sign Language Detection](https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/sign-language-detection) - gesture and sign interpretation workflows.
+- [Traffic Sign Detection](https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/traffic-sign-detection) - visual traffic sign recognition.
 
 ### 🧠 Deep Learning Projects
-- Coming soon: neural network models, applied deep learning, and experimentation repositories
-- Placeholder for future repository links
+**Repository Hub:** [DL_PROJECTS](https://github.com/SAIKIRANPATNANA/DL_PROJECTS)
+
+- [Bald Classification](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/bald-classification) - applied image classification project.
+- [Chicken Disease Classification](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/chicken-disease-classification) - disease detection using deep learning pipelines.
+- [Child Classification](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/child-classification) - deep learning classification workflow.
+- [Gender Age Detector](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/gender-age-detector) - age and gender prediction from images.
+- [Pedestrian Detection](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/pedestrian-detection) - scene understanding and detection work.
+- [Sign Language Recognition](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/sign-language-recognition) - sequence and gesture recognition with DL.
+- [Voice Based Gender Detection](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection) - audio classification and speech-based prediction.
 
 ### ⚙️ Machine Learning Projects
-- Coming soon: classification, regression, prediction, and end-to-end ML workflow projects
-- Placeholder for future repository links
+**Repository Hub:** [ML_PROJECTS](https://github.com/SAIKIRANPATNANA/ML_PROJECTS)
+
+- [Crop Recommendation Classification](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/crop-recommendation-classification) - smart agriculture recommendation system.
+- [Customer Segmentation MLOps](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/customer-segmentation-mlops) - customer clustering with deployment-oriented workflow.
+- [Diamond Price Prediction](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/diamond-price-prediction) - regression-based price estimation.
+- [Red Wine Quality Prediction](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/red-wine-quality-prediction) - quality prediction using ML pipelines.
+- [Rural Loan Approval Prediction](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/rural-loan-approval-prediction) - approval and verification-oriented ML workflow.
+- [Sensor Fault Detection](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/sensor-fault-detection) - industrial fault analysis and prediction.
+- [Student Performance Prediction](https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/student-performance-prediction) - educational outcome prediction system.
 
 ### 📈 Data Science Projects
-- Coming soon: analytics, dashboards, insights, and data storytelling repositories
-- Placeholder for future repository links
+For now, my data-centric analysis and predictive case studies are represented inside [ML_PROJECTS](https://github.com/SAIKIRANPATNANA/ML_PROJECTS), with more dedicated analytics and storytelling repositories to be added over time.
+
+### 🐍 Python Projects
+**Repository Hub:** [PYTHON_PROJECTS](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS)
+
+- [Python Virtual Assistant](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/python-virtual-assistant) - assistant automation built with Python.
+- [QR Code Generator](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/qr-code-generator) - utility project for generating QR codes.
+- [Telegram Bot](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/telegram-bot) - chat automation and bot workflow.
+- [Virtual Voice Assistant](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/virtual-voice-assistant) - voice-enabled assistant experimentation.
 
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=SAIKIRANPATNANA&bg_color=ffffff&color=0F766E&line=1D4ED8&point=7C3AED&area=true&hide_border=true" alt="Contribution Graph" />
@@ -203,6 +246,7 @@ Every repository I create is part of a larger journey: learning deeply, building
 - LinkedIn: [SAIKIRANPATNANA](https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/)
 - Email: `saikiranpatnan5143@gmail.com`
 - Portfolio: [Live Portfolio](https://saikiranpatnana.github.io/SAIKIRANPATNANA/)
+- Resume: [Download CV](https://github.com/SAIKIRANPATNANA/SAIKIRANPATNANA/raw/main/portfolio/CV.pdf)
 
 ---
 
