@@ -165,7 +165,7 @@ These sections now map to my grouped GitHub repositories, making it easier to ex
 ### ✨ Generative AI Projects
 **Repository Hub:** [GENAI_PROJECTS](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS)
 
-- [ATS](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats) - ATS-focused project work and experimentation.
+- [ATS Using Gemini](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini) - resume analysis and ATS-style evaluation using Gemini Pro Vision.
 - [Calorie Calc Using GPV](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/calorie-calc-using-gpv) - multimodal-style calorie estimation workflow.
 - [Disease Diagnosis Dhanvantari](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/disease-diagnosis-dhanvantari) - healthcare-oriented RAG and diagnosis support exploration.
 - [Harassment Bot](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot) - safety- and moderation-oriented assistant work.

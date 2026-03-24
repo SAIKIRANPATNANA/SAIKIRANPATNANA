@@ -10,7 +10,7 @@
   <rect x="42" y="174" width="110" height="22" rx="11" fill="#0F172A" fill-opacity=".82"/>
   <rect x="160" y="174" width="118" height="22" rx="11" fill="#0F172A" fill-opacity=".82"/>
   <text x="56" y="189" fill="#63F1D4" font-family="Arial, sans-serif" font-size="12" font-weight="700">ATS</text>
-  <text x="174" y="189" fill="#6FA5FF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Resume Match</text>
+  <text x="174" y="189" fill="#6FA5FF" font-family="Arial, sans-serif" font-size="12" font-weight="700">GEMINI</text>
   <defs>
     <linearGradient id="bg" x1="28" y1="24" x2="286" y2="196" gradientUnits="userSpaceOnUse">
       <stop stop-color="#111E38"/>
