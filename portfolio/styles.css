@@ -338,6 +338,14 @@ main {
   position: relative;
 }
 
+#about,
+#domains,
+#projects,
+#contact,
+#resume {
+  scroll-margin-top: 7.5rem;
+}
+
 .panel {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
   border: 1px solid var(--line);
