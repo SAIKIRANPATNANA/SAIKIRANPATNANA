@@ -32,16 +32,10 @@
 
 ## 🌌 Profile Snapshot
 
-<table>
-  <tr>
-    <td width="50%">
-      <img src="https://github-readme-stats.vercel.app/api?username=SAIKIRANPATNANA&show_icons=true&theme=transparent&title_color=0F766E&text_color=334155&icon_color=1D4ED8&border_color=CBD5E1" alt="GitHub Stats" />
-    </td>
-    <td width="50%">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=SAIKIRANPATNANA&layout=compact&theme=transparent&title_color=0F766E&text_color=334155&border_color=CBD5E1" alt="Top Languages" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img height="195" src="https://github-readme-stats.vercel.app/api?username=SAIKIRANPATNANA&show_icons=true&theme=transparent&title_color=0F766E&text_color=334155&icon_color=1D4ED8&border_color=CBD5E1" alt="GitHub Stats" />
+  <img height="195" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SAIKIRANPATNANA&layout=compact&theme=transparent&title_color=0F766E&text_color=334155&border_color=CBD5E1" alt="Top Languages" />
+</p>
 
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=SAIKIRANPATNANA&theme=transparent&ring=0F766E&fire=F59E0B&currStreakLabel=1D4ED8&sideLabels=334155&dates=64748B&border=CBD5E1" alt="GitHub Streak" />
