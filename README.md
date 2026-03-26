@@ -230,6 +230,22 @@ For now, my data-centric analysis and predictive case studies are represented in
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=SAIKIRANPATNANA&bg_color=ffffff&color=0F766E&line=1D4ED8&point=7C3AED&area=true&hide_border=true" alt="Contribution Graph" />
 </p>
 
+## Learning Journey
+
+Beyond projects, I keep a structured set of public learning repositories that document the systems, tools, and foundations I am actively growing through hands-on study.
+
+### 🧭 Learning Repositories
+- **[Generative AI Learning](https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING)**: RAG systems, agentic AI workflows, Gemini experiments, prompt-driven applications, and multimodal learning builds
+- **[AI Core Learning](https://github.com/SAIKIRANPATNANA/AI_CORE_LEARNING)**: machine learning and deep learning foundations, feature engineering, CNNs, transfer learning, YOLO, and architecture-level experimentation
+- **[MLOps and Deployment Learning](https://github.com/SAIKIRANPATNANA/MLOPS_AND_DEPLOYMENT_LEARNING)**: MLflow, Docker, reproducible workflows, deployment thinking, and production-oriented ML structure
+- **[Data Foundations](https://github.com/SAIKIRANPATNANA/DATA_FOUNDATIONS)**: PySpark, SQL/MySQL, structured data workflows, and data-processing foundations for AI systems
+- **[NLP Learning](https://github.com/SAIKIRANPATNANA/NLP_LEARNING)**: text preprocessing, sentiment analysis, language-oriented experimentation, and practical NLP foundations
+- **[Programming and Math Foundations](https://github.com/SAIKIRANPATNANA/PROGRAMMING_AND_MATH_FOUNDATIONS)**: Python, statistics, probability, and the technical fundamentals that support stronger AI work
+
+<p align="center">
+  <i>Learning is not separate from building for me. It is the engine behind every stronger project I create.</i>
+</p>
+
 ## What This Profile Represents
 
 This profile is my evolving space for:
