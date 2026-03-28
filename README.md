@@ -33,8 +33,9 @@
 ## 🌌 Profile Snapshot
 
 <p align="center">
-  <img height="195" src="https://github-readme-stats.vercel.app/api?username=SAIKIRANPATNANA&show_icons=true&theme=transparent&title_color=0F766E&text_color=334155&icon_color=1D4ED8&border_color=CBD5E1" alt="GitHub Stats" />
-  <img height="195" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SAIKIRANPATNANA&layout=compact&theme=transparent&title_color=0F766E&text_color=334155&border_color=CBD5E1" alt="Top Languages" />
+  <img src="https://img.shields.io/badge/AI%20Builder-Projects%20Across%20ML%2C%20DL%2C%20CV%2C%20NLP%20%26%20GenAI-0F766E?style=for-the-badge" alt="AI Builder" />
+  <img src="https://img.shields.io/badge/Problem%20Solving-500%2B%20LeetCode%20Problems-1D4ED8?style=for-the-badge" alt="Problem Solving" />
+  <img src="https://img.shields.io/badge/Learning%20Mode-Hands--On%20And%20Consistent-7C3AED?style=for-the-badge" alt="Learning Mode" />
 </p>
 
 <p align="center">
@@ -236,6 +237,9 @@ Beyond projects, I keep a structured set of public learning repositories that do
 - **[NLP Learning](https://github.com/SAIKIRANPATNANA/NLP_LEARNING)**: text preprocessing, sentiment analysis, language-oriented experimentation, and practical NLP foundations
 - **[Programming and Math Foundations](https://github.com/SAIKIRANPATNANA/PROGRAMMING_AND_MATH_FOUNDATIONS)**: Python, statistics, probability, and the technical fundamentals that support stronger AI work
 
+### 🧩 Problem Solving And DSA
+- **[LeetCode Profile](https://leetcode.com/u/saikiranpatnana5143/)**: solved 500+ problems with strong consistency across data structures, algorithmic patterns, optimization, and interview-style problem solving
+
 <p align="center">
   <i>Learning is not separate from building for me. It is the engine behind every stronger project I create.</i>
 </p>
@@ -264,6 +268,7 @@ Every repository I create is part of a larger journey: learning deeply, building
 
 - GitHub: [SAIKIRANPATNANA](https://github.com/SAIKIRANPATNANA)
 - LinkedIn: [SAIKIRANPATNANA](https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/)
+- LeetCode: [SAIKIRANPATNANA](https://leetcode.com/u/saikiranpatnana5143/)
 - Email: `saikiranpatnan5143@gmail.com`
 - Portfolio: [Live Portfolio](https://saikiranpatnana.github.io/SAIKIRANPATNANA/)
 - Resume: [Download CV](https://github.com/SAIKIRANPATNANA/SAIKIRANPATNANA/raw/main/portfolio/CV.pdf)
