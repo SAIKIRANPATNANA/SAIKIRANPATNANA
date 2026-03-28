@@ -8,14 +8,14 @@
       name="description"
       content="An immersive AI portfolio by Sai Kiran Patnana spanning Data Science, ML, DL, CV, NLP, and Generative AI."
     />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=22" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=8" />
+    <link rel="stylesheet" href="./styles.css?v=22" />
   </head>
   <body>
     <div class="loader" id="loader" aria-hidden="true">
@@ -54,6 +54,7 @@
         <a href="#about">About</a>
         <a href="#domains">Domains</a>
         <a href="#projects">Projects</a>
+        <a href="./blogs.html">Blogs</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -177,21 +178,70 @@
           <h2>The energy behind my work.</h2>
         </div>
         <div class="signal-grid">
-          <article class="signal-card reveal tilt-card">
+          <article class="signal-card signal-card-analytical reveal tilt-card">
             <span>01</span>
+            <div class="signal-visual"><img src="./assets/signals/analytical-depth.svg" alt="Analytical depth icon" /></div>
             <h3>Analytical Depth</h3>
             <p>Strong foundations in data, patterns, and model thinking.</p>
           </article>
-          <article class="signal-card reveal tilt-card">
+          <article class="signal-card signal-card-creative reveal tilt-card">
             <span>02</span>
+            <div class="signal-visual"><img src="./assets/signals/creative-engineering.svg" alt="Creative engineering icon" /></div>
             <h3>Creative Engineering</h3>
             <p>Combining logic, aesthetics, and interaction to make work stand out.</p>
           </article>
-          <article class="signal-card reveal tilt-card">
+          <article class="signal-card signal-card-modern reveal tilt-card">
             <span>03</span>
+            <div class="signal-visual"><img src="./assets/signals/modern-ai-curiosity.svg" alt="Modern AI curiosity icon" /></div>
             <h3>Modern AI Curiosity</h3>
             <p>Exploring LLMs, RAG, agents, and the systems shaping the future.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section dsa-spotlight panel reveal" id="problem-solving">
+        <div class="dsa-copy">
+          <p class="eyebrow">Problem Solving</p>
+          <h2>Algorithmic thinking, sharpened through 500+ LeetCode solves.</h2>
+          <p>
+            I’m very comfortable with DSA and pattern-based problem solving. Solving 500+ LeetCode
+            problems has helped me build speed, clarity, and strong instincts in arrays, graphs,
+            trees, dynamic programming, and optimization-heavy reasoning.
+          </p>
+          <div class="dsa-chip-row">
+            <span>Arrays</span>
+            <span>Graphs</span>
+            <span>DP</span>
+            <span>Trees</span>
+            <span>Greedy</span>
+          </div>
+          <div class="hero-actions dsa-actions">
+            <a class="button primary interactive" href="https://leetcode.com/u/saikiranpatnana5143/" target="_blank" rel="noreferrer">View LeetCode</a>
+            <a class="button secondary interactive" href="#learning-journey">See Learning Journey</a>
+          </div>
+        </div>
+        <div class="dsa-panel tilt-card">
+          <div class="panel-topline">
+            <span class="status-live">DSA Signal</span>
+            <span class="muted">Consistency • Precision • Patterns</span>
+          </div>
+          <div class="dsa-visual">
+            <img src="./assets/contact/leetcode.svg" alt="LeetCode icon" />
+          </div>
+          <div class="dsa-metrics">
+            <article>
+              <span>Problems Solved</span>
+              <strong>500+</strong>
+            </article>
+            <article>
+              <span>Core Strength</span>
+              <strong>Patterns</strong>
+            </article>
+            <article>
+              <span>Mindset</span>
+              <strong>Iterative</strong>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -201,33 +251,39 @@
           <h2>The disciplines I build across.</h2>
         </div>
         <div class="domain-grid">
-          <article class="domain-card learning-card learning-card-genai reveal tilt-card">
+          <article class="domain-card domain-theme-data reveal tilt-card">
             <span class="icon">01</span>
+            <div class="domain-visual"><img src="./assets/domains/data-science.svg" alt="Data Science icon" /></div>
             <h3>Data Science</h3>
             <p>Insights, patterns, analytics, storytelling, and decision support.</p>
           </article>
-          <article class="domain-card learning-card learning-card-core reveal tilt-card">
+          <article class="domain-card domain-theme-ml reveal tilt-card">
             <span class="icon">02</span>
+            <div class="domain-visual"><img src="./assets/domains/machine-learning.svg" alt="Machine Learning icon" /></div>
             <h3>Machine Learning</h3>
             <p>Classification, regression, predictive systems, and intelligent workflows.</p>
           </article>
-          <article class="domain-card learning-card learning-card-mlops reveal tilt-card">
+          <article class="domain-card domain-theme-dl reveal tilt-card">
             <span class="icon">03</span>
+            <div class="domain-visual"><img src="./assets/domains/deep-learning.svg" alt="Deep Learning icon" /></div>
             <h3>Deep Learning</h3>
             <p>Neural architectures, richer representations, and advanced model behavior.</p>
           </article>
-          <article class="domain-card learning-card learning-card-data reveal tilt-card">
+          <article class="domain-card domain-theme-cv reveal tilt-card">
             <span class="icon">04</span>
+            <div class="domain-visual"><img src="./assets/domains/computer-vision.svg" alt="Computer Vision icon" /></div>
             <h3>Computer Vision</h3>
             <p>Image understanding, detection, recognition, and visual intelligence.</p>
           </article>
-          <article class="domain-card learning-card learning-card-nlp reveal tilt-card">
+          <article class="domain-card domain-theme-nlp reveal tilt-card">
             <span class="icon">05</span>
+            <div class="domain-visual"><img src="./assets/domains/nlp.svg" alt="Natural Language Processing icon" /></div>
             <h3>Natural Language Processing</h3>
             <p>Language-aware systems, text understanding, and human-centric AI.</p>
           </article>
-          <article class="domain-card learning-card learning-card-math reveal tilt-card">
+          <article class="domain-card domain-theme-genai reveal tilt-card">
             <span class="icon">06</span>
+            <div class="domain-visual"><img src="./assets/domains/genai.svg" alt="Generative AI icon" /></div>
             <h3>Generative AI</h3>
             <p>LLMs, RAG, prompt design, AI assistants, and emerging intelligent products.</p>
           </article>
@@ -516,10 +572,11 @@
             summaries, links, and a polished publishing setup.
           </p>
         </div>
-        <div class="contact-links">
-          <a class="interactive" href="https://github.com/SAIKIRANPATNANA" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="interactive" href="https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="interactive" href="mailto:saikiranpatnana5143@gmail.com">Email</a>
+                <div class="contact-links">
+          <a class="interactive contact-link contact-github" href="https://github.com/SAIKIRANPATNANA" target="_blank" rel="noreferrer"><img src="./assets/contact/github.svg" alt="GitHub" /><span>GitHub</span></a>
+          <a class="interactive contact-link contact-linkedin" href="https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/" target="_blank" rel="noreferrer"><img src="./assets/contact/linkedin.svg" alt="LinkedIn" /><span>LinkedIn</span></a>
+          <a class="interactive contact-link contact-leetcode" href="https://leetcode.com/u/saikiranpatnana5143/" target="_blank" rel="noreferrer"><img src="./assets/contact/leetcode.svg" alt="LeetCode" /><span>LeetCode</span></a>
+          <a class="interactive contact-link contact-email" href="mailto:saikiranpatnan5143@gmail.com"><img src="./assets/contact/email.svg" alt="Email" /><span>Email</span></a>
         </div>
       </section>
     </main>
@@ -570,6 +627,6 @@
       </div>
     </div>
 
-    <script src="./script.js?v=8"></script>
+    <script src="./script.js?v=22"></script>
   </body>
 </html>

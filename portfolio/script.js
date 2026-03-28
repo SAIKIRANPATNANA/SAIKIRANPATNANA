@@ -4,10 +4,24 @@ const loaderProgress = document.getElementById("loader-progress");
 
 document.body.classList.add("loading");
 
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+function hideLoader() {
+  window.clearInterval(progressTimer);
+  if (loaderProgress) loaderProgress.style.width = "100%";
+
+  window.setTimeout(() => {
+    if (loader) loader.classList.add("hidden");
+    document.body.classList.remove("loading");
+  }, 120);
+}
+
 let progressValue = 0;
 const progressTimer = window.setInterval(() => {
   progressValue = Math.min(progressValue + 14, 94);
-  loaderProgress.style.width = `${progressValue}%`;
+  if (loaderProgress) loaderProgress.style.width = `${progressValue}%`;
 }, 120);
 
 const revealObserver = new IntersectionObserver(
@@ -24,10 +38,11 @@ const revealObserver = new IntersectionObserver(
 reveals.forEach((item) => revealObserver.observe(item));
 
 const canvas = document.getElementById("starfield");
-const ctx = canvas.getContext("2d");
+const ctx = canvas ? canvas.getContext("2d") : null;
 const stars = [];
 
 function resizeCanvas() {
+  if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
@@ -48,6 +63,7 @@ function createStars() {
 }
 
 function renderStars() {
+  if (!ctx || !canvas) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (const star of stars) {
@@ -66,9 +82,11 @@ function renderStars() {
   requestAnimationFrame(renderStars);
 }
 
-resizeCanvas();
-createStars();
-renderStars();
+if (canvas && ctx) {
+  resizeCanvas();
+  createStars();
+  renderStars();
+}
 
 window.addEventListener("resize", () => {
   resizeCanvas();
@@ -304,12 +322,17 @@ document.querySelectorAll(".project-card").forEach((card) => {
   });
 });
 
-modalClose.addEventListener("click", closeModal);
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    closeModal();
-  }
-});
+if (modalClose) {
+  modalClose.addEventListener("click", closeModal);
+}
+
+if (modal) {
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+}
 
 if (profilePhotoTrigger) {
   profilePhotoTrigger.addEventListener("click", (event) => {
@@ -340,11 +363,11 @@ if (photoModal) {
 }
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("open")) {
+  if (modal && event.key === "Escape" && modal.classList.contains("open")) {
     closeModal();
   }
 
-  if (event.key === "Escape" && photoModal.classList.contains("open")) {
+  if (photoModal && event.key === "Escape" && photoModal.classList.contains("open")) {
     closePhotoModal();
   }
 });
@@ -377,12 +400,220 @@ window.addEventListener("pointerdown", (event) => {
   }
 });
 
-window.addEventListener("load", () => {
-  window.clearInterval(progressTimer);
-  loaderProgress.style.width = "100%";
+window.addEventListener("DOMContentLoaded", hideLoader, { once: true });
+window.addEventListener("load", hideLoader, { once: true });
+window.setTimeout(hideLoader, 1400);
 
-  window.setTimeout(() => {
-    loader.classList.add("hidden");
-    document.body.classList.remove("loading");
-  }, 420);
+if (document.body.classList.contains("article-page") && !window.location.hash) {
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}
+
+const readingProgressBar = document.getElementById("reading-progress-bar");
+
+if (readingProgressBar) {
+  const updateReadingProgress = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    readingProgressBar.style.width = `${progress}%`;
+  };
+
+  updateReadingProgress();
+  window.addEventListener("scroll", updateReadingProgress, { passive: true });
+  window.addEventListener("resize", updateReadingProgress);
+}
+
+document.querySelectorAll('[data-quiz-type="choice"], [data-quiz-type="mcq"]').forEach((card) => {
+  const answer = card.dataset.answer;
+  const feedback = card.querySelector(".quiz-feedback");
+  const blank = card.querySelector(".quiz-blank");
+  const buttons = card.querySelectorAll(".quiz-chip, .quiz-option");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      buttons.forEach((item) => item.classList.remove("selected"));
+      button.classList.add("selected");
+
+      const value = button.dataset.value;
+      if (blank) {
+        blank.textContent = value;
+      }
+
+      if (value === answer) {
+        feedback.textContent = "Correct.";
+        feedback.className = "quiz-feedback correct";
+      } else {
+        feedback.textContent = "Not quite. Try again.";
+        feedback.className = "quiz-feedback wrong";
+      }
+    });
+  });
 });
+
+const articleQuiz = document.querySelector(".article-quiz");
+
+if (articleQuiz) {
+  const quizCards = Array.from(articleQuiz.querySelectorAll(".quiz-card"));
+  const prevButton = articleQuiz.querySelector(".quiz-prev");
+  const nextButton = articleQuiz.querySelector(".quiz-next");
+  const restartButton = articleQuiz.querySelector(".quiz-restart");
+  const progressCopy = articleQuiz.querySelector("#quiz-progress-copy");
+  const progressFill = articleQuiz.querySelector("#quiz-progress-fill");
+  const summary = articleQuiz.querySelector("#quiz-summary");
+  const scoreNode = articleQuiz.querySelector("#quiz-score");
+  const totalNode = articleQuiz.querySelector("#quiz-total");
+  const summaryCopy = articleQuiz.querySelector("#quiz-summary-copy");
+
+  let currentQuizIndex = 0;
+  const results = new Array(quizCards.length).fill(null);
+
+  const evaluateQuizCard = (card) => {
+    const type = card.dataset.quizType;
+    const feedback = card.querySelector(".quiz-feedback");
+
+    if (type === "match") {
+      const selects = Array.from(card.querySelectorAll(".match-select"));
+      const values = selects.map((select) => select.value);
+      const answered = values.every(Boolean);
+
+      if (!answered) {
+        feedback.textContent = "Match both rows before moving on.";
+        feedback.className = "quiz-feedback wrong";
+        return { answered: false, correct: false };
+      }
+
+      const expected = ["similarity", "hierarchy"];
+      const correct = values.every((value, index) => value === expected[index]);
+      feedback.textContent = correct ? "Great match." : "Close, but swap the approaches.";
+      feedback.className = `quiz-feedback ${correct ? "correct" : "wrong"}`;
+      return { answered: true, correct };
+    }
+
+    const selected = card.querySelector(".quiz-chip.selected, .quiz-option.selected");
+    if (!selected) {
+      feedback.textContent = "Choose an answer before moving on.";
+      feedback.className = "quiz-feedback wrong";
+      return { answered: false, correct: false };
+    }
+
+    const correct = selected.dataset.value === card.dataset.answer;
+    feedback.textContent = correct ? "Correct." : "Not quite. Try to remember the key idea.";
+    feedback.className = `quiz-feedback ${correct ? "correct" : "wrong"}`;
+    return { answered: true, correct };
+  };
+
+  const updateQuizStep = () => {
+    quizCards.forEach((card, index) => {
+      card.hidden = index !== currentQuizIndex;
+    });
+
+    const total = quizCards.length;
+    if (progressCopy) {
+      progressCopy.textContent = `Question ${currentQuizIndex + 1} of ${total}`;
+    }
+    if (progressFill) {
+      progressFill.style.width = `${((currentQuizIndex + 1) / total) * 100}%`;
+    }
+    if (prevButton) {
+      prevButton.disabled = currentQuizIndex === 0;
+    }
+    if (nextButton) {
+      nextButton.textContent = currentQuizIndex === total - 1 ? "See Results" : "Next Question";
+    }
+  };
+
+  const showQuizSummary = () => {
+    quizCards.forEach((card) => {
+      card.hidden = true;
+    });
+    if (summary) {
+      summary.hidden = false;
+    }
+
+    const score = results.filter((result) => result?.correct).length;
+    if (scoreNode) scoreNode.textContent = String(score);
+    if (totalNode) totalNode.textContent = String(quizCards.length);
+
+    if (summaryCopy) {
+      if (score === quizCards.length) {
+        summaryCopy.textContent = "Excellent. You understood both the mechanics and the tradeoffs clearly.";
+      } else if (score >= Math.ceil(quizCards.length * 0.66)) {
+        summaryCopy.textContent = "Strong work. You’ve got the main idea; the answer list below will sharpen the details.";
+      } else {
+        summaryCopy.textContent = "Nice start. Read the answer list once, then try the quiz again to lock the ideas in.";
+      }
+    }
+
+    if (progressCopy) {
+      progressCopy.textContent = "Quiz complete";
+    }
+    if (progressFill) {
+      progressFill.style.width = "100%";
+    }
+    if (prevButton) prevButton.hidden = true;
+    if (nextButton) nextButton.hidden = true;
+  };
+
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      if (currentQuizIndex > 0) {
+        currentQuizIndex -= 1;
+        updateQuizStep();
+      }
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      const result = evaluateQuizCard(quizCards[currentQuizIndex]);
+      if (!result.answered) {
+        return;
+      }
+
+      results[currentQuizIndex] = result;
+
+      if (currentQuizIndex === quizCards.length - 1) {
+        showQuizSummary();
+        return;
+      }
+
+      currentQuizIndex += 1;
+      updateQuizStep();
+    });
+  }
+
+  if (restartButton) {
+    restartButton.addEventListener("click", () => {
+      currentQuizIndex = 0;
+      results.fill(null);
+
+      quizCards.forEach((card) => {
+        card.hidden = false;
+        card.querySelectorAll(".quiz-chip, .quiz-option").forEach((button) => {
+          button.classList.remove("selected");
+        });
+        card.querySelectorAll(".match-select").forEach((select) => {
+          select.value = "";
+        });
+        const blank = card.querySelector(".quiz-blank");
+        if (blank) {
+          blank.textContent = "_____";
+        }
+        const feedback = card.querySelector(".quiz-feedback");
+        if (feedback) {
+          feedback.textContent = "";
+          feedback.className = "quiz-feedback";
+        }
+      });
+
+      if (summary) {
+        summary.hidden = true;
+      }
+      if (prevButton) prevButton.hidden = false;
+      if (nextButton) nextButton.hidden = false;
+      updateQuizStep();
+    });
+  }
+
+  updateQuizStep();
+}

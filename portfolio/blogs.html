@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sai Kiran Patnana | AI Blogs</title>
+    <meta
+      name="description"
+      content="Editorial AI writings by Sai Kiran Patnana covering AI trends, RAG systems, agents, GenAI concepts, and emerging ideas in modern intelligence."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=21" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=21" />
+  </head>
+  <body class="blog-page">
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-core">
+        <div class="loader-rings">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="loader-label">Initializing Editorial Space</p>
+        <div class="loader-bar">
+          <span id="loader-progress"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="noise"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="touch-effects" id="touch-effects" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html#top">
+        <span class="brand-mark"></span>
+        <span>PSK</span>
+      </a>
+      <div class="header-center">
+        <strong>Sai Kiran Patnana</strong>
+        <span>Ideas, systems, and signals from modern AI.</span>
+      </div>
+      <nav class="nav">
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#domains">Domains</a>
+        <a href="./index.html#projects">Projects</a>
+        <a class="current" href="./blogs.html">Blogs</a>
+        <a href="./index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero panel blog-hero">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Editorial AI Space</p>
+          <h1>
+            Writing the edge of AI as I learn it.
+            <span>Trends, concepts, RAG notes, agentic workflows, and thoughtful breakdowns of the systems shaping what comes next.</span>
+          </h1>
+          <p class="lead">
+            This is where I turn AI learning into readable, practical, and visually immersive writing.
+            The goal is not just to report what is new, but to explain why it matters, how it works,
+            and where it might lead.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary interactive" href="#featured-story">Read Featured Story</a>
+            <a class="button secondary interactive" href="./index.html#projects">Back To Portfolio</a>
+          </div>
+          <div class="blog-chip-row reveal">
+            <span class="blog-chip">AI Trends</span>
+            <span class="blog-chip">GenAI</span>
+            <span class="blog-chip">RAG</span>
+            <span class="blog-chip">Agents</span>
+            <span class="blog-chip">ML Systems</span>
+            <span class="blog-chip">CV Signals</span>
+          </div>
+        </div>
+
+        <div class="blog-hero-panel panel reveal tilt-card">
+          <div class="panel-topline">
+            <span class="status-live">Publishing Lane</span>
+            <span class="muted">Reader-first AI writing</span>
+          </div>
+          <div class="blog-orbit">
+            <div class="blog-orbit-core">
+              <span>AI</span>
+            </div>
+            <div class="blog-orbit-ring ring-a"></div>
+            <div class="blog-orbit-ring ring-b"></div>
+            <div class="blog-orbit-ring ring-c"></div>
+            <div class="blog-orbit-label label-a">Trends</div>
+            <div class="blog-orbit-label label-b">Agents</div>
+            <div class="blog-orbit-label label-c">RAG</div>
+          </div>
+          <div class="blog-mini-grid">
+            <article>
+              <span>Voice</span>
+              <strong>Editorial</strong>
+            </article>
+            <article>
+              <span>Current Focus</span>
+              <strong>Agentic AI</strong>
+            </article>
+            <article>
+              <span>Publishing Rhythm</span>
+              <strong>Fresh Notes</strong>
+            </article>
+            <article>
+              <span>Style</span>
+              <strong>Immersive</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="featured-story">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Featured Story</p>
+          <h2>The article that sets the tone for this space.</h2>
+        </div>
+        <article class="featured-article panel reveal tilt-card">
+          <div class="featured-copy">
+            <div class="article-meta-line">
+              <span>Featured</span>
+              <span>8 min read</span>
+              <span>March 2026</span>
+            </div>
+            <h3>Why RAG Still Matters Even In A Stronger LLM Era</h3>
+            <p>
+              As models become more capable, the temptation is to trust raw model intelligence for
+              everything. This piece explores why retrieval is still essential for grounding,
+              personalization, freshness, and trustworthy AI systems in production.
+            </p>
+            <div class="article-tags">
+              <span>RAG</span>
+              <span>LLMs</span>
+              <span>System Design</span>
+            </div>
+            <div class="hero-actions">
+              <a class="button primary interactive" href="./blog-vectorless-rag.html">Read Full Article</a>
+              <a class="button secondary interactive" href="#publishing-lanes">View Categories</a>
+            </div>
+          </div>
+          <div class="featured-visual-wrap">
+            <img src="./assets/blogs/featured-rag.svg" alt="Featured story visual for RAG systems" class="featured-visual" />
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="publishing-lanes">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Publishing Lanes</p>
+          <h2>The kinds of ideas that will live here.</h2>
+        </div>
+        <div class="blog-category-grid">
+          <article class="blog-lane panel reveal tilt-card">
+            <span>01</span>
+            <div class="blog-lane-visual"><img src="./assets/blog-lanes/ai-trends.svg" alt="AI Trends visual" /></div>
+            <h3>AI Trends</h3>
+            <p>Signals, platform shifts, model evolution, and where the industry is moving.</p>
+          </article>
+          <article class="blog-lane panel reveal tilt-card">
+            <span>02</span>
+            <div class="blog-lane-visual"><img src="./assets/blog-lanes/genai.svg" alt="Generative AI visual" /></div>
+            <h3>Generative AI</h3>
+            <p>Prompting, multimodal thinking, Gemini experiments, and modern application patterns.</p>
+          </article>
+          <article class="blog-lane panel reveal tilt-card">
+            <span>03</span>
+            <div class="blog-lane-visual"><img src="./assets/blog-lanes/rag-systems.svg" alt="RAG Systems visual" /></div>
+            <h3>RAG Systems</h3>
+            <p>Retrieval design, chunking, memory, evaluation, and grounded assistant workflows.</p>
+          </article>
+          <article class="blog-lane panel reveal tilt-card">
+            <span>04</span>
+            <div class="blog-lane-visual"><img src="./assets/blog-lanes/agentic-ai.svg" alt="Agentic AI visual" /></div>
+            <h3>Agentic AI</h3>
+            <p>Autonomy, orchestration, tool use, multi-agent patterns, and where agents actually help.</p>
+          </article>
+          <article class="blog-lane panel reveal tilt-card">
+            <span>05</span>
+            <div class="blog-lane-visual"><img src="./assets/blog-lanes/model-thinking.svg" alt="Model Thinking visual" /></div>
+            <h3>Model Thinking</h3>
+            <p>Concepts that connect ML, DL, NLP, and systems intuition across the stack.</p>
+          </article>
+          <article class="blog-lane panel reveal tilt-card">
+            <span>06</span>
+            <div class="blog-lane-visual"><img src="./assets/blog-lanes/learning-notes.svg" alt="Learning Notes visual" /></div>
+            <h3>Learning Notes</h3>
+            <p>What I learned this week, distilled into practical notes that are worth revisiting.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="latest-articles">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Latest Articles</p>
+          <h2>A first collection of stories for this editorial lane.</h2>
+        </div>
+        <div class="article-grid">
+          <article class="article-card panel reveal tilt-card">
+            <div class="article-visual-wrap">
+              <img src="./assets/blogs/agents.svg" alt="Agentic AI article visual" class="article-visual" />
+            </div>
+            <div class="article-meta-line">
+              <span>Agentic AI</span>
+              <span>7 min read</span>
+            </div>
+            <h3>From Prompting To Orchestration: What Changes When Agents Enter The Picture</h3>
+            <p>
+              A practical look at the shift from one-shot prompt workflows to systems that plan,
+              call tools, and coordinate steps over time.
+            </p>
+            <a class="card-link interactive" href="javascript:void(0)">Article Page Coming Soon</a>
+          </article>
+
+          <article class="article-card panel reveal tilt-card">
+            <div class="article-visual-wrap">
+              <img src="./assets/blogs/trends.svg" alt="AI trends article visual" class="article-visual" />
+            </div>
+            <div class="article-meta-line">
+              <span>AI Trends</span>
+              <span>6 min read</span>
+            </div>
+            <h3>The New Shape Of AI In 2026: Faster Models, Better UX, Higher Expectations</h3>
+            <p>
+              An opinionated breakdown of the trends that matter most to builders, not just to headlines.
+            </p>
+            <a class="card-link interactive" href="javascript:void(0)">Article Page Coming Soon</a>
+          </article>
+
+          <article class="article-card panel reveal tilt-card">
+            <div class="article-visual-wrap">
+              <img src="./assets/blogs/rag-notes.svg" alt="RAG notes article visual" class="article-visual" />
+            </div>
+            <div class="article-meta-line">
+              <span>RAG Notes</span>
+              <span>9 min read</span>
+            </div>
+            <h3>Chunking Is Not A Detail: Why Retrieval Quality Starts Earlier Than Most Pipelines Think</h3>
+            <p>
+              A deeper read on why document structure, chunk strategy, and context assembly shape the whole system.
+            </p>
+            <a class="card-link interactive" href="./blog-vectorless-rag.html">Open Article</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section blog-cta-section">
+        <div class="blog-cta panel reveal">
+          <div>
+            <p class="eyebrow">What Comes Next</p>
+            <h2>Full article pages, reading progress, and a sharper publishing rhythm.</h2>
+            <p>
+              This page is the launchpad. The next layer is individual article pages with richer storytelling,
+              reading flow, tags, and deeper topic archives.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button primary interactive" href="./index.html#contact">Suggest A Topic</a>
+            <a class="button secondary interactive" href="./index.html#learning-journey">See Learning Journey</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js?v=21"></script>
+  </body>
+</html>

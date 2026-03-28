@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320">
+  <rect width="520" height="320" rx="28" fill="#0b1428"/>
+  <rect x="62" y="58" width="150" height="204" rx="22" fill="#101f38" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="86" y="88" width="98" height="14" rx="7" fill="#eef2ff" opacity="0.9"/>
+  <rect x="86" y="122" width="74" height="10" rx="5" fill="#8db9ec" opacity="0.72"/>
+  <rect x="86" y="146" width="88" height="10" rx="5" fill="#8db9ec" opacity="0.56"/>
+  <rect x="86" y="170" width="80" height="10" rx="5" fill="#8db9ec" opacity="0.42"/>
+  <circle cx="330" cy="154" r="74" fill="none" stroke="#51f6d2" stroke-width="8" opacity="0.9"/>
+  <circle cx="330" cy="154" r="42" fill="none" stroke="#5aa6ff" stroke-width="8" opacity="0.85"/>
+  <circle cx="330" cy="154" r="12" fill="#ffc96b"/>
+  <path d="M214 160h48M378 160h48M330 80v36M330 194v34" stroke="#d6e6ff" stroke-width="5" stroke-linecap="round"/>
+  <text x="62" y="292" fill="#eef2ff" font-family="Orbitron, sans-serif" font-size="24">CHUNKS / RETRIEVAL / CONTEXT ASSEMBLY</text>
+</svg>

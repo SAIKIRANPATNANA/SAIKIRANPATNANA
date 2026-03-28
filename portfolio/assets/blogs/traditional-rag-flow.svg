@@ -1,0 +1,55 @@
+<svg width="1100" height="620" viewBox="0 0 1100 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="620" rx="32" fill="#0B1327"/>
+  <rect x="34" y="34" width="1032" height="552" rx="28" fill="url(#bg)"/>
+  <g opacity="0.18">
+  <circle cx="204" cy="136" r="92" fill="#51F6D2"/>
+  <circle cx="856" cy="444" r="108" fill="#5AA6FF"/>
+  </g>
+  <text x="56" y="86" fill="#FFC96B" font-family="Manrope, sans-serif" font-size="24" letter-spacing="4">TRADITIONAL RAG</text>
+  <text x="56" y="132" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="42" font-weight="700">Chunk - Embed - Search - Answer</text>
+
+  <rect x="60" y="188" width="220" height="282" rx="24" fill="#121E3B" stroke="#223763"/>
+  <text x="88" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">1. Chunk</text>
+  <rect x="88" y="258" width="144" height="24" rx="12" fill="#3B517D"/>
+  <rect x="88" y="298" width="124" height="20" rx="10" fill="#2F446D"/>
+  <rect x="88" y="334" width="154" height="20" rx="10" fill="#2F446D"/>
+  <rect x="88" y="370" width="110" height="20" rx="10" fill="#2F446D"/>
+  <text x="88" y="432" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="22">Split</text>
+
+  <rect x="312" y="188" width="220" height="282" rx="24" fill="#121E3B" stroke="#223763"/>
+  <text x="340" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">2. Embed</text>
+  <circle cx="374" cy="304" r="16" fill="#51F6D2"/>
+  <circle cx="426" cy="264" r="14" fill="#5AA6FF"/>
+  <circle cx="454" cy="330" r="15" fill="#FFC96B"/>
+  <circle cx="394" cy="360" r="13" fill="#FF7CD9"/>
+  <line x1="374" y1="304" x2="426" y2="264" stroke="#ECF2FF" stroke-opacity="0.38"/>
+  <line x1="426" y1="264" x2="454" y2="330" stroke="#ECF2FF" stroke-opacity="0.38"/>
+  <line x1="374" y1="304" x2="394" y2="360" stroke="#ECF2FF" stroke-opacity="0.38"/>
+  <text x="340" y="432" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="22">Vectorize</text>
+
+  <rect x="564" y="188" width="220" height="282" rx="24" fill="#121E3B" stroke="#223763"/>
+  <text x="592" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">3. Search</text>
+  <rect x="620" y="264" width="112" height="112" rx="22" fill="#182A4E"/>
+  <circle cx="676" cy="320" r="30" stroke="#51F6D2" stroke-width="6"/>
+  <line x1="696" y1="340" x2="728" y2="370" stroke="#51F6D2" stroke-width="6" stroke-linecap="round"/>
+  <text x="592" y="432" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="22">Compare</text>
+
+  <rect x="816" y="188" width="220" height="282" rx="24" fill="#121E3B" stroke="#223763"/>
+  <text x="844" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">4. Answer</text>
+  <rect x="852" y="266" width="114" height="20" rx="10" fill="#C5D4FF"/>
+  <rect x="852" y="302" width="96" height="16" rx="8" fill="#7D94C7"/>
+  <rect x="852" y="332" width="110" height="16" rx="8" fill="#7D94C7"/>
+  <rect x="852" y="362" width="76" height="16" rx="8" fill="#7D94C7"/>
+  <text x="844" y="432" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="22">Respond</text>
+
+  <path d="M282 328H306" stroke="#5AA6FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M534 328H558" stroke="#5AA6FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M786 328H810" stroke="#5AA6FF" stroke-width="4" stroke-linecap="round"/>
+
+  <defs>
+    <linearGradient id="bg" x1="34" y1="34" x2="1066" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11233F"/>
+      <stop offset="1" stop-color="#0B1327"/>
+    </linearGradient>
+  </defs>
+</svg>

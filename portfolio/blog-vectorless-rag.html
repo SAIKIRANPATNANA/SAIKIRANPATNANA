@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vectorless RAG And PageIndex | Sai Kiran Patnana</title>
+    <meta
+      name="description"
+      content="A first AI blog by Sai Kiran Patnana on vectorless RAG, PageIndex, and why structure-first retrieval is becoming a serious idea in modern RAG systems."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=24" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=24" />
+  </head>
+  <body class="blog-page article-page">
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-core">
+        <div class="loader-rings">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="loader-label">Loading Reading Experience</p>
+        <div class="loader-bar">
+          <span id="loader-progress"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="noise"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="touch-effects" id="touch-effects" aria-hidden="true"></div>
+    <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html#top">
+        <span class="brand-mark"></span>
+        <span>PSK</span>
+      </a>
+      <div class="header-center">
+        <strong>Sai Kiran Patnana</strong>
+        <span>Reading lane for AI systems and ideas.</span>
+      </div>
+      <nav class="nav">
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#domains">Domains</a>
+        <a href="./index.html#projects">Projects</a>
+        <a class="current" href="./blogs.html">Blogs</a>
+        <a href="./index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="article-hero panel">
+        <div class="article-hero-copy reveal">
+          <p class="eyebrow">First Article</p>
+          <div class="article-meta-line">
+            <span>AI Trends</span>
+            <span>RAG Systems</span>
+            <span>8 min read</span>
+            <span>March 28, 2026</span>
+          </div>
+          <h1>
+            Vectorless RAG might be one of the most important new ideas in retrieval.
+          </h1>
+          <p class="lead">
+            Traditional RAG looks for similar chunks. Vectorless RAG starts with a different idea:
+            first understand the document structure, then decide where to look.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary interactive" href="#article-body">Start Reading</a>
+            <a class="button secondary interactive" href="./blogs.html">Back To Blogs</a>
+          </div>
+          <div class="article-signal-strip reveal">
+            <article>
+              <span>Shift</span>
+              <strong>Similarity To Structure</strong>
+            </article>
+            <article>
+              <span>Why It Matters</span>
+              <strong>Better Long-Document Navigation</strong>
+            </article>
+            <article>
+              <span>Current Lens</span>
+              <strong>PageIndex As Signal</strong>
+            </article>
+          </div>
+        </div>
+
+        <div class="article-hero-visual panel reveal tilt-card">
+          <img src="./assets/blogs/featured-rag.svg" alt="Vectorless RAG featured visual" class="featured-visual" />
+        </div>
+      </section>
+
+      <section class="article-layout section" id="article-body">
+        <aside class="article-sidebar panel reveal">
+          <p class="eyebrow">Quick Take</p>
+          <h2>What this article argues</h2>
+          <ul class="article-points">
+            <li>Vectorless RAG is gaining attention because similarity search is often not enough for long, structured documents.</li>
+            <li>PageIndex is one of the clearest examples of this trend: it builds a hierarchy first, then retrieves through reasoning.</li>
+            <li>This does not kill vector search. It reframes where vector search helps and where structure-first retrieval may be stronger.</li>
+          </ul>
+          <div class="article-tags">
+            <span>PageIndex</span>
+            <span>Vectorless RAG</span>
+            <span>Structure First</span>
+          </div>
+        </aside>
+
+        <article class="article-body panel reveal">
+          <div class="article-prose">
+            <div class="article-spotlight-grid">
+              <article class="article-spotlight">
+                <span>01</span>
+                <strong>Vectorless</strong>
+                <p>No embeddings. No vector database. Retrieval starts from structure.</p>
+              </article>
+              <article class="article-spotlight">
+                <span>02</span>
+                <strong>Reasoning-first</strong>
+                <p>The system follows a hierarchy instead of jumping to the nearest chunks.</p>
+              </article>
+              <article class="article-spotlight">
+                <span>03</span>
+                <strong>Document-aware</strong>
+                <p>It fits reports, manuals, contracts, and other long structured documents well.</p>
+              </article>
+            </div>
+
+            <p>
+              Most RAG systems today follow the same basic pattern. They split a document into chunks,
+              create embeddings for those chunks, store them in a vector database, and retrieve the nearest
+              matches when a user asks a question. This works very well in many real systems.
+            </p>
+
+            <p>
+              But long documents are not just piles of similar sentences. They have sections, headings,
+              nested ideas, and a flow. In policy files, contracts, financial reports, or technical manuals,
+              the structure itself carries meaning. That is where vectorless RAG becomes interesting.
+            </p>
+
+            <div class="article-inline-visual article-inline-split">
+              <div class="article-inline-copy">
+                <p class="eyebrow">Traditional RAG</p>
+                <h3>Break the document, search for similar chunks, then answer.</h3>
+                <p>
+                  This is the familiar route: embeddings, vector search, and the most similar text pieces
+                  coming back first.
+                </p>
+                <p>
+                  The flow is usually: split the document, embed every chunk, compare the question against those vectors,
+                  pull the closest matches, and give that context to the model.
+                </p>
+              </div>
+              <div class="article-inline-image-wrap">
+                <img src="./assets/blogs/traditional-rag-flow.svg" alt="Traditional RAG flow showing chunking, embeddings, vector search, and final answer" class="article-inline-image" />
+              </div>
+              <div class="diagram-notes">
+                <p><strong>Chunk:</strong> Split the document into small retrievable pieces.</p>
+                <p><strong>Embed:</strong> Convert each chunk into a vector representation.</p>
+                <p><strong>Search:</strong> Compare the question against those vectors.</p>
+                <p><strong>Answer:</strong> Send the best matching chunks to the model.</p>
+              </div>
+            </div>
+
+            <h2>What “vectorless RAG” actually means</h2>
+            <p>
+              In the PageIndex framing, vectorless RAG means retrieval without embeddings, without a vector
+              database, and without arbitrary chunking. Instead of building a similarity engine, the system
+              first builds a document map. You can think of it like a smart table of contents with summaries
+              at different levels.
+            </p>
+
+            <div class="article-quote">
+              <p>Traditional RAG retrieves by similarity. PageIndex retrieves by reasoning over structure.</p>
+            </div>
+
+            <div class="article-inline-visual article-inline-split">
+              <div class="article-inline-copy">
+                <p class="eyebrow">Mental Model</p>
+                <h3>Think less “nearest chunk,” more “best branch of the document.”</h3>
+                <p>
+                  The real change is not only technical. It is conceptual. The system starts behaving more
+                  like a careful reader using section summaries and document structure to decide where to go next.
+                </p>
+                <p>
+                  The flow becomes: map the document, summarize each section, reason over that structure,
+                  follow the best branch, and then answer from the most relevant part.
+                </p>
+              </div>
+              <div class="article-inline-image-wrap">
+                <img src="./assets/blogs/vectorless-rag-flow.svg" alt="Vectorless RAG flow showing hierarchy, section summaries, branch selection, and answer synthesis" class="article-inline-image" />
+              </div>
+              <div class="diagram-notes">
+                <p><strong>Hierarchy:</strong> Build a map of sections and sub-sections.</p>
+                <p><strong>Summaries:</strong> Create short summaries for each node.</p>
+                <p><strong>Navigate:</strong> Use reasoning to follow the best branch.</p>
+                <p><strong>Answer:</strong> Pull the right section and generate the response.</p>
+              </div>
+            </div>
+
+            <p>
+              That sounds like a small difference, but it changes the whole retrieval process. In classic RAG,
+              the system asks: “Which chunks are closest to this question?” In structure-first retrieval, it asks:
+              “Which part of this document is the best place to search first?”
+            </p>
+
+            <h2>Why this is becoming interesting now</h2>
+            <p>
+              I think the timing matters. Models are much better now at following structured instructions,
+              reading summaries, and navigating layered context. That makes hierarchy-based retrieval more practical
+              today than it would have felt earlier.
+            </p>
+
+            <p>
+              The PageIndex repository describes the system as a vectorless, reasoning-based RAG framework,
+              and its main message is simple: similarity is not always the same as relevance. For long,
+              structured content, a navigational map plus reasoning may sometimes work better than chunk similarity alone.
+            </p>
+
+            <h2>How the PageIndex idea works</h2>
+            <p>
+              From the public repository and explainer article, the workflow looks like this:
+            </p>
+
+            <ol class="article-steps">
+              <li>The document is turned into a hierarchical index, closer to a table of contents than a chunk list.</li>
+              <li>Each node gets a summary that describes that section.</li>
+              <li>At query time, the model reasons over the structure to choose the best branch.</li>
+              <li>Only the relevant section text is pulled in for the final answer step.</li>
+            </ol>
+
+            <p>
+              This feels closer to how a person reads a long report. We do not treat every paragraph equally.
+              We first use headings, structure, and summaries to decide where the useful part probably is.
+            </p>
+
+            <h2>Where this could outperform classic RAG</h2>
+            <p>
+              I would be most excited about this approach in domains where structure is part of the meaning:
+              regulatory filings, contracts, policies, textbooks, and operational manuals. In these settings,
+              headings matter, section order matters, and page-level context matters.
+            </p>
+
+            <p>
+              Structure-first retrieval also gives something valuable: explainability. If a system can say
+              “I moved from this node to this section and then used these pages,” its retrieval path is easier
+              to inspect than a black-box similarity result.
+            </p>
+
+            <h2>Why I don’t think this replaces all vector search</h2>
+            <p>
+              Even if vectorless RAG is one of the freshest ideas in retrieval right now, I do not see it as a total
+              replacement for embeddings. I see it as a challenge to the idea that embeddings must always be the default starting point.
+            </p>
+
+            <p>
+              For messy data, cross-document search, short knowledge bases, or places where structure is weak,
+              vector search can still be very effective. The most interesting future may be hybrid: systems that
+              know when to navigate structure, when to use similarity search, and when to combine both.
+            </p>
+
+            <div class="article-contrast-grid">
+              <article class="article-contrast-card">
+                <p class="eyebrow">Classic RAG</p>
+                <h3>Similarity First</h3>
+                <p>Embeddings, chunk search, vector database retrieval, then answer generation.</p>
+              </article>
+              <article class="article-contrast-card">
+                <p class="eyebrow">Vectorless RAG</p>
+                <h3>Structure First</h3>
+                <p>Hierarchical index, guided navigation, section selection, then answer composition.</p>
+              </article>
+            </div>
+
+            <h2>My takeaway</h2>
+            <p>
+              The reason this trend matters is not only that it avoids a vector database. It matters because it changes
+              the retrieval mindset. Instead of asking how to search harder, it asks how to navigate smarter.
+            </p>
+
+            <p>
+              That makes vectorless RAG feel like more than a niche optimization. It feels like a reminder that better
+              retrieval may come not only from better math, but from better representations of how documents are actually
+              organized.
+            </p>
+
+            <h2>Quick comparison: traditional RAG vs vectorless RAG</h2>
+            <ul class="article-points">
+              <li>Traditional RAG asks: which chunk is most similar to the question?</li>
+              <li>Vectorless RAG asks: which part of the document should I inspect first?</li>
+              <li>Traditional RAG is strong for broad semantic search.</li>
+              <li>Vectorless RAG is especially interesting for long structured documents.</li>
+            </ul>
+
+            <div class="article-quiz panel">
+              <div class="section-heading">
+                <p class="eyebrow">Quick Quiz</p>
+                <h2>Check your understanding</h2>
+              </div>
+
+              <div class="quiz-progress">
+                <span class="quiz-progress-copy" id="quiz-progress-copy">Question 1 of 6</span>
+                <div class="quiz-progress-track" aria-hidden="true">
+                  <span class="quiz-progress-fill" id="quiz-progress-fill"></span>
+                </div>
+              </div>
+
+              <div class="quiz-list">
+                <section class="quiz-card" data-quiz-type="choice" data-answer="structure">
+                  <p class="quiz-label">1. Fill the blank</p>
+                  <p class="quiz-question">Vectorless RAG starts from document <strong>_____</strong>.</p>
+                  <div class="quiz-chip-row">
+                    <button class="quiz-chip interactive" type="button" data-value="structure">structure</button>
+                    <button class="quiz-chip interactive" type="button" data-value="latency">latency</button>
+                    <button class="quiz-chip interactive" type="button" data-value="randomness">randomness</button>
+                  </div>
+                  <p class="quiz-feedback" aria-live="polite"></p>
+                </section>
+
+                <section class="quiz-card" data-quiz-type="mcq" data-answer="vector-database">
+                  <p class="quiz-label">2. MCQ</p>
+                  <p class="quiz-question">Traditional RAG often depends on:</p>
+                  <div class="quiz-options">
+                    <button class="quiz-option interactive" type="button" data-value="vector-database">A vector database</button>
+                    <button class="quiz-option interactive" type="button" data-value="manual-indexing">Manual indexing only</button>
+                    <button class="quiz-option interactive" type="button" data-value="page-order-only">Page order only</button>
+                  </div>
+                  <p class="quiz-feedback" aria-live="polite"></p>
+                </section>
+
+                <section class="quiz-card quiz-match" data-quiz-type="match">
+                  <p class="quiz-label">3. Match the approach</p>
+                  <div class="match-grid">
+                    <div class="match-row">
+                      <span>Traditional RAG</span>
+                      <select class="match-select">
+                        <option value="">Choose</option>
+                        <option value="similarity">Similarity search</option>
+                        <option value="hierarchy">Hierarchy navigation</option>
+                      </select>
+                    </div>
+                    <div class="match-row">
+                      <span>Vectorless RAG</span>
+                      <select class="match-select">
+                        <option value="">Choose</option>
+                        <option value="similarity">Similarity search</option>
+                        <option value="hierarchy">Hierarchy navigation</option>
+                      </select>
+                    </div>
+                  </div>
+                  <p class="quiz-feedback" aria-live="polite"></p>
+                </section>
+
+                <section class="quiz-card" data-quiz-type="choice" data-answer="reasoning">
+                  <p class="quiz-label">4. Code-style fill</p>
+                  <div class="quiz-code-block">
+                    <code>PageIndex retrieves by <span class="quiz-blank">_____</span> over structure.</code>
+                  </div>
+                  <div class="quiz-chip-row">
+                    <button class="quiz-chip interactive" type="button" data-value="guessing">guessing</button>
+                    <button class="quiz-chip interactive" type="button" data-value="reasoning">reasoning</button>
+                    <button class="quiz-chip interactive" type="button" data-value="copying">copying</button>
+                  </div>
+                  <p class="quiz-feedback" aria-live="polite"></p>
+                </section>
+
+                <section class="quiz-card" data-quiz-type="mcq" data-answer="long-structured-documents">
+                  <p class="quiz-label">5. Best fit</p>
+                  <p class="quiz-question">Vectorless RAG is especially promising for:</p>
+                  <div class="quiz-options">
+                    <button class="quiz-option interactive" type="button" data-value="long-structured-documents">Long structured documents</button>
+                    <button class="quiz-option interactive" type="button" data-value="tiny-random-notes">Tiny random notes</button>
+                    <button class="quiz-option interactive" type="button" data-value="image-only-search">Image-only retrieval</button>
+                  </div>
+                  <p class="quiz-feedback" aria-live="polite"></p>
+                </section>
+
+                <section class="quiz-card" data-quiz-type="mcq" data-answer="hybrid-future">
+                  <p class="quiz-label">6. Final idea check</p>
+                  <p class="quiz-question">What future does this article suggest?</p>
+                  <div class="quiz-options">
+                    <button class="quiz-option interactive" type="button" data-value="embeddings-are-dead">Embeddings are finished</button>
+                    <button class="quiz-option interactive" type="button" data-value="hybrid-future">A hybrid future is likely</button>
+                    <button class="quiz-option interactive" type="button" data-value="only-vectorless-wins">Only vectorless systems will survive</button>
+                  </div>
+                  <p class="quiz-feedback" aria-live="polite"></p>
+                </section>
+              </div>
+
+              <div class="quiz-controls">
+                <button class="button secondary interactive quiz-prev" type="button" disabled>Previous</button>
+                <button class="button primary interactive quiz-next" type="button">Next Question</button>
+              </div>
+
+              <section class="quiz-summary panel" id="quiz-summary" hidden>
+                <p class="eyebrow">Quiz Complete</p>
+                <h3>You scored <span id="quiz-score">0</span>/<span id="quiz-total">6</span></h3>
+                <p class="quiz-summary-copy" id="quiz-summary-copy">
+                  Nice work. Here are the correct answers for a quick revision.
+                </p>
+                <ol class="quiz-answer-list">
+                  <li><strong>Q1:</strong> structure</li>
+                  <li><strong>Q2:</strong> A vector database</li>
+                  <li><strong>Q3:</strong> Traditional RAG = similarity search, Vectorless RAG = hierarchy navigation</li>
+                  <li><strong>Q4:</strong> reasoning</li>
+                  <li><strong>Q5:</strong> Long structured documents</li>
+                  <li><strong>Q6:</strong> A hybrid future is likely</li>
+                </ol>
+                <div class="quiz-controls quiz-controls-summary">
+                  <button class="button secondary interactive quiz-restart" type="button">Try Again</button>
+                  <a class="button primary interactive" href="#references">Jump To References</a>
+                </div>
+              </section>
+            </div>
+
+            <div class="article-source-box" id="references">
+              <p class="eyebrow">References</p>
+              <p class="article-reference-note">
+                These two public sources shaped the article’s explanation of PageIndex and vectorless RAG.
+              </p>
+              <ul class="article-sources">
+                <li><a class="interactive" href="https://github.com/VectifyAI/PageIndex" target="_blank" rel="noreferrer">VectifyAI/PageIndex on GitHub</a></li>
+                <li><a class="interactive" href="https://medium.com/@visrow/what-is-pageindex-how-to-build-a-vectorless-rag-system-no-embeddings-no-vector-db-dc097fae3071" target="_blank" rel="noreferrer">What Is PageIndex? on Medium</a></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./script.js?v=24"></script>
+  </body>
+</html>

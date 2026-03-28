@@ -1,0 +1,62 @@
+<svg width="1100" height="620" viewBox="0 0 1100 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="620" rx="32" fill="#0A1122"/>
+  <rect x="34" y="34" width="1032" height="552" rx="28" fill="url(#bg)"/>
+  <g opacity="0.16">
+    <circle cx="256" cy="126" r="92" fill="#51F6D2"/>
+    <circle cx="846" cy="146" r="88" fill="#FF7CD9"/>
+    <circle cx="872" cy="456" r="108" fill="#5AA6FF"/>
+  </g>
+  <text x="56" y="86" fill="#FFC96B" font-family="Manrope, sans-serif" font-size="24" letter-spacing="4">VECTORLESS RAG</text>
+  <text x="56" y="132" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="42" font-weight="700">Map - Summarize - Navigate - Answer</text>
+
+  <rect x="60" y="188" width="252" height="302" rx="24" fill="#0F1C37" stroke="#27446E"/>
+  <text x="88" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">1. Build Structure</text>
+  <rect x="130" y="270" width="120" height="30" rx="15" fill="#1D355D"/>
+  <rect x="94" y="326" width="82" height="24" rx="12" fill="#27446E"/>
+  <rect x="190" y="326" width="82" height="24" rx="12" fill="#27446E"/>
+  <rect x="142" y="382" width="82" height="24" rx="12" fill="#27446E"/>
+  <line x1="190" y1="300" x2="135" y2="326" stroke="#51F6D2" stroke-width="3"/>
+  <line x1="190" y1="300" x2="231" y2="326" stroke="#51F6D2" stroke-width="3"/>
+  <line x1="135" y1="350" x2="183" y2="382" stroke="#51F6D2" stroke-width="3"/>
+  <line x1="231" y1="350" x2="183" y2="382" stroke="#51F6D2" stroke-width="3"/>
+  <text x="88" y="456" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="22">Hierarchy</text>
+
+  <rect x="352" y="188" width="252" height="302" rx="24" fill="#0F1C37" stroke="#27446E"/>
+  <text x="380" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">2. Summarize Nodes</text>
+  <rect x="410" y="272" width="138" height="168" rx="20" fill="#14254A"/>
+  <rect x="440" y="306" width="78" height="18" rx="9" fill="#C5D4FF"/>
+  <rect x="440" y="338" width="100" height="15" rx="7.5" fill="#718AC3"/>
+  <rect x="440" y="366" width="88" height="15" rx="7.5" fill="#718AC3"/>
+  <rect x="440" y="394" width="64" height="15" rx="7.5" fill="#718AC3"/>
+  <text x="380" y="456" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="22">Summaries</text>
+
+  <rect x="644" y="188" width="392" height="302" rx="24" fill="#0F1C37" stroke="#27446E"/>
+  <text x="672" y="230" fill="#ECF2FF" font-family="Orbitron, sans-serif" font-size="28">3. Navigate With Reasoning</text>
+  <circle cx="848" cy="334" r="108" stroke="#51F6D2" stroke-opacity="0.3"/>
+  <circle cx="848" cy="334" r="76" stroke="#5AA6FF" stroke-opacity="0.45"/>
+  <circle cx="848" cy="334" r="40" fill="url(#core)"/>
+  <path d="M848 334L902 268" stroke="#FFC96B" stroke-width="4" stroke-linecap="round"/>
+  <path d="M848 334L770 348" stroke="#51F6D2" stroke-width="4" stroke-linecap="round"/>
+  <path d="M848 334L870 410" stroke="#5AA6FF" stroke-width="4" stroke-linecap="round"/>
+  <rect x="888" y="244" width="84" height="30" rx="15" fill="#101A31"/>
+  <text x="907" y="264" fill="#ECF2FF" font-family="Manrope, sans-serif" font-size="17">Section A</text>
+  <rect x="724" y="333" width="84" height="30" rx="15" fill="#101A31"/>
+  <text x="743" y="353" fill="#ECF2FF" font-family="Manrope, sans-serif" font-size="17">Section B</text>
+  <rect x="850" y="406" width="84" height="30" rx="15" fill="#101A31"/>
+  <text x="872" y="426" fill="#ECF2FF" font-family="Manrope, sans-serif" font-size="17">Answer</text>
+  <text x="672" y="456" fill="#BAC5E2" font-family="Manrope, sans-serif" font-size="20">Reason - Route - Answer</text>
+
+  <path d="M314 340H346" stroke="#5AA6FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M606 340H638" stroke="#5AA6FF" stroke-width="4" stroke-linecap="round"/>
+
+  <defs>
+    <linearGradient id="bg" x1="34" y1="34" x2="1066" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11213F"/>
+      <stop offset="1" stop-color="#0A1122"/>
+    </linearGradient>
+    <radialGradient id="core" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(708 306) rotate(90) scale(34)">
+      <stop stop-color="#1B3545"/>
+      <stop offset="1" stop-color="#10233B"/>
+    </radialGradient>
+  </defs>
+</svg>

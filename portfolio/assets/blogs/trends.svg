@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320">
+  <rect width="520" height="320" rx="28" fill="#0a1327"/>
+  <path d="M66 240 144 176 214 198 310 112 400 138 456 86" fill="none" stroke="#51f6d2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M66 252H454" stroke="rgba(255,255,255,0.14)" stroke-width="3"/>
+  <path d="M82 252V92M166 252V114M250 252V148M334 252V84M418 252V122" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+  <circle cx="144" cy="176" r="12" fill="#51f6d2"/>
+  <circle cx="214" cy="198" r="12" fill="#5aa6ff"/>
+  <circle cx="310" cy="112" r="12" fill="#ffc96b"/>
+  <circle cx="400" cy="138" r="12" fill="#ff7cd9"/>
+  <circle cx="456" cy="86" r="12" fill="#51f6d2"/>
+  <text x="62" y="60" fill="#eef2ff" font-family="Orbitron, sans-serif" font-size="28">AI TREND SIGNALS</text>
+</svg>
