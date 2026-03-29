@@ -2987,6 +2987,24 @@ h1 span {
   flex-shrink: 0;
 }
 
+@media (max-width: 760px) {
+  .article-sources li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .source-badge {
+    align-self: flex-start;
+  }
+
+  .article-sources a {
+    width: 100%;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (max-width: 1080px) {
   .blog-hero,
   .featured-article,
