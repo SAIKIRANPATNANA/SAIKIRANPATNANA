@@ -2363,6 +2363,7 @@ h1 span {
 .article-sidebar,
 .article-body {
   padding: 1.85rem;
+  min-width: 0;
 }
 
 .article-sidebar {
@@ -2398,6 +2399,13 @@ h1 span {
   display: grid;
   gap: 1.25rem;
   position: relative;
+  min-width: 0;
+}
+
+.article-prose > * {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .article-prose h2 {
@@ -2420,6 +2428,7 @@ h1 span {
     radial-gradient(circle at 8% 86%, rgba(81, 246, 210, 0.08), transparent 24%),
     linear-gradient(180deg, rgba(9, 15, 30, 0.96), rgba(6, 10, 22, 0.98));
   font-family: "Manrope", sans-serif;
+  overflow: hidden;
 }
 
 .article-quote {
@@ -2433,6 +2442,7 @@ h1 span {
   color: var(--text);
   font-family: "Orbitron", sans-serif;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .article-source-box {
@@ -2467,7 +2477,7 @@ h1 span {
 
 .article-signal-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 1.6rem;
   padding-top: 0.35rem;
@@ -2502,12 +2512,12 @@ h1 span {
 .article-spotlight-grid,
 .article-contrast-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
 .article-contrast-grid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .article-inline-visual {
