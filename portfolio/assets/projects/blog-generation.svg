@@ -1,23 +1,21 @@
 <svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="520" rx="40" fill="#09142B"/>
-  <circle cx="176" cy="124" r="82" fill="#103B53"/>
-  <circle cx="650" cy="120" r="70" fill="#1A2C59"/>
-  <circle cx="622" cy="400" r="88" fill="#2B224B"/>
-  <rect x="106" y="118" width="588" height="284" rx="32" fill="#111E3E" stroke="#284F77" stroke-width="2"/>
-  <rect x="148" y="160" width="260" height="162" rx="24" fill="#16284F" stroke="#2A4778" stroke-width="2"/>
-  <rect x="184" y="192" width="182" height="20" rx="10" fill="#D8E3FF" fill-opacity="0.92"/>
-  <rect x="184" y="232" width="150" height="16" rx="8" fill="#7D9DCE"/>
-  <rect x="184" y="266" width="168" height="16" rx="8" fill="#6B89BC"/>
-  <rect x="184" y="300" width="112" height="16" rx="8" fill="#5A77A8"/>
-  <rect x="460" y="170" width="186" height="146" rx="22" fill="#16284F" stroke="#2A4778" stroke-width="2"/>
-  <path d="M516 240H588" stroke="#56F1D3" stroke-width="12" stroke-linecap="round"/>
-  <path d="M516 272H612" stroke="#4F9DFF" stroke-width="12" stroke-linecap="round"/>
-  <path d="M516 304H560" stroke="#F5C15D" stroke-width="12" stroke-linecap="round"/>
-  <circle cx="610" cy="214" r="18" fill="#56F1D3"/>
-  <path d="M610 204V224" stroke="#0C1730" stroke-width="6" stroke-linecap="round"/>
-  <path d="M600 214H620" stroke="#0C1730" stroke-width="6" stroke-linecap="round"/>
-  <rect x="166" y="356" width="130" height="30" rx="15" fill="#13375C"/>
-  <rect x="320" y="356" width="128" height="30" rx="15" fill="#13233F"/>
-  <text x="166" y="88" fill="#F2C85F" font-family="Orbitron, Arial, sans-serif" font-size="22" letter-spacing="4">BLOG GENERATION</text>
-  <text x="175" y="452" fill="#F3F6FF" font-family="Orbitron, Arial, sans-serif" font-size="46" letter-spacing="2">WRITING / DRAFTING / FLOW</text>
+  <circle cx="176" cy="122" r="82" fill="#113A55"/>
+  <circle cx="644" cy="126" r="74" fill="#1B2F5D"/>
+  <circle cx="618" cy="398" r="88" fill="#2E234F"/>
+  <rect x="98" y="120" width="604" height="286" rx="32" fill="#101D3D" stroke="#2A5178" stroke-width="2"/>
+  <rect x="144" y="162" width="238" height="176" rx="24" fill="#15274E" stroke="#2F4D7F" stroke-width="2"/>
+  <path d="M188 200H336" stroke="#E8F0FF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M188 238H322" stroke="#7FA6DB" stroke-width="14" stroke-linecap="round"/>
+  <path d="M188 272H334" stroke="#6A8EC4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M188 306H282" stroke="#5D79A6" stroke-width="14" stroke-linecap="round"/>
+  <rect x="172" y="352" width="126" height="30" rx="15" fill="#14375B"/>
+  <rect x="416" y="166" width="238" height="170" rx="26" fill="#132447" stroke="#2D4B7E" stroke-width="2"/>
+  <path d="M470 220C486 204 504 196 526 196C551 196 572 208 590 226" stroke="#56F1D3" stroke-width="10" stroke-linecap="round"/>
+  <path d="M470 284C486 300 504 308 526 308C551 308 572 296 590 278" stroke="#4F9DFF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M452 252H604" stroke="#F5C15D" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="526" cy="252" r="24" fill="#F5C15D"/>
+  <path d="M520 240L540 252L520 264" stroke="#0D1730" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="160" y="88" fill="#F2C85F" font-family="Orbitron, Arial, sans-serif" font-size="22" letter-spacing="4">BLOG GENERATION</text>
+  <text x="160" y="454" fill="#F3F6FF" font-family="Orbitron, Arial, sans-serif" font-size="44" letter-spacing="2">DRAFT / REFINE / PUBLISH</text>
 </svg>
