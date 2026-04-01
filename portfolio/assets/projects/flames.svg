@@ -1,0 +1,18 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" rx="34" fill="#0D1630"/>
+  <rect x="34" y="34" width="572" height="352" rx="28" fill="url(#bg)"/>
+  <circle cx="162" cy="128" r="62" fill="#173E57"/>
+  <circle cx="486" cy="124" r="54" fill="#2F244C"/>
+  <path d="M212 245C212 219.595 232.595 199 258 199H382C407.405 199 428 219.595 428 245V247C428 272.405 407.405 293 382 293H258C232.595 293 212 272.405 212 247V245Z" fill="#132445" stroke="#34558C"/>
+  <path d="M266 227L299 259" stroke="#52F3D5" stroke-width="10" stroke-linecap="round"/>
+  <path d="M299 227L266 259" stroke="#FFB84A" stroke-width="10" stroke-linecap="round"/>
+  <path d="M341 227L374 259" stroke="#6AA8FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M374 227L341 259" stroke="#FF7A9D" stroke-width="10" stroke-linecap="round"/>
+  <text x="320" y="338" fill="#F2F7FF" font-size="34" font-family="Orbitron, Arial" text-anchor="middle">FLAMES / GAME / LOGIC</text>
+  <defs>
+    <linearGradient id="bg" x1="34" y1="34" x2="606" y2="386" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#152749"/>
+      <stop offset="1" stop-color="#111A32"/>
+    </linearGradient>
+  </defs>
+</svg>

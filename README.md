@@ -218,9 +218,13 @@ For now, my data-centric analysis and predictive case studies are represented in
 ### 🐍 Python Projects
 **Repository Hub:** [PYTHON_PROJECTS](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS)
 
+- [FLAMES](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/flames) - a logic-based relationship game implemented as a lightweight Python mini project.
 - [Python Virtual Assistant](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/python-virtual-assistant) - assistant automation built with Python.
 - [QR Code Generator](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/qr-code-generator) - utility project for generating QR codes.
+- [Rock Paper Scissors](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/rock-paper-scissors) - a classic game implementation focused on conditional logic and interactive play.
+- [Snake Water Gun](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/snake-water-gun) - a fun Python game build around simple rules, randomness, and game flow.
 - [Telegram Bot](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/telegram-bot) - chat automation and bot workflow.
+- [Tic Tac Toe](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/tit-tac-toe) - a turn-based Python game focused on grid logic and interaction handling.
 - [Virtual Voice Assistant](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/virtual-voice-assistant) - voice-enabled assistant experimentation.
 
 <p align="center">
@@ -236,6 +240,7 @@ Beyond projects, I keep a structured set of public learning repositories that do
 - **[AI Core Learning](https://github.com/SAIKIRANPATNANA/AI_CORE_LEARNING)**: machine learning and deep learning foundations, feature engineering, CNNs, transfer learning, YOLO, and architecture-level experimentation
 - **[MLOps and Deployment Learning](https://github.com/SAIKIRANPATNANA/MLOPS_AND_DEPLOYMENT_LEARNING)**: MLflow, Docker, reproducible workflows, deployment thinking, and production-oriented ML structure
 - **[Data Foundations](https://github.com/SAIKIRANPATNANA/DATA_FOUNDATIONS)**: PySpark, SQL/MySQL, structured data workflows, and data-processing foundations for AI systems
+- **[DSA Learning](https://github.com/SAIKIRANPATNANA/DSA_LEARNING)**: data structures, algorithmic patterns, problem-solving practice, and stronger coding intuition through consistent solving
 - **[NLP Learning](https://github.com/SAIKIRANPATNANA/NLP_LEARNING)**: text preprocessing, sentiment analysis, language-oriented experimentation, and practical NLP foundations
 - **[Programming and Math Foundations](https://github.com/SAIKIRANPATNANA/PROGRAMMING_AND_MATH_FOUNDATIONS)**: Python, statistics, probability, and the technical fundamentals that support stronger AI work
 

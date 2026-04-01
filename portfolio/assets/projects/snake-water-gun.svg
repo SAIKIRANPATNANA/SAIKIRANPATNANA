@@ -1,0 +1,15 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" rx="34" fill="#0D1731"/>
+  <rect x="34" y="34" width="572" height="352" rx="28" fill="#111E3B"/>
+  <circle cx="152" cy="102" r="54" fill="#18384E"/>
+  <circle cx="500" cy="126" r="54" fill="#2B2A4E"/>
+  <rect x="98" y="148" width="138" height="120" rx="28" fill="#152547" stroke="#2E4E87"/>
+  <path d="M132 229C158 177 197 177 209 200C218 217 205 239 184 239H160" stroke="#57F5D7" stroke-width="12" stroke-linecap="round"/>
+  <rect x="251" y="148" width="138" height="120" rx="28" fill="#152547" stroke="#2E4E87"/>
+  <path d="M320 182C340 197 351 217 351 238C351 245 345 251 338 251H302C295 251 289 245 289 238C289 214 299 197 320 182Z" fill="#65AEFF"/>
+  <circle cx="320" cy="174" r="12" fill="#89D4FF"/>
+  <rect x="404" y="148" width="138" height="120" rx="28" fill="#152547" stroke="#2E4E87"/>
+  <path d="M458 232L486 184L514 232" stroke="#FFBE55" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M486 184V248" stroke="#FFBE55" stroke-width="12" stroke-linecap="round"/>
+  <text x="320" y="336" fill="#F2F7FF" font-size="30" font-family="Orbitron, Arial" text-anchor="middle">SNAKE / WATER / GUN</text>
+</svg>

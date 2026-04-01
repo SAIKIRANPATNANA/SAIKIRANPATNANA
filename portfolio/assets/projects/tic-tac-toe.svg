@@ -1,0 +1,13 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" rx="34" fill="#0D1731"/>
+  <rect x="34" y="34" width="572" height="352" rx="28" fill="#111D3A"/>
+  <circle cx="166" cy="112" r="56" fill="#173B52"/>
+  <circle cx="500" cy="304" r="66" fill="#243C67"/>
+  <rect x="198" y="102" width="244" height="244" rx="26" fill="#132445" stroke="#34558C" stroke-width="4"/>
+  <path d="M279 118V330M361 118V330M214 200H426M214 282H426" stroke="#4368A7" stroke-width="8" stroke-linecap="round"/>
+  <path d="M235 139L273 177M273 139L235 177" stroke="#58F6D6" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="320" cy="158" r="22" stroke="#FFBF57" stroke-width="10"/>
+  <path d="M369 221L407 259M407 221L369 259" stroke="#6AA8FF" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="250" cy="320" r="22" stroke="#FF7B97" stroke-width="10"/>
+  <text x="320" y="374" fill="#F2F7FF" font-size="32" font-family="Orbitron, Arial" text-anchor="middle">TIC / TAC / TOE</text>
+</svg>
