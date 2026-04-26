@@ -1,0 +1,16 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" rx="34" fill="#0D1731"/>
+  <rect x="34" y="34" width="572" height="352" rx="28" fill="#111D3A"/>
+  <circle cx="160" cy="104" r="56" fill="#17384F"/>
+  <circle cx="498" cy="302" r="64" fill="#243C67"/>
+  <rect x="176" y="88" width="288" height="244" rx="22" fill="#F4F8FF"/>
+  <rect x="206" y="128" width="152" height="14" rx="7" fill="#D64867"/>
+  <rect x="206" y="158" width="224" height="10" rx="5" fill="#9CB4D8"/>
+  <rect x="206" y="182" width="188" height="10" rx="5" fill="#9CB4D8"/>
+  <rect x="206" y="206" width="214" height="10" rx="5" fill="#9CB4D8"/>
+  <rect x="206" y="230" width="164" height="10" rx="5" fill="#9CB4D8"/>
+  <path d="M420 246C440.987 246 458 228.987 458 208C458 187.013 440.987 170 420 170C399.013 170 382 187.013 382 208C382 228.987 399.013 246 420 246Z" fill="#E6425E"/>
+  <path d="M420 184V232" stroke="#FDFEFF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M396 208H444" stroke="#FDFEFF" stroke-width="12" stroke-linecap="round"/>
+  <text x="320" y="368" fill="#F2F7FF" font-size="30" font-family="Orbitron, Arial" text-anchor="middle">BLOOD REPORT / OCR / AI</text>
+</svg>

@@ -162,6 +162,7 @@ These sections now map to my grouped GitHub repositories, making it easier to ex
 
 - [AI News Generation](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai) - agentic AI workflow for generating and shaping AI-focused news content.
 - [ATS Using Gemini](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini) - resume analysis and ATS-style evaluation using Gemini Pro Vision.
+- [Blood Report Parsing IISc](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc) - AI-assisted blood report parsing, structured extraction, abnormality detection, and healthcare insight workflows built during IISc OpenHack.
 - [Blog Generation](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blog-generation-agenticai) - AI-assisted blog drafting and content generation workflow for long-form writing.
 - [Calorie Calc Using GPV](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/calorie-calc-using-gpv) - multimodal-style calorie estimation workflow.
 - [Disease Diagnosis Dhanvantari](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/disease-diagnosis-dhanvantari) - healthcare-oriented RAG and diagnosis support exploration.
