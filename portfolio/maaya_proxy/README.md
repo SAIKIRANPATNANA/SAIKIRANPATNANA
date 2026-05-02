@@ -87,8 +87,9 @@ portfolio/maaya_proxy
 ```text
 GROQ_API_KEY=your_real_key
 GROQ_MODEL=llama-3.1-8b-instant
-PORT=8008
 ```
+
+Do not manually set `PORT` on Render. Render provides that automatically.
 
 5. Deploy.
 6. Copy the deployed URL, for example:
@@ -108,6 +109,10 @@ https://maaya-groq-proxy.onrender.com
 8. Push the portfolio again.
 
 After that, your GitHub Pages site will call the Render backend and Maaya will work live.
+
+Note:
+- `GET /health` should return JSON
+- `GET /` returning `404` is okay because the backend does not define a homepage route
 
 ## Important security note
 
