@@ -1,4 +1,5 @@
 import os
+import time
 
 import requests
 from flask import Flask, jsonify, request
@@ -19,6 +20,7 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "CV.pdf"))
 MAX_RESUME_CONTEXT_CHARS = 7000
+GROQ_MAX_RETRIES = 2
 
 
 PORTFOLIO_CONTEXT = """
@@ -94,6 +96,44 @@ def load_resume_context():
 
 
 RESUME_CONTEXT = load_resume_context()
+
+
+def call_groq_with_retry(body):
+    last_response = None
+    last_exception = None
+
+    for attempt in range(GROQ_MAX_RETRIES + 1):
+        try:
+            response = requests.post(
+                GROQ_URL,
+                headers={
+                    "Authorization": f"Bearer {GROQ_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json=body,
+                timeout=45,
+            )
+            last_response = response
+
+            if response.ok:
+                return response
+
+            # Retry transient upstream issues before falling back.
+            if response.status_code in {408, 409, 429, 500, 502, 503, 504} and attempt < GROQ_MAX_RETRIES:
+                time.sleep(1.2 * (attempt + 1))
+                continue
+
+            return response
+        except requests.RequestException as error:
+            last_exception = error
+            if attempt < GROQ_MAX_RETRIES:
+                time.sleep(1.2 * (attempt + 1))
+                continue
+
+    if last_exception:
+        raise last_exception
+
+    return last_response
 
 
 @app.get("/health")
@@ -184,17 +224,21 @@ Resume content reference:
         ],
     }
 
-    response = requests.post(
-        GROQ_URL,
-        headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json",
-        },
-        json=body,
-        timeout=45,
-    )
+    try:
+        response = call_groq_with_retry(body)
+    except requests.RequestException as error:
+        print(f"Groq request exception: {error}")
+        return jsonify({
+            "error": "Groq request exception",
+            "details": str(error),
+        }), 502
 
     if not response.ok:
+        print(
+            "Groq request failed:",
+            response.status_code,
+            response.text[:600],
+        )
         return jsonify({
             "error": "Groq request failed",
             "status_code": response.status_code,

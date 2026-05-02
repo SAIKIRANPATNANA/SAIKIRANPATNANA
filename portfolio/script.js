@@ -388,10 +388,12 @@ const maayaFab = document.getElementById("maaya-fab");
 const maayaDock = document.getElementById("maaya-dock");
 const maayaOpen = document.getElementById("maaya-open");
 const maayaClose = document.getElementById("maaya-close");
+const maayaClear = document.getElementById("maaya-clear");
 const maayaChat = document.getElementById("maaya-chat");
 const maayaForm = document.getElementById("maaya-form");
 const maayaInput = document.getElementById("maaya-input");
 const maayaSuggestionButtons = document.querySelectorAll("[data-maaya-question]");
+const maayaPresence = document.getElementById("maaya-presence");
 const MAAYA_API_URL = window.MAAYA_API_URL || "http://127.0.0.1:8008/api/maaya";
 const MAAYA_MEMORY_KEY = "maaya-chat-history";
 const MAAYA_MAX_HISTORY_TURNS = 10;
@@ -536,6 +538,23 @@ function createMaayaMessage(role, content, useMarkdown = false) {
   return bubble;
 }
 
+function setMaayaPresence(mode, label) {
+  if (!maayaPresence) return;
+  maayaPresence.textContent = label;
+  maayaPresence.classList.toggle("is-local", mode === "local");
+  maayaPresence.classList.toggle("is-live", mode === "live");
+}
+
+function createMaayaStatusMessage(content) {
+  if (!maayaChat) return;
+  const bubble = document.createElement("div");
+  bubble.className = "maaya-message status";
+  bubble.textContent = content;
+  maayaChat.appendChild(bubble);
+  maayaChat.scrollTop = maayaChat.scrollHeight;
+  return bubble;
+}
+
 function loadMaayaHistory() {
   try {
     const stored = window.sessionStorage.getItem(MAAYA_MEMORY_KEY);
@@ -573,6 +592,19 @@ function renderStoredMaayaHistory() {
   return true;
 }
 
+function resetMaayaConversation() {
+  maayaHistory = [];
+  saveMaayaHistory(maayaHistory);
+  if (maayaChat) {
+    maayaChat.innerHTML = "";
+  }
+
+  const welcomeMessage = `Hi, I'm **Maaya**. Ask me anything about Sai Kiran's projects, skills, experience, or resume, and I'll guide you through it.`;
+  createMaayaMessage("bot", welcomeMessage, true);
+  appendMaayaHistory("bot", welcomeMessage);
+  setMaayaPresence("live", "Live AI Ready");
+}
+
 function openMaaya() {
   if (!maayaDock) return;
   maayaDock.classList.add("open");
@@ -599,15 +631,40 @@ function findProjectLink(query) {
   return entries.find(([name]) => query.includes(name));
 }
 
+function getRecentUserTopics() {
+  return maayaHistory
+    .filter((entry) => entry.role === "user")
+    .slice(-3)
+    .map((entry) => entry.content.trim())
+    .filter(Boolean);
+}
+
 function getMaayaReply(question) {
   const q = normalizeQuestion(question);
+  const recentTopics = getRecentUserTopics();
 
   if (!q) {
     return "Ask me about projects, skills, resume highlights, experience, healthcare AI work, or where to find a specific repo.";
   }
 
-  if (q.includes("resume") || q.includes("cv") || q.includes("achievement")) {
-    return `Sai Kiran's resume highlights a strong GenAI profile with **Top 8 at IISc Bangalore OpenHack 2025**, **500+ LeetCode solves**, and strong work across healthcare AI, educational AI, multimodal resume analysis, and agentic workflows. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
+  if (/(hello|hi|hey|hellow)\b/.test(q)) {
+    return "Hello! I'm Maaya. Ask me about Sai Kiran's projects, skills, experience, resume, or GitHub links, and I'll help you quickly.";
+  }
+
+  if (q.includes("how are you") || q.includes("what s up") || q.includes("whats up") || q.includes("are you there")) {
+    return "I'm here and ready to help. You can ask me about Sai Kiran's projects, resume, skills, repo links, or learning journey.";
+  }
+
+  if (q.includes("remember") || q.includes("our convo") || q.includes("our conversation")) {
+    if (recentTopics.length > 0) {
+      return `Yes, in this session I remember recent topics like:
+
+- ${recentTopics.join("\n- ")}
+
+You can ask a follow-up like "tell me more about the last one".`;
+    }
+
+    return "I can remember the current chat session, but there is no strong earlier context in this session yet.";
   }
 
   if (q.includes("skill") || q.includes("tech stack") || q.includes("tools")) {
@@ -660,6 +717,34 @@ If you want, I can also break this down by project or explain how he uses these 
 - [CV Projects](${maayaKnowledge.links.cvRepo})
 - [NLP Projects](${maayaKnowledge.links.nlpRepo})
 - [Python Projects](${maayaKnowledge.links.pythonRepo})`;
+  }
+
+  if ((q.includes("cv") || q.includes("resume")) && (q.includes("project") || q.includes("link"))) {
+    return `Here are some strong resume-aligned project links:
+
+- [Blood Report Parsing IISc](${maayaKnowledge.projectLinks["blood report parsing iisc"]})
+- [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
+- [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
+- [Disease Diagnosis Dhanvantari](${maayaKnowledge.projectLinks["disease diagnosis dhanvantari"]})
+- [Med Triage Agentic AI](${maayaKnowledge.projectLinks["med triage agentic ai"]})
+
+Resume: [Open CV](${maayaKnowledge.links.resume})`;
+  }
+
+  if ((q.includes("project") || q.includes("projects")) && q.includes("link")) {
+    return `Here are some major project links:
+
+- [Blood Report Parsing IISc](${maayaKnowledge.projectLinks["blood report parsing iisc"]})
+- [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
+- [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
+- [AI News Generation](${maayaKnowledge.projectLinks["ai news generation"]})
+- [WhatsApp Chat Analyser](${maayaKnowledge.projectLinks["whatsapp chat analyser"]})
+
+If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.`;
+  }
+
+  if (q.includes("resume") || q.includes("cv") || q.includes("achievement")) {
+    return `Sai Kiran's resume highlights a strong GenAI profile with **Top 8 at IISc Bangalore OpenHack 2025**, **500+ LeetCode solves**, and strong work across healthcare AI, educational AI, multimodal resume analysis, and agentic workflows. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
   }
 
   if (q.includes("experience") || q.includes("internship")) {
@@ -732,7 +817,17 @@ async function getLiveMaayaReply(question) {
   });
 
   if (!response.ok) {
-    throw new Error(`Maaya API error: ${response.status}`);
+    let errorBody = null;
+    try {
+      errorBody = await response.json();
+    } catch (error) {
+      errorBody = null;
+    }
+
+    const enrichedError = new Error(`Maaya API error: ${response.status}`);
+    enrichedError.status = response.status;
+    enrichedError.payload = errorBody;
+    throw enrichedError;
   }
 
   const data = await response.json();
@@ -745,23 +840,22 @@ async function handleMaayaQuestion(question) {
   try {
     const liveReply = await getLiveMaayaReply(question);
     if (typingBubble) typingBubble.remove();
+    setMaayaPresence("live", "Live AI Ready");
     appendMaayaHistory("bot", liveReply);
     createMaayaMessage("bot", liveReply, true);
   } catch (error) {
     console.warn("Maaya API unavailable, using local fallback.", error);
     if (typingBubble) typingBubble.remove();
+    setMaayaPresence("local", "Local Knowledge Mode");
+    createMaayaStatusMessage("Maaya is waking up or the AI service is briefly busy, so local portfolio knowledge is being used for this reply.");
     createMaayaMessage(
       "bot",
-      `${getMaayaReply(question)}
-
-*Live AI mode is unavailable right now, so I am answering from the built-in portfolio knowledge base.*`,
+      getMaayaReply(question),
       true
     );
     appendMaayaHistory(
       "bot",
-      `${getMaayaReply(question)}
-
-*Live AI mode is unavailable right now, so I am answering from the built-in portfolio knowledge base.*`
+      getMaayaReply(question)
     );
   }
 }
@@ -774,6 +868,8 @@ if (maayaChat) {
   }
 }
 
+setMaayaPresence("live", "Live AI Ready");
+
 if (maayaFab) {
   maayaFab.addEventListener("click", openMaaya);
 }
@@ -784,6 +880,12 @@ if (maayaOpen) {
 
 if (maayaClose) {
   maayaClose.addEventListener("click", closeMaaya);
+}
+
+if (maayaClear) {
+  maayaClear.addEventListener("click", () => {
+    resetMaayaConversation();
+  });
 }
 
 maayaSuggestionButtons.forEach((button) => {
