@@ -370,6 +370,10 @@ window.addEventListener("keydown", (event) => {
   if (photoModal && event.key === "Escape" && photoModal.classList.contains("open")) {
     closePhotoModal();
   }
+
+  if (maayaDock && event.key === "Escape" && maayaDock.classList.contains("open")) {
+    closeMaaya();
+  }
 });
 
 document.querySelectorAll(".interactive").forEach((element) => {
@@ -379,6 +383,429 @@ document.querySelectorAll(".interactive").forEach((element) => {
     }
   });
 });
+
+const maayaFab = document.getElementById("maaya-fab");
+const maayaDock = document.getElementById("maaya-dock");
+const maayaOpen = document.getElementById("maaya-open");
+const maayaClose = document.getElementById("maaya-close");
+const maayaChat = document.getElementById("maaya-chat");
+const maayaForm = document.getElementById("maaya-form");
+const maayaInput = document.getElementById("maaya-input");
+const maayaSuggestionButtons = document.querySelectorAll("[data-maaya-question]");
+const MAAYA_API_URL = window.MAAYA_API_URL || "http://127.0.0.1:8008/api/maaya";
+const MAAYA_MEMORY_KEY = "maaya-chat-history";
+const MAAYA_MAX_HISTORY_TURNS = 10;
+
+const maayaKnowledge = {
+  links: {
+    github: "https://github.com/SAIKIRANPATNANA",
+    portfolio: "https://saikiranpatnana.github.io/SAIKIRANPATNANA/",
+    linkedin: "https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/",
+    leetcode: "https://leetcode.com/u/saikiranpatnana5143/",
+    resume: "./CV.pdf",
+    genaiRepo: "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS",
+    mlRepo: "https://github.com/SAIKIRANPATNANA/ML_PROJECTS",
+    dlRepo: "https://github.com/SAIKIRANPATNANA/DL_PROJECTS",
+    cvRepo: "https://github.com/SAIKIRANPATNANA/CV_PROJECTS",
+    nlpRepo: "https://github.com/SAIKIRANPATNANA/NLP_PROJECTS",
+    pythonRepo: "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS",
+    dsa: "https://github.com/SAIKIRANPATNANA/DSA_LEARNING",
+    genaiLearning: "https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING",
+    aiCoreLearning: "https://github.com/SAIKIRANPATNANA/AI_CORE_LEARNING",
+    mlopsLearning: "https://github.com/SAIKIRANPATNANA/MLOPS_AND_DEPLOYMENT_LEARNING",
+    dataFoundations: "https://github.com/SAIKIRANPATNANA/DATA_FOUNDATIONS",
+    nlpLearning: "https://github.com/SAIKIRANPATNANA/NLP_LEARNING",
+    programmingMath: "https://github.com/SAIKIRANPATNANA/PROGRAMMING_AND_MATH_FOUNDATIONS",
+  },
+  projectLinks: {
+    "ai news generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai",
+    "ats using gemini": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini",
+    "blood report parsing iisc": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc",
+    "blog generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blog-generation-agenticai",
+    "calorie calc using gpv": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/calorie-calc-using-gpv",
+    "disease diagnosis dhanvantari": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/disease-diagnosis-dhanvantari",
+    "harassment bot": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot",
+    "hybd cmr edtech": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech",
+    "med triage agentic ai": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai",
+    "sadhana genai project": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project",
+    "stance detection": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/stance-detection",
+    "whatsapp chat analyser": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/whatsapp-chat-analyser",
+    "crop recommendation classification": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/crop-recommendation-classification",
+    "customer segmentation mlops": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/customer-segmentation-mlops",
+    "diamond price prediction": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/diamond-price-prediction",
+    "red wine quality prediction": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/red-wine-quality-prediction",
+    "rural loan approval prediction": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/rural-loan-approval-prediction",
+    "sensor fault detection": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/sensor-fault-detection",
+    "student performance prediction": "https://github.com/SAIKIRANPATNANA/ML_PROJECTS/tree/main/student-performance-prediction",
+    "brain tumor detection": "https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/brain-tumor-detection",
+    "face recognition": "https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/face-recognition",
+    "facial emotion detection": "https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/facial-emotion-detection",
+    "image super resolution gans": "https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/image-super-resolution-gans",
+    "sign language detection": "https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/sign-language-detection",
+    "traffic sign detection": "https://github.com/SAIKIRANPATNANA/CV_PROJECTS/tree/main/traffic-sign-detection",
+    "imdb sentiment analysis": "https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/imdb-sentiment-analysis",
+    "sentiment analysis nlp": "https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/sentiment-analysis-nlp",
+    "spam message classifier": "https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/spam-message-classifier",
+    "tmdb movie recommendation": "https://github.com/SAIKIRANPATNANA/NLP_PROJECTS/tree/main/tmdb-movie-recommendation",
+    flames: "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/flames",
+    "python virtual assistant": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/python-virtual-assistant",
+    "qr code generator": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/qr-code-generator",
+    "rock paper scissors": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/rock-paper-scissors",
+    "snake water gun": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/snake-water-gun",
+    "telegram bot": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/telegram-bot",
+    "tic tac toe": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/tit-tac-toe",
+    "virtual voice assistant": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/virtual-voice-assistant",
+  },
+  projects: {
+    blood: "Blood Report Parsing IISc is a healthcare-focused GenAI project built around OCR, structured extraction, abnormality detection, and blood-report insight generation.",
+    sadhana: "Sadhana GenAI Project focuses on PDF chat, MCQ generation, Q&A workflows, and learner-facing educational AI experiences.",
+    ats: "ATS Using Gemini is a multimodal resume-analysis project built with Streamlit and Gemini Pro Vision for match analysis and keyword feedback.",
+  },
+};
+
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function renderInlineMarkdown(text) {
+  return text
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
+    .replace(/\[([^\]]+)\]\((\.\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
+    .replace(/(^|[\s(>])((https?:\/\/)[^\s<]+)/g, (match, prefix, url) => {
+      const trimmedUrl = url.replace(/[.,!?;:]+$/, "");
+      const trailing = url.slice(trimmedUrl.length);
+      return `${prefix}<a href="${trimmedUrl}" target="_blank" rel="noreferrer">${trimmedUrl}</a>${trailing}`;
+    })
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function markdownToHtml(markdown) {
+  const safe = escapeHtml(markdown || "");
+  const blocks = safe.split(/\n\s*\n/);
+
+  return blocks
+    .map((block) => {
+      const trimmed = block.trim();
+      if (!trimmed) return "";
+
+      const lines = trimmed.split("\n").map((line) => line.trim()).filter(Boolean);
+      const bulletLines = lines.filter((line) => /^[-*]\s+/.test(line));
+      const numberedLines = lines.filter((line) => /^\d+\.\s+/.test(line));
+
+      if (bulletLines.length === lines.length) {
+        const items = lines
+          .map((line) => line.replace(/^[-*]\s+/, ""))
+          .map((line) => `<li>${renderInlineMarkdown(line)}</li>`)
+          .join("");
+        return `<ul>${items}</ul>`;
+      }
+
+      if (numberedLines.length === lines.length) {
+        const items = lines
+          .map((line) => line.replace(/^\d+\.\s+/, ""))
+          .map((line) => `<li>${renderInlineMarkdown(line)}</li>`)
+          .join("");
+        return `<ol>${items}</ol>`;
+      }
+
+      return `<p>${renderInlineMarkdown(lines.join("<br/>"))}</p>`;
+    })
+    .join("");
+}
+
+function createMaayaMessage(role, content, useMarkdown = false) {
+  if (!maayaChat) return;
+  const bubble = document.createElement("div");
+  bubble.className = `maaya-message ${role}`;
+  if (useMarkdown) {
+    bubble.innerHTML = markdownToHtml(content);
+  } else {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = content;
+    bubble.appendChild(paragraph);
+  }
+  maayaChat.appendChild(bubble);
+  maayaChat.scrollTop = maayaChat.scrollHeight;
+  return bubble;
+}
+
+function loadMaayaHistory() {
+  try {
+    const stored = window.sessionStorage.getItem(MAAYA_MEMORY_KEY);
+    const parsed = stored ? JSON.parse(stored) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.warn("Unable to load Maaya chat history.", error);
+    return [];
+  }
+}
+
+function saveMaayaHistory(history) {
+  try {
+    window.sessionStorage.setItem(MAAYA_MEMORY_KEY, JSON.stringify(history));
+  } catch (error) {
+    console.warn("Unable to save Maaya chat history.", error);
+  }
+}
+
+let maayaHistory = loadMaayaHistory();
+
+function appendMaayaHistory(role, content) {
+  maayaHistory.push({ role, content });
+  maayaHistory = maayaHistory.slice(-MAAYA_MAX_HISTORY_TURNS);
+  saveMaayaHistory(maayaHistory);
+}
+
+function renderStoredMaayaHistory() {
+  if (!maayaChat || maayaHistory.length === 0) return false;
+
+  maayaHistory.forEach((entry) => {
+    createMaayaMessage(entry.role, entry.content, entry.role === "bot");
+  });
+
+  return true;
+}
+
+function openMaaya() {
+  if (!maayaDock) return;
+  maayaDock.classList.add("open");
+  maayaDock.setAttribute("aria-hidden", "false");
+  if (maayaInput) {
+    window.setTimeout(() => maayaInput.focus(), 120);
+  }
+  playModalOpenSound();
+}
+
+function closeMaaya() {
+  if (!maayaDock) return;
+  maayaDock.classList.remove("open");
+  maayaDock.setAttribute("aria-hidden", "true");
+  playModalCloseSound();
+}
+
+function normalizeQuestion(input) {
+  return input.toLowerCase().replace(/[^\w\s+]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function findProjectLink(query) {
+  const entries = Object.entries(maayaKnowledge.projectLinks);
+  return entries.find(([name]) => query.includes(name));
+}
+
+function getMaayaReply(question) {
+  const q = normalizeQuestion(question);
+
+  if (!q) {
+    return "Ask me about projects, skills, resume highlights, experience, healthcare AI work, or where to find a specific repo.";
+  }
+
+  if (q.includes("resume") || q.includes("cv") || q.includes("achievement")) {
+    return `Sai Kiran's resume highlights a strong GenAI profile with **Top 8 at IISc Bangalore OpenHack 2025**, **500+ LeetCode solves**, and strong work across healthcare AI, educational AI, multimodal resume analysis, and agentic workflows. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
+  }
+
+  if (q.includes("skill") || q.includes("tech stack") || q.includes("tools")) {
+    return `His strongest skills are:
+
+- **Generative AI**: RAG workflows, LLM apps, prompt design, multimodal systems
+- **Core AI/ML**: Machine Learning, Deep Learning, NLP, Computer Vision
+- **Tools**: Python, LangChain, Streamlit, FAISS, Gemini APIs, OCR pipelines
+- **Problem Solving**: strong DSA depth with **500+ LeetCode solves**
+
+If you want, I can also break this down by project or explain how he uses these skills in real builds.`;
+  }
+
+  if (q.includes("link") || q.includes("repo") || q.includes("github")) {
+    const matchedProject = findProjectLink(q);
+    if (matchedProject) {
+      const [projectName, projectUrl] = matchedProject;
+      return `Here is the direct repo link for **${projectName.replace(/\b\w/g, (char) => char.toUpperCase())}**:
+
+- [Open Project](${projectUrl})`;
+    }
+
+    if (q.includes("profile") || q.includes("portfolio")) {
+      return `Here are Sai Kiran's main profile links:
+
+- [GitHub](${maayaKnowledge.links.github})
+- [Portfolio](${maayaKnowledge.links.portfolio})
+- [LinkedIn](${maayaKnowledge.links.linkedin})
+- [LeetCode](${maayaKnowledge.links.leetcode})
+- [Resume](${maayaKnowledge.links.resume})`;
+    }
+
+    if (q.includes("learning")) {
+      return `Here are the learning repositories:
+
+- [Generative AI Learning](${maayaKnowledge.links.genaiLearning})
+- [AI Core Learning](${maayaKnowledge.links.aiCoreLearning})
+- [MLOps and Deployment Learning](${maayaKnowledge.links.mlopsLearning})
+- [Data Foundations](${maayaKnowledge.links.dataFoundations})
+- [NLP Learning](${maayaKnowledge.links.nlpLearning})
+- [DSA Learning](${maayaKnowledge.links.dsa})
+- [Programming and Math Foundations](${maayaKnowledge.links.programmingMath})`;
+    }
+
+    return `Here are the main repository hubs:
+
+- [GenAI Projects](${maayaKnowledge.links.genaiRepo})
+- [ML Projects](${maayaKnowledge.links.mlRepo})
+- [DL Projects](${maayaKnowledge.links.dlRepo})
+- [CV Projects](${maayaKnowledge.links.cvRepo})
+- [NLP Projects](${maayaKnowledge.links.nlpRepo})
+- [Python Projects](${maayaKnowledge.links.pythonRepo})`;
+  }
+
+  if (q.includes("experience") || q.includes("internship")) {
+    return "He has internship experience as a Data Science Intern at NullClass Technologies and an AI Intern at Teachnook, alongside a strong self-driven portfolio of Generative AI and broader AI projects.";
+  }
+
+  if (q.includes("leetcode") || q.includes("dsa") || q.includes("problem solving")) {
+    return `Sai Kiran has solved **500+ LeetCode problems** and is especially strong in arrays, graphs, trees, dynamic programming, and pattern-based problem solving. DSA repo: [DSA Learning](${maayaKnowledge.links.dsa}).`;
+  }
+
+  if (q.includes("blood") || q.includes("report parser") || q.includes("iisc")) {
+    return `${maayaKnowledge.projects.blood} It is one of his strongest healthcare-AI portfolio pieces. Repo: [Blood Report Parsing IISc](${maayaKnowledge.links.genaiRepo}/tree/main/blood-report-parsing-iisc).`;
+  }
+
+  if (q.includes("healthcare") || q.includes("medical")) {
+    return "His healthcare-focused GenAI work includes Blood Report Parsing IISc, Disease Diagnosis Dhanvantari, and Med Triage Agentic AI. Together they show interest in report parsing, diagnosis support, and healthcare assistant workflows.";
+  }
+
+  if (q.includes("sadhana") || q.includes("quiz") || q.includes("pdf chat")) {
+    return `${maayaKnowledge.projects.sadhana} Repo: [Sadhana GenAI Project](${maayaKnowledge.links.genaiRepo}/tree/main/sadhana-gen-ai-project).`;
+  }
+
+  if (q.includes("ats") || q.includes("gemini") || q.includes("resume analysis")) {
+    return `${maayaKnowledge.projects.ats} Repo: [ATS Using Gemini](${maayaKnowledge.links.genaiRepo}/tree/main/ats-using-gemini).`;
+  }
+
+  if (q.includes("genai") || q.includes("generative ai") || q.includes("best project") || q.includes("strongest project")) {
+    return `His strongest GenAI portfolio signals are **Blood Report Parsing IISc**, **Sadhana GenAI Project**, **ATS Using Gemini**, **Med Triage Agentic AI**, and **Disease Diagnosis Dhanvantari**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
+  }
+
+  if (q.includes("contact") || q.includes("reach") || q.includes("linkedin") || q.includes("github")) {
+    return `You can reach him through [LinkedIn](${maayaKnowledge.links.linkedin}), explore work on [GitHub](${maayaKnowledge.links.github}), check DSA depth on [LeetCode](${maayaKnowledge.links.leetcode}), or open the [resume](${maayaKnowledge.links.resume}).`;
+  }
+
+  if (q.includes("who are you") || q.includes("about") || q.includes("profile")) {
+    return "Sai Kiran Patnana is an AI-focused builder working across Data Science, Machine Learning, Deep Learning, Computer Vision, NLP, and Generative AI, with a strong focus on hands-on project execution and polished presentation.";
+  }
+
+  return "Maaya's best quick summary: Sai Kiran is a project-driven AI builder with strong Generative AI momentum, healthcare-oriented experiments, solid DSA depth, and a portfolio built around RAG systems, multimodal apps, and agentic workflows. Ask about his projects, skills, resume, or experience.";
+}
+
+async function getLiveMaayaReply(question) {
+  const historyForRequest = [...maayaHistory];
+  const lastHistoryEntry = historyForRequest[historyForRequest.length - 1];
+  if (lastHistoryEntry?.role === "user" && lastHistoryEntry.content === question) {
+    historyForRequest.pop();
+  }
+
+  const payload = {
+    question,
+    profile: {
+      name: "Sai Kiran Patnana",
+      role: "AI Developer",
+      portfolio: maayaKnowledge.links.portfolio,
+      github: maayaKnowledge.links.github,
+      resume: maayaKnowledge.links.resume,
+      leetcode: maayaKnowledge.links.leetcode,
+    },
+    links: maayaKnowledge.links,
+    project_links: maayaKnowledge.projectLinks,
+    history: historyForRequest,
+  };
+
+  const response = await fetch(MAAYA_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Maaya API error: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data.answer || "Maaya is online, but the response came back empty.";
+}
+
+async function handleMaayaQuestion(question) {
+  const typingBubble = createMaayaMessage("bot", "Maaya is thinking...");
+
+  try {
+    const liveReply = await getLiveMaayaReply(question);
+    if (typingBubble) typingBubble.remove();
+    appendMaayaHistory("bot", liveReply);
+    createMaayaMessage("bot", liveReply, true);
+  } catch (error) {
+    console.warn("Maaya API unavailable, using local fallback.", error);
+    if (typingBubble) typingBubble.remove();
+    createMaayaMessage(
+      "bot",
+      `${getMaayaReply(question)}
+
+*Live AI mode is unavailable right now, so I am answering from the built-in portfolio knowledge base.*`,
+      true
+    );
+    appendMaayaHistory(
+      "bot",
+      `${getMaayaReply(question)}
+
+*Live AI mode is unavailable right now, so I am answering from the built-in portfolio knowledge base.*`
+    );
+  }
+}
+
+if (maayaChat) {
+  if (!renderStoredMaayaHistory()) {
+    const welcomeMessage = `Hi, I'm **Maaya**. Ask me anything about Sai Kiran's projects, skills, experience, or resume, and I'll guide you through it.`;
+    createMaayaMessage("bot", welcomeMessage, true);
+    appendMaayaHistory("bot", welcomeMessage);
+  }
+}
+
+if (maayaFab) {
+  maayaFab.addEventListener("click", openMaaya);
+}
+
+if (maayaOpen) {
+  maayaOpen.addEventListener("click", openMaaya);
+}
+
+if (maayaClose) {
+  maayaClose.addEventListener("click", closeMaaya);
+}
+
+maayaSuggestionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const question = button.dataset.maayaQuestion;
+    createMaayaMessage("user", question);
+    handleMaayaQuestion(question);
+    openMaaya();
+  });
+});
+
+if (maayaForm && maayaInput) {
+  maayaForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const question = maayaInput.value.trim();
+    if (!question) return;
+    appendMaayaHistory("user", question);
+    createMaayaMessage("user", question);
+    maayaInput.value = "";
+    handleMaayaQuestion(question);
+  });
+}
 
 window.addEventListener(
   "pointerdown",

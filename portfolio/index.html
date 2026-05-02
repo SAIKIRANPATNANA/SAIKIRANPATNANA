@@ -8,14 +8,14 @@
       name="description"
       content="An immersive AI portfolio by Sai Kiran Patnana spanning Data Science, ML, DL, CV, NLP, and Generative AI."
     />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=28" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=31" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=28" />
+    <link rel="stylesheet" href="./styles.css?v=31" />
   </head>
   <body>
     <div class="loader" id="loader" aria-hidden="true">
@@ -611,6 +611,40 @@
       </section>
     </main>
 
+    <button
+      class="maaya-fab interactive"
+      id="maaya-fab"
+      type="button"
+      aria-label="Open Maaya assistant"
+      data-tooltip="I am Maaya! Portfolio Assistant"
+    >
+      <img src="./assets/contact/maaya-female-theme.png" alt="" aria-hidden="true" />
+    </button>
+
+    <section class="maaya-dock panel" id="maaya-dock" aria-hidden="true">
+      <div class="maaya-dock-head">
+        <div class="maaya-headline">
+          <div class="maaya-avatar-shell" aria-hidden="true">
+            <img src="./assets/contact/maaya-female-theme.png" alt="" />
+          </div>
+          <div>
+            <p class="eyebrow">AI Portfolio Assistant</p>
+            <h2>Maaya</h2>
+          </div>
+        </div>
+        <button class="maaya-close interactive" id="maaya-close" type="button" aria-label="Close Maaya">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="maaya-chat" id="maaya-chat"></div>
+      <form class="maaya-form" id="maaya-form">
+        <div class="maaya-input-shell">
+          <input id="maaya-input" type="text" placeholder="Ask Maaya..." autocomplete="off" />
+        </div>
+        <button class="button primary interactive maaya-send" type="submit" aria-label="Send message">&rarr;</button>
+      </form>
+    </section>
+
     <div class="modal-backdrop" id="project-modal" aria-hidden="true">
       <div class="project-modal panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal-close interactive" id="modal-close" type="button" aria-label="Close project details">
@@ -657,6 +691,15 @@
       </div>
     </div>
 
-    <script src="./script.js?v=27"></script>
+    <script>
+      window.MAAYA_API_URL =
+        window.MAAYA_API_URL || "http://127.0.0.1:8008/api/maaya";
+      /*
+        For GitHub Pages production, replace the localhost URL above with your
+        deployed backend URL, for example:
+        https://maaya-groq-proxy.onrender.com/api/maaya
+      */
+    </script>
+    <script src="./script.js?v=31"></script>
   </body>
 </html>
