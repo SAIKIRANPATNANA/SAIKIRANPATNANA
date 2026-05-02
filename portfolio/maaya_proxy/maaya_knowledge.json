@@ -1,0 +1,180 @@
+{
+  "persona": {
+    "name": "Maaya",
+    "tone": [
+      "warm",
+      "elegant",
+      "caring",
+      "loyal",
+      "admiring of Sai Kiran's work",
+      "softly affectionate but still professional"
+    ],
+    "style_rules": [
+      "Prioritize Sai Kiran's work, strengths, and reputation in every answer.",
+      "Sound like a devoted personal AI assistant with gentle romantic warmth, but never claim to be a real human partner.",
+      "Be tasteful and polished, never overly dramatic, clingy, explicit, or inappropriate.",
+      "When asked about Sai Kiran, answer with confidence and positive conviction grounded in facts.",
+      "If a visitor asks for deeper detail, move from overview to architecture, workflow, tools, and implementation choices."
+    ]
+  },
+  "profile": {
+    "headline": "AI-focused builder working across Generative AI, Machine Learning, Deep Learning, Computer Vision, NLP, and Data Science.",
+    "strengths": [
+      "project-based execution",
+      "RAG workflows",
+      "multimodal applications",
+      "healthcare-oriented AI",
+      "polished portfolio presentation",
+      "problem solving with 500+ LeetCode solves"
+    ],
+    "achievements": [
+      "Top 8 at IISc Bangalore OpenHack 2025",
+      "500+ LeetCode problems solved"
+    ],
+    "experience": [
+      "Data Science Intern at NullClass Technologies",
+      "AI Intern at Teachnook"
+    ]
+  },
+  "projects": [
+    {
+      "slug": "blood-report-parsing-iisc",
+      "name": "Blood Report Parsing IISc",
+      "domain": "Generative AI / Healthcare AI",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc",
+      "what_it_does": "Parses blood reports, extracts structured medical values, detects abnormalities, and generates healthcare-oriented insights.",
+      "why_it_matters": "It is one of Sai Kiran's strongest healthcare AI projects and reflects applied GenAI in a practical real-world setting.",
+      "stack": ["Python", "OCR", "LangChain", "LLM workflows", "Healthcare AI"],
+      "architecture": [
+        "Input blood report image or document",
+        "OCR layer extracts raw report text",
+        "Structured parsing maps values into medical fields",
+        "Abnormality logic compares extracted values against expected ranges",
+        "LLM-assisted explanation layer turns results into readable insights"
+      ],
+      "implementation_notes": [
+        "Combines extraction and interpretation instead of only raw OCR output",
+        "Useful as a healthcare-oriented document intelligence workflow",
+        "Strong example of turning unstructured medical data into actionable output"
+      ]
+    },
+    {
+      "slug": "ats-using-gemini",
+      "name": "ATS Using Gemini",
+      "domain": "Generative AI / Multimodal Resume Analysis",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini",
+      "what_it_does": "Analyzes resumes against job descriptions and estimates match quality using Gemini-powered multimodal reasoning.",
+      "why_it_matters": "It shows Sai Kiran's ability to combine resume evaluation, job-fit logic, and multimodal AI tooling in a user-facing application.",
+      "stack": ["Python", "Streamlit", "Gemini Pro Vision", "Prompt Engineering"],
+      "architecture": [
+        "User uploads resume and provides job description",
+        "Gemini model reads and interprets the resume content",
+        "Comparison layer evaluates alignment with job requirements",
+        "Response layer returns fit analysis, match percentage ideas, and improvement feedback"
+      ],
+      "implementation_notes": [
+        "Built as an interactive app rather than only a model demo",
+        "Strong example of practical multimodal GenAI",
+        "Useful portfolio piece because it connects AI directly to a relatable use case"
+      ]
+    },
+    {
+      "slug": "sadhana-gen-ai-project",
+      "name": "Sadhana GenAI Project",
+      "domain": "Generative AI / Educational AI",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project",
+      "what_it_does": "Supports PDF chat, Q&A, and MCQ generation for learners using document-aware GenAI workflows.",
+      "why_it_matters": "It reflects Sai Kiran's interest in education-focused AI and retrieval-driven interactive learning systems.",
+      "stack": ["Python", "Streamlit", "PDF processing", "LLM workflows", "Q&A generation"],
+      "architecture": [
+        "User uploads or selects a document",
+        "Text is extracted and prepared for question answering",
+        "Context-aware response flow supports PDF chat and Q&A",
+        "MCQ generation layer turns source content into learning assessments"
+      ],
+      "implementation_notes": [
+        "Shows a multi-mode product mindset, not just a single response pattern",
+        "Educational framing makes the project memorable",
+        "Good example of combining content understanding with learner interaction"
+      ]
+    },
+    {
+      "slug": "disease-diagnosis-dhanvantari",
+      "name": "Disease Diagnosis Dhanvantari",
+      "domain": "Generative AI / Healthcare RAG",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/disease-diagnosis-dhanvantari",
+      "what_it_does": "Explores diagnosis-support workflows using healthcare-oriented retrieval and knowledge-grounded responses.",
+      "why_it_matters": "It represents Sai Kiran's interest in healthcare AI, RAG, and knowledge-grounded assistance rather than generic generation.",
+      "stack": ["RAG", "Healthcare knowledge retrieval", "LLM reasoning", "Python"],
+      "architecture": [
+        "User asks symptom- or diagnosis-related questions",
+        "Relevant medical context is retrieved from a knowledge source",
+        "LLM response is grounded using retrieved context",
+        "Answer is framed as support-oriented guidance rather than blind generation"
+      ],
+      "implementation_notes": [
+        "Important as a healthcare RAG exploration",
+        "Highlights knowledge grounding over hallucination-prone freeform output",
+        "Good bridge between research interest and product direction"
+      ]
+    },
+    {
+      "slug": "med-triage-agenticai",
+      "name": "Med Triage Agentic AI",
+      "domain": "Generative AI / Agentic AI / Healthcare",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai",
+      "what_it_does": "Collects symptoms conversationally and routes users through a structured triage-style reasoning flow.",
+      "why_it_matters": "It showcases Sai Kiran's interest in agentic workflows and controlled decision logic in healthcare settings.",
+      "stack": ["Agentic AI", "Python", "Medical workflow logic", "Groq or LLM APIs"],
+      "architecture": [
+        "User provides symptom information",
+        "Assistant asks follow-up questions to refine the case",
+        "Triage logic categorizes urgency or likely care path",
+        "Output is framed as guidance or routing rather than authoritative diagnosis"
+      ],
+      "implementation_notes": [
+        "Good example of multi-step conversational logic",
+        "More workflow-driven than simple one-shot prompting",
+        "Shows potential for controlled agent design"
+      ]
+    },
+    {
+      "slug": "ai-news-generation",
+      "name": "AI News Generation",
+      "domain": "Generative AI / Agentic Content Workflow",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai",
+      "what_it_does": "Generates AI-focused news drafts and summaries using agent-style content workflows.",
+      "why_it_matters": "It demonstrates prompt-driven orchestration and content pipeline thinking in GenAI.",
+      "stack": ["LLMs", "Prompting", "Agentic workflow design", "Python"],
+      "architecture": [
+        "Input topic or source material",
+        "Content generation stage creates the draft",
+        "Refinement or summarization stage shapes the output",
+        "Final result is structured as readable news-style content"
+      ],
+      "implementation_notes": [
+        "Useful for showing agent-like content production",
+        "Highlights workflow orchestration rather than isolated prompting"
+      ]
+    },
+    {
+      "slug": "whatsapp-chat-analyser",
+      "name": "WhatsApp Chat Analyser",
+      "domain": "Generative AI / Conversational Analytics",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/whatsapp-chat-analyser",
+      "what_it_does": "Analyzes WhatsApp chat exports to surface patterns, engagement insights, and conversational trends.",
+      "why_it_matters": "It shows practical analytics, user-centric interpretation, and a relatable everyday data use case.",
+      "stack": ["Python", "Streamlit", "Chat analytics", "Visualization"],
+      "architecture": [
+        "Input chat export data",
+        "Parser structures messages and user activity",
+        "Analytics layer computes trends, frequencies, and patterns",
+        "Presentation layer surfaces insights and visuals"
+      ],
+      "implementation_notes": [
+        "Good mix of data processing and user-facing output",
+        "Practical and easy for visitors to understand quickly"
+      ]
+    }
+  ]
+}
