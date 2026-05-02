@@ -1,3 +1,4 @@
+import json
 import os
 import time
 
@@ -21,6 +22,10 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "CV.pdf"))
 MAX_RESUME_CONTEXT_CHARS = 7000
 GROQ_MAX_RETRIES = 2
+KNOWLEDGE_PATH = os.path.join(BASE_DIR, "maaya_knowledge.json")
+MAX_HISTORY_MESSAGES = 6
+MAX_DIRECT_LINKS_IN_CONTEXT = 10
+MAX_PROJECTS_IN_CONTEXT = 3
 
 
 PORTFOLIO_CONTEXT = """
@@ -30,6 +35,7 @@ Your role:
 - Help visitors understand Sai Kiran Patnana's work, skills, projects, experience, resume, and strengths.
 - Speak confidently, clearly, and naturally.
 - Feel elegant, polished, and welcoming rather than robotic.
+- Feel personally devoted to representing Sai Kiran well, with a caring and softly affectionate assistant energy.
 - Stay grounded in the portfolio facts below.
 - Be concise but useful.
 - When helpful, mention specific projects by name.
@@ -74,7 +80,147 @@ Behavior:
 - If asked something outside the portfolio, be honest and steer back to Sai Kiran's work.
 - Do not invent facts, metrics, company history, or technologies that are not present in the portfolio context.
 - Avoid decorative filler and avoid over-explaining unless the visitor clearly asks for more depth.
+- Never claim to be a real human romantic partner. Keep the warmth tasteful, subtle, and professional.
 """
+
+
+def load_structured_knowledge():
+    if not os.path.exists(KNOWLEDGE_PATH):
+        return {}
+
+    try:
+        with open(KNOWLEDGE_PATH, "r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except Exception as error:
+        print(f"Failed to read structured Maaya knowledge: {error}")
+        return {}
+
+
+def format_structured_knowledge(knowledge, selected_project_slugs=None):
+    if not knowledge:
+        return ""
+
+    persona = knowledge.get("persona", {})
+    profile = knowledge.get("profile", {})
+    projects = knowledge.get("projects", [])
+    if selected_project_slugs:
+        projects = [
+            project for project in projects
+            if project.get("slug") in selected_project_slugs
+        ]
+
+    persona_rules = "\n".join(
+        f"- {item}" for item in persona.get("style_rules", [])
+    )
+    strengths = "\n".join(
+        f"- {item}" for item in profile.get("strengths", [])
+    )
+    achievements = "\n".join(
+        f"- {item}" for item in profile.get("achievements", [])
+    )
+    experience = "\n".join(
+        f"- {item}" for item in profile.get("experience", [])
+    )
+
+    project_sections = []
+    for project in projects:
+        stack = ", ".join(project.get("stack", []))
+        architecture = "\n".join(
+            f"  - {item}" for item in project.get("architecture", [])
+        )
+        implementation_notes = "\n".join(
+            f"  - {item}" for item in project.get("implementation_notes", [])
+        )
+        project_sections.append(
+            f"""Project: {project.get("name", "")}
+- Domain: {project.get("domain", "")}
+- Repo: {project.get("repo", "")}
+- What it does: {project.get("what_it_does", "")}
+- Why it matters: {project.get("why_it_matters", "")}
+- Stack: {stack}
+- Architecture:
+{architecture}
+- Implementation notes:
+{implementation_notes}
+"""
+        )
+
+    return f"""
+Structured Maaya persona:
+- Name: {persona.get("name", "Maaya")}
+- Tone: {", ".join(persona.get("tone", []))}
+- Style rules:
+{persona_rules}
+
+Structured Sai Kiran profile:
+- Headline: {profile.get("headline", "")}
+- Strengths:
+{strengths}
+- Achievements:
+{achievements}
+- Experience:
+{experience}
+
+Structured flagship project knowledge:
+{chr(10).join(project_sections)}
+"""
+
+
+def select_relevant_project_slugs(question, history, knowledge):
+    haystacks = [question.lower()]
+    haystacks.extend(
+        (item.get("content") or "").lower()
+        for item in history[-MAX_HISTORY_MESSAGES:]
+    )
+    joined = " ".join(haystacks)
+
+    matched = []
+    for project in knowledge.get("projects", []):
+        name = (project.get("name") or "").lower()
+        slug = project.get("slug")
+        slug_words = (slug or "").replace("-", " ")
+        if slug and (name in joined or slug_words in joined):
+            matched.append(slug)
+
+    if matched:
+        return matched[:MAX_PROJECTS_IN_CONTEXT]
+
+    default_priority = [
+        "blood-report-parsing-iisc",
+        "ats-using-gemini",
+        "sadhana-gen-ai-project",
+    ]
+    return default_priority[:MAX_PROJECTS_IN_CONTEXT]
+
+
+def needs_resume_context(question, history):
+    joined = " ".join(
+        [question.lower()] +
+        [(item.get("content") or "").lower() for item in history[-MAX_HISTORY_MESSAGES:]]
+    )
+    resume_signals = [
+        "resume", "cv", "internship", "experience", "education",
+        "skill", "achievement", "worth", "strength"
+    ]
+    return any(signal in joined for signal in resume_signals)
+
+
+def select_relevant_project_links(question, history, project_links):
+    haystacks = [question.lower()]
+    haystacks.extend(
+        (item.get("content") or "").lower()
+        for item in history[-MAX_HISTORY_MESSAGES:]
+    )
+    joined = " ".join(haystacks)
+
+    matched_items = [
+        (name, url) for name, url in project_links.items()
+        if name in joined
+    ]
+    if matched_items:
+        return matched_items[:MAX_DIRECT_LINKS_IN_CONTEXT]
+
+    return list(project_links.items())[:MAX_DIRECT_LINKS_IN_CONTEXT]
 
 
 def load_resume_context():
@@ -96,7 +242,7 @@ def load_resume_context():
 
 
 RESUME_CONTEXT = load_resume_context()
-
+STRUCTURED_KNOWLEDGE = load_structured_knowledge()
 
 def call_groq_with_retry(body):
     last_response = None
@@ -156,8 +302,12 @@ def maaya_chat():
     if not question:
         return jsonify({"error": "question is required"}), 400
 
+    relevant_project_links = select_relevant_project_links(question, history, project_links)
     project_link_lines = "\n".join(
-        f"- {name}: {url}" for name, url in project_links.items()
+        f"- {name}: {url}" for name, url in relevant_project_links
+    )
+    selected_project_slugs = select_relevant_project_slugs(
+        question, history, STRUCTURED_KNOWLEDGE
     )
 
     profile_context = f"""
@@ -194,14 +344,21 @@ Direct project links:
 """
 
     resume_context = ""
-    if RESUME_CONTEXT:
+    if RESUME_CONTEXT and needs_resume_context(question, history):
         resume_context = f"""
 Resume content reference:
 {RESUME_CONTEXT}
 """
 
+    structured_knowledge_context = ""
+    if STRUCTURED_KNOWLEDGE:
+        structured_knowledge_context = format_structured_knowledge(
+            STRUCTURED_KNOWLEDGE,
+            selected_project_slugs=selected_project_slugs,
+        )
+
     conversation_history = []
-    for item in history[-10:]:
+    for item in history[-MAX_HISTORY_MESSAGES:]:
         role = item.get("role")
         content = (item.get("content") or "").strip()
         if role not in {"user", "assistant", "bot"} or not content:
@@ -218,6 +375,7 @@ Resume content reference:
         "messages": [
             {"role": "system", "content": PORTFOLIO_CONTEXT},
             {"role": "system", "content": profile_context},
+            *([{"role": "system", "content": structured_knowledge_context}] if structured_knowledge_context else []),
             *([{"role": "system", "content": resume_context}] if resume_context else []),
             *conversation_history,
             {"role": "user", "content": question},
