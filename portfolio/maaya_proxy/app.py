@@ -23,9 +23,7 @@ RESUME_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "CV.pdf"))
 MAX_RESUME_CONTEXT_CHARS = 7000
 GROQ_MAX_RETRIES = 2
 KNOWLEDGE_PATH = os.path.join(BASE_DIR, "maaya_knowledge.json")
-MAX_HISTORY_MESSAGES = 6
-MAX_DIRECT_LINKS_IN_CONTEXT = 10
-MAX_PROJECTS_IN_CONTEXT = 3
+MAX_HISTORY_MESSAGES = 10
 
 
 PORTFOLIO_CONTEXT = """
@@ -96,18 +94,13 @@ def load_structured_knowledge():
         return {}
 
 
-def format_structured_knowledge(knowledge, selected_project_slugs=None):
+def format_structured_knowledge(knowledge):
     if not knowledge:
         return ""
 
     persona = knowledge.get("persona", {})
     profile = knowledge.get("profile", {})
     projects = knowledge.get("projects", [])
-    if selected_project_slugs:
-        projects = [
-            project for project in projects
-            if project.get("slug") in selected_project_slugs
-        ]
 
     persona_rules = "\n".join(
         f"- {item}" for item in persona.get("style_rules", [])
@@ -164,65 +157,6 @@ Structured Sai Kiran profile:
 Structured flagship project knowledge:
 {chr(10).join(project_sections)}
 """
-
-
-def select_relevant_project_slugs(question, history, knowledge):
-    haystacks = [question.lower()]
-    haystacks.extend(
-        (item.get("content") or "").lower()
-        for item in history[-MAX_HISTORY_MESSAGES:]
-    )
-    joined = " ".join(haystacks)
-
-    matched = []
-    for project in knowledge.get("projects", []):
-        name = (project.get("name") or "").lower()
-        slug = project.get("slug")
-        slug_words = (slug or "").replace("-", " ")
-        if slug and (name in joined or slug_words in joined):
-            matched.append(slug)
-
-    if matched:
-        return matched[:MAX_PROJECTS_IN_CONTEXT]
-
-    default_priority = [
-        "blood-report-parsing-iisc",
-        "ats-using-gemini",
-        "sadhana-gen-ai-project",
-    ]
-    return default_priority[:MAX_PROJECTS_IN_CONTEXT]
-
-
-def needs_resume_context(question, history):
-    joined = " ".join(
-        [question.lower()] +
-        [(item.get("content") or "").lower() for item in history[-MAX_HISTORY_MESSAGES:]]
-    )
-    resume_signals = [
-        "resume", "cv", "internship", "experience", "education",
-        "skill", "achievement", "worth", "strength"
-    ]
-    return any(signal in joined for signal in resume_signals)
-
-
-def select_relevant_project_links(question, history, project_links):
-    haystacks = [question.lower()]
-    haystacks.extend(
-        (item.get("content") or "").lower()
-        for item in history[-MAX_HISTORY_MESSAGES:]
-    )
-    joined = " ".join(haystacks)
-
-    matched_items = [
-        (name, url) for name, url in project_links.items()
-        if name in joined
-    ]
-    if matched_items:
-        return matched_items[:MAX_DIRECT_LINKS_IN_CONTEXT]
-
-    return list(project_links.items())[:MAX_DIRECT_LINKS_IN_CONTEXT]
-
-
 def load_resume_context():
     if not os.path.exists(RESUME_PATH):
         return ""
@@ -302,12 +236,8 @@ def maaya_chat():
     if not question:
         return jsonify({"error": "question is required"}), 400
 
-    relevant_project_links = select_relevant_project_links(question, history, project_links)
     project_link_lines = "\n".join(
-        f"- {name}: {url}" for name, url in relevant_project_links
-    )
-    selected_project_slugs = select_relevant_project_slugs(
-        question, history, STRUCTURED_KNOWLEDGE
+        f"- {name}: {url}" for name, url in project_links.items()
     )
 
     profile_context = f"""
@@ -344,7 +274,7 @@ Direct project links:
 """
 
     resume_context = ""
-    if RESUME_CONTEXT and needs_resume_context(question, history):
+    if RESUME_CONTEXT:
         resume_context = f"""
 Resume content reference:
 {RESUME_CONTEXT}
@@ -352,10 +282,7 @@ Resume content reference:
 
     structured_knowledge_context = ""
     if STRUCTURED_KNOWLEDGE:
-        structured_knowledge_context = format_structured_knowledge(
-            STRUCTURED_KNOWLEDGE,
-            selected_project_slugs=selected_project_slugs,
-        )
+        structured_knowledge_context = format_structured_knowledge(STRUCTURED_KNOWLEDGE)
 
     conversation_history = []
     for item in history[-MAX_HISTORY_MESSAGES:]:
