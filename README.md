@@ -169,6 +169,7 @@ These sections now map to my grouped GitHub repositories, making it easier to ex
 - [Harassment Bot](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot) - safety- and moderation-oriented assistant work.
 - [HYBD CMR EdTech](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech) - educational content generation and retrieval workflows.
 - [Med Triage Agentic AI](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai) - agent-style medical triage assistant exploration.
+- [PSKGPT via Transformers](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/pskgpt-via-transformers) - GPT-style language model from scratch in PyTorch with custom BPE tokenization, causal self-attention, RMSNorm, SwiGLU, KV cache, and controlled text generation.
 - [Sadhana GenAI Project](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project) - PDF chat, MCQ, Q&A, and learning workflows.
 - [Stance Detection](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/stance-detection) - LLM-assisted stance detection experimentation.
 - [WhatsApp Chat Analyser](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/whatsapp-chat-analyser) - conversational analytics and insight generation.
