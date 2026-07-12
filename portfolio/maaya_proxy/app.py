@@ -42,7 +42,7 @@ Portfolio facts:
 - Name: Sai Kiran Patnana
 - Focus: Generative AI, Machine Learning, Deep Learning, Computer Vision, NLP, Data Science
 - Strengths: project-based execution, RAG workflows, multimodal applications, healthcare-oriented AI, polished portfolio presentation
-- DSA: 500+ LeetCode problems solved
+- DSA: 700+ LeetCode problems solved
 - Key achievement: Top 8 at IISc Bangalore OpenHack 2025
 - GitHub: https://github.com/SAIKIRANPATNANA
 - Portfolio: https://saikiranpatnana.github.io/SAIKIRANPATNANA/
@@ -50,12 +50,14 @@ Portfolio facts:
 
 Important projects:
 - Blood Report Parsing IISc: OCR, structured extraction, abnormality detection, blood report insights, healthcare AI
+- AI Guardrails: NeMo Guardrails, Colang flows, input/output rails, LLM safety, semantic intent matching
 - ATS Using Gemini: multimodal resume analysis, Gemini Pro Vision, job-description fit analysis
 - Sadhana GenAI Project: PDF chat, Q&A, MCQ generation, educational AI
 - Disease Diagnosis Dhanvantari: healthcare-oriented RAG exploration
 - Med Triage Agentic AI: medical triage assistant logic
 - AI News Generation: agentic AI workflow for AI news drafting and summarization
 - Blog Generation: long-form content generation workflow
+- RAG Evaluation: RAGAS-based TechNest RAG evaluation pipeline with product-catalog retrieval, Groq generation, Gemini embeddings, checkpoints, and Streamlit dashboards
 - WhatsApp Chat Analyser: conversational analytics and trend insights
 
 Experience:

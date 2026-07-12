@@ -421,6 +421,7 @@ const maayaKnowledge = {
   },
   projectLinks: {
     "ai news generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai",
+    "ai guardrails": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails",
     "ats using gemini": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini",
     "blood report parsing iisc": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc",
     "blog generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blog-generation-agenticai",
@@ -429,6 +430,7 @@ const maayaKnowledge = {
     "harassment bot": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot",
     "hybd cmr edtech": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech",
     "med triage agentic ai": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai",
+    "rag evaluation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/rag_evaluation",
     "sadhana genai project": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project",
     "stance detection": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/stance-detection",
     "whatsapp chat analyser": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/whatsapp-chat-analyser",
@@ -673,7 +675,7 @@ You can ask a follow-up like "tell me more about the last one".`;
 - **Generative AI**: RAG workflows, LLM apps, prompt design, multimodal systems
 - **Core AI/ML**: Machine Learning, Deep Learning, NLP, Computer Vision
 - **Tools**: Python, LangChain, Streamlit, FAISS, Gemini APIs, OCR pipelines
-- **Problem Solving**: strong DSA depth with **500+ LeetCode solves**
+- **Problem Solving**: strong DSA depth with **700+ LeetCode solves**
 
 If you want, I can also break this down by project or explain how he uses these skills in real builds.`;
   }
@@ -744,7 +746,7 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
   }
 
   if (q.includes("resume") || q.includes("cv") || q.includes("achievement")) {
-    return `Sai Kiran's resume highlights a strong GenAI profile with **Top 8 at IISc Bangalore OpenHack 2025**, **500+ LeetCode solves**, and strong work across healthcare AI, educational AI, multimodal resume analysis, and agentic workflows. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
+    return `Sai Kiran's resume highlights a strong GenAI profile with **Top 8 at IISc Bangalore OpenHack 2025**, **700+ LeetCode solves**, and strong work across healthcare AI, educational AI, multimodal resume analysis, and agentic workflows. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
   }
 
   if (q.includes("experience") || q.includes("internship")) {
@@ -752,7 +754,7 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
   }
 
   if (q.includes("leetcode") || q.includes("dsa") || q.includes("problem solving")) {
-    return `Sai Kiran has solved **500+ LeetCode problems** and is especially strong in arrays, graphs, trees, dynamic programming, and pattern-based problem solving. DSA repo: [DSA Learning](${maayaKnowledge.links.dsa}).`;
+    return `Sai Kiran has solved **700+ LeetCode problems** and is especially strong in arrays, graphs, trees, dynamic programming, and pattern-based problem solving. DSA repo: [DSA Learning](${maayaKnowledge.links.dsa}).`;
   }
 
   if (q.includes("blood") || q.includes("report parser") || q.includes("iisc")) {

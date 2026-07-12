@@ -34,7 +34,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/AI%20Builder-Projects%20Across%20ML%2C%20DL%2C%20CV%2C%20NLP%20%26%20GenAI-0F766E?style=for-the-badge" alt="AI Builder" />
-  <img src="https://img.shields.io/badge/Problem%20Solving-500%2B%20LeetCode%20Problems-1D4ED8?style=for-the-badge" alt="Problem Solving" />
+  <img src="https://img.shields.io/badge/Problem%20Solving-700%2B%20LeetCode%20Problems-1D4ED8?style=for-the-badge" alt="Problem Solving" />
   <img src="https://img.shields.io/badge/Learning%20Mode-Hands--On%20And%20Consistent-7C3AED?style=for-the-badge" alt="Learning Mode" />
 </p>
 
@@ -161,6 +161,7 @@ These sections now map to my grouped GitHub repositories, making it easier to ex
 **Repository Hub:** [GENAI_PROJECTS](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS)
 
 - [AI News Generation](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai) - agentic AI workflow for generating and shaping AI-focused news content.
+- [AI Guardrails](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails) - NeMo Guardrails learning project for controlling LLM behavior with input rails, dialog rails, output rails, Colang flows, and safety policies.
 - [ATS Using Gemini](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini) - resume analysis and ATS-style evaluation using Gemini Pro Vision.
 - [Blood Report Parsing IISc](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc) - AI-assisted blood report parsing, structured extraction, abnormality detection, and healthcare insight workflows built during IISc OpenHack.
 - [Blog Generation](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blog-generation-agenticai) - AI-assisted blog drafting and content generation workflow for long-form writing.
@@ -170,6 +171,7 @@ These sections now map to my grouped GitHub repositories, making it easier to ex
 - [HYBD CMR EdTech](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech) - educational content generation and retrieval workflows.
 - [Med Triage Agentic AI](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai) - agent-style medical triage assistant exploration.
 - [PSKGPT via Transformers](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/pskgpt-via-transformers) - GPT-style language model from scratch in PyTorch with custom BPE tokenization, causal self-attention, RMSNorm, SwiGLU, KV cache, and controlled text generation.
+- [RAG Evaluation](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/rag_evaluation) - TechNest RAG evaluation pipeline using RAGAS metrics, product-catalog retrieval, Groq generation, Gemini embeddings, checkpoints, and Streamlit dashboards.
 - [Sadhana GenAI Project](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project) - PDF chat, MCQ, Q&A, and learning workflows.
 - [Stance Detection](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/stance-detection) - LLM-assisted stance detection experimentation.
 - [WhatsApp Chat Analyser](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/whatsapp-chat-analyser) - conversational analytics and insight generation.
@@ -247,7 +249,7 @@ Beyond projects, I keep a structured set of public learning repositories that do
 - **[Programming and Math Foundations](https://github.com/SAIKIRANPATNANA/PROGRAMMING_AND_MATH_FOUNDATIONS)**: Python, statistics, probability, and the technical fundamentals that support stronger AI work
 
 ### 🧩 Problem Solving And DSA
-- **[LeetCode Profile](https://leetcode.com/u/saikiranpatnana5143/)**: solved 500+ problems with strong consistency across data structures, algorithmic patterns, optimization, and interview-style problem solving
+- **[LeetCode Profile](https://leetcode.com/u/saikiranpatnana5143/)**: solved 700+ problems with strong consistency across data structures, algorithmic patterns, optimization, and interview-style problem solving
 
 <p align="center">
   <i>Learning is not separate from building for me. It is the engine behind every stronger project I create.</i>
