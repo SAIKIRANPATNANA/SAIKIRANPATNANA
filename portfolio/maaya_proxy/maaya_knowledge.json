@@ -18,23 +18,109 @@
     ]
   },
   "profile": {
-    "headline": "AI-focused builder working across Generative AI, Machine Learning, Deep Learning, Computer Vision, NLP, and Data Science.",
+    "headline": "AI-focused Computer Science undergraduate targeting Prompt Engineer roles, with strong hands-on work in LLM applications, RAG systems, structured-output workflows, and evaluation-driven prompt flows.",
     "strengths": [
-      "project-based execution",
-      "RAG workflows",
-      "multimodal applications",
-      "healthcare-oriented AI",
-      "polished portfolio presentation",
+      "prompt engineering for system prompts, user prompts, role separation, prompt chaining, structured-output prompting, and constraint-based prompting",
+      "LLM evaluation and control with temperature/top-p/top-k awareness, prompt ablations, consistency testing, hallucination reduction, output validation, and JSON validity checks",
+      "RAG workflows with embeddings, vector databases, semantic retrieval, chunking strategies, grounded generation, retrieval control, and context management",
+      "LLM application building across extraction, classification, Q&A, conversational analysis, healthcare AI, education AI, and resume intelligence",
+      "production-aware LLM thinking around latency, token efficiency, cost-aware generation, prompt injection defense, guardrails, and multi-agent orchestration",
       "problem solving with 700+ LeetCode solves"
     ],
     "achievements": [
-      "Top 8 at IISc Bangalore OpenHack 2025",
+      "Top 8 Finalist at IISc Bangalore OpenHack 2025, selected from 2000+ teams",
+      "1st Prize at Branch Project Expo",
+      "2nd Prize at Mega Expo TechFest",
       "700+ LeetCode problems solved"
     ],
     "experience": [
-      "Data Science Intern at NullClass Technologies",
-      "AI Intern at Teachnook"
-    ]
+      "Data Science Intern at NullClass Technologies, Jan 2024-Feb 2024: computer vision and deep learning experimentation, model training pipelines, and implementation-focused workflows",
+      "AI Intern at Teachnook, Aug 2023-Jan 2024: sentiment analysis chatbot and ML/DL workflow design"
+    ],
+    "target_roles": [
+      "Prompt Engineer",
+      "LLM Application Developer",
+      "Generative AI Engineer Intern",
+      "RAG / LLM Evaluation-focused AI Intern"
+    ],
+    "education": [
+      "B.Tech in Computer Science and Engineering, IIIT RGUKT Nuzvid, CGPA 9.3/10, 2023-2027",
+      "PUC / Intermediate, CGPA 10/10, 2021-2023"
+    ],
+    "resume_summary": "Latest resume positions Sai Kiran around Prompt Engineering, LLM Applications, Evaluation, and RAG. It highlights 10+ GenAI projects using system prompts, user prompts, retrieval control, guardrails, multi-step reasoning pipelines, structured extraction, classification, Q&A, and conversational analysis.",
+    "technical_skills": {
+      "Prompt Engineering": [
+        "system prompts",
+        "user prompts",
+        "role separation",
+        "prompt chaining",
+        "multi-step workflows",
+        "extraction prompts",
+        "classification prompts",
+        "reasoning prompts",
+        "structured-output prompting",
+        "JSON-oriented prompting",
+        "constraint-based prompting",
+        "prompt injection defense",
+        "guardrails"
+      ],
+      "LLM Evaluation and Control": [
+        "temperature",
+        "top-p",
+        "top-k",
+        "max tokens",
+        "seed awareness",
+        "prompt ablations",
+        "consistency testing",
+        "hallucination reduction",
+        "output validation",
+        "JSON validity",
+        "exact-match checks",
+        "evaluation pipelines",
+        "experiment-based iteration"
+      ],
+      "RAG and NLP Systems": [
+        "RAG",
+        "embeddings",
+        "vector databases",
+        "semantic retrieval",
+        "chunking strategies",
+        "grounded generation",
+        "retrieval control",
+        "context management",
+        "vector DB trade-offs",
+        "model selection trade-offs"
+      ],
+      "Models and Tooling": [
+        "Gemini",
+        "LangChain",
+        "FAISS",
+        "SQLite",
+        "Streamlit",
+        "Flask",
+        "Tesseract OCR",
+        "Python",
+        "SQL",
+        "Git",
+        "Jupyter",
+        "GPT",
+        "Claude",
+        "LLaMA",
+        "Mistral",
+        "Qwen"
+      ],
+      "Inference and Optimization": [
+        "latency-conscious prompt design",
+        "token efficiency",
+        "context-window usage",
+        "cost-aware generation",
+        "quantization awareness",
+        "GGUF",
+        "INT4/INT8 concepts",
+        "low-latency inference trade-offs",
+        "multi-agent orchestration"
+      ]
+    }
   },
   "projects": [
     {

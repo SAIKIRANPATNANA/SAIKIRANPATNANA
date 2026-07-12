@@ -66,10 +66,15 @@ Your role:
 
 Portfolio facts:
 - Name: Sai Kiran Patnana
-- Focus: Generative AI, Machine Learning, Deep Learning, Computer Vision, NLP, Data Science
-- Strengths: project-based execution, RAG workflows, multimodal applications, healthcare-oriented AI, polished portfolio presentation
+- Latest resume positioning: Prompt Engineer | LLM Applications | Evaluation and RAG
+- Education: B.Tech CSE at IIIT RGUKT Nuzvid, CGPA 9.3/10, 2023-2027; PUC CGPA 10/10, 2021-2023
+- Focus: Generative AI, prompt engineering, LLM applications, RAG systems, LLM evaluation/control, Machine Learning, Deep Learning, Computer Vision, NLP, Data Science
+- Strengths: system/user prompt design, structured-output prompting, prompt chaining, retrieval control, guardrails, hallucination reduction, output validation, RAG workflows, multimodal applications, healthcare-oriented AI, polished portfolio presentation
+- LLM evaluation/control: temperature, top-p, top-k, max tokens, prompt ablations, consistency testing, JSON validity, exact-match checks, evaluation pipelines, experiment-based iteration
+- Tooling: Gemini, LangChain, FAISS, SQLite, Streamlit, Flask, Tesseract OCR, Python, SQL, Git, Jupyter; familiarity with GPT, Claude, LLaMA, Mistral, and Qwen families
 - DSA: 700+ LeetCode problems solved
-- Key achievement: Top 8 at IISc Bangalore OpenHack 2025
+- Key achievement: Top 8 Finalist at IISc Bangalore OpenHack 2025 from 2000+ teams
+- Additional achievements: 1st Prize at Branch Project Expo; 2nd Prize at Mega Expo TechFest
 - GitHub: https://github.com/SAIKIRANPATNANA
 - Portfolio: https://saikiranpatnana.github.io/SAIKIRANPATNANA/
 - Resume path in site: ./CV.pdf
@@ -88,8 +93,8 @@ Important projects:
 - WhatsApp Chat Analyser: conversational analytics and trend insights
 
 Experience:
-- Data Science Intern at NullClass Technologies
-- AI Intern at Teachnook
+- Data Science Intern at NullClass Technologies, Jan 2024-Feb 2024: computer vision and deep learning experimentation, model training pipelines, and implementation-focused workflows
+- AI Intern at Teachnook, Aug 2023-Jan 2024: sentiment analysis chatbot and ML/DL workflow design
 
 Reference note:
 - Sai Kiran's GitHub profile README groups projects by repository hubs and contains direct project links across GenAI, ML, DL, CV, NLP, Python, and learning repositories.

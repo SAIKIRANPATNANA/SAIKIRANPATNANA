@@ -678,9 +678,10 @@ You can ask a follow-up like "tell me more about the last one".`;
   if (q.includes("skill") || q.includes("tech stack") || q.includes("tools")) {
     return `His strongest skills are:
 
-- **Generative AI**: RAG workflows, LLM apps, prompt design, multimodal systems
-- **Core AI/ML**: Machine Learning, Deep Learning, NLP, Computer Vision
-- **Tools**: Python, LangChain, Streamlit, FAISS, Gemini APIs, OCR pipelines
+- **Prompt Engineering**: system/user prompts, prompt chaining, structured outputs, JSON-oriented prompting, guardrails
+- **LLM/RAG Systems**: RAG workflows, retrieval control, embeddings, vector DBs, grounded generation, context management
+- **LLM Evaluation**: prompt ablations, consistency testing, hallucination reduction, output validation, exact-match checks
+- **Tools**: Python, Gemini, LangChain, FAISS, Streamlit, Flask, SQLite, Tesseract OCR
 - **Problem Solving**: strong DSA depth with **700+ LeetCode solves**
 
 If you want, I can also break this down by project or explain how he uses these skills in real builds.`;
@@ -754,11 +755,11 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
   }
 
   if (q.includes("resume") || q.includes("cv") || q.includes("achievement")) {
-    return `Sai Kiran's resume highlights a strong GenAI profile with **Top 8 at IISc Bangalore OpenHack 2025**, **700+ LeetCode solves**, and strong work across healthcare AI, educational AI, multimodal resume analysis, and agentic workflows. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
+    return `Sai Kiran's latest resume positions him for **Prompt Engineer / LLM Applications / Evaluation and RAG** roles. It highlights **10+ GenAI projects**, structured-output prompting, RAG control, guardrails, LLM evaluation, **Top 8 at IISc OpenHack 2025**, **700+ LeetCode solves**, and IIIT RGUKT Nuzvid CSE with **9.3 CGPA**. Open it here: [Resume](${maayaKnowledge.links.resume}).`;
   }
 
   if (q.includes("experience") || q.includes("internship")) {
-    return "He has internship experience as a Data Science Intern at NullClass Technologies and an AI Intern at Teachnook, alongside a strong self-driven portfolio of Generative AI and broader AI projects.";
+    return "He has internship experience as a Data Science Intern at NullClass Technologies, working around CV/DL experimentation and model-training workflows, and as an AI Intern at Teachnook, where he built a sentiment-analysis chatbot and explored ML/DL workflow design.";
   }
 
   if (q.includes("leetcode") || q.includes("dsa") || q.includes("problem solving")) {
