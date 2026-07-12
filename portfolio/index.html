@@ -620,11 +620,35 @@
             clear presentation matter.
           </p>
         </div>
-                <div class="contact-links">
-          <a class="interactive contact-link contact-github" href="https://github.com/SAIKIRANPATNANA" target="_blank" rel="noreferrer"><img src="./assets/contact/github.svg" alt="GitHub" /><span>GitHub</span></a>
-          <a class="interactive contact-link contact-linkedin" href="https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/" target="_blank" rel="noreferrer"><img src="./assets/contact/linkedin.svg" alt="LinkedIn" /><span>LinkedIn</span></a>
-          <a class="interactive contact-link contact-leetcode" href="https://leetcode.com/u/saikiranpatnana5143/" target="_blank" rel="noreferrer"><img src="./assets/contact/leetcode.svg" alt="LeetCode" /><span>LeetCode</span></a>
-          <a class="interactive contact-link contact-email" href="mailto:saikiranpatnan5143@gmail.com"><img src="./assets/contact/email.svg" alt="Email" /><span>Email</span></a>
+        <div class="contact-actions">
+          <div class="contact-links">
+            <a class="interactive contact-link contact-github" href="https://github.com/SAIKIRANPATNANA" target="_blank" rel="noreferrer"><img src="./assets/contact/github.svg" alt="GitHub" /><span>GitHub</span></a>
+            <a class="interactive contact-link contact-linkedin" href="https://www.linkedin.com/in/sai-kiran-patnana-55170a25b/" target="_blank" rel="noreferrer"><img src="./assets/contact/linkedin.svg" alt="LinkedIn" /><span>LinkedIn</span></a>
+            <a class="interactive contact-link contact-leetcode" href="https://leetcode.com/u/saikiranpatnana5143/" target="_blank" rel="noreferrer"><img src="./assets/contact/leetcode.svg" alt="LeetCode" /><span>LeetCode</span></a>
+            <a class="interactive contact-link contact-email" href="mailto:saikiranpatnan5143@gmail.com"><img src="./assets/contact/email.svg" alt="Email" /><span>Email</span></a>
+          </div>
+          <form class="contact-feedback-form" id="contact-feedback-form">
+            <p class="feedback-kicker">Quick message</p>
+            <h3>Leave a note or feedback</h3>
+            <div class="feedback-grid">
+              <label>
+                <span>Name</span>
+                <input id="feedback-name" name="name" type="text" maxlength="120" placeholder="Your name" autocomplete="name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input id="feedback-email" name="email" type="email" maxlength="160" placeholder="you@example.com" autocomplete="email" />
+              </label>
+            </div>
+            <label>
+              <span>Message</span>
+              <textarea id="feedback-message" name="message" rows="4" maxlength="2000" required placeholder="Share feedback, collaboration ideas, or hiring notes..."></textarea>
+            </label>
+            <div class="feedback-submit-row">
+              <button class="button primary interactive" type="submit">Send Message</button>
+              <p class="feedback-status" id="feedback-status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </section>
     </main>
@@ -716,11 +740,13 @@
     <script>
       window.MAAYA_API_URL =
         window.MAAYA_API_URL || "https://saikiranpatnana.onrender.com/api/maaya";
+      window.MAAYA_FEEDBACK_API_URL =
+        window.MAAYA_FEEDBACK_API_URL || "https://saikiranpatnana.onrender.com/api/feedback";
       /*
         For local development, you can temporarily change this back to:
         http://127.0.0.1:8008/api/maaya
       */
     </script>
-    <script src="./script.js?v=31"></script>
+    <script src="./script.js?v=32"></script>
   </body>
 </html>

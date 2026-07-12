@@ -313,3 +313,17 @@ Good next improvements:
 - provider latency scoring
 - automatic provider cooldown after repeated failures
 - better answer evaluation using the `rag_evaluation` project ideas
+
+## Viewer feedback endpoint
+
+Maaya's backend also exposes `POST /api/feedback` for the portfolio contact form. The frontend sends visitor name, email, message, and page URL to the backend; the backend stores it in MongoDB using `MONGODB_URI`, so the database client link never appears in GitHub Pages code.
+
+Required Render environment variables for feedback storage:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+MONGODB_DATABASE=portfolio
+MONGODB_FEEDBACK_COLLECTION=viewer_feedback
+```
+
+If `MONGODB_URI` is not configured, `/api/feedback` returns a friendly 503 and the portfolio asks the visitor to try another contact path.

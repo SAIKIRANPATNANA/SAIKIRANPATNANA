@@ -14,3 +14,9 @@ services:
         value: gemini-2.0-flash,gemini-2.5-flash
       - key: MAAYA_LLM_PROVIDERS
         value: groq,gemini
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DATABASE
+        value: portfolio
+      - key: MONGODB_FEEDBACK_COLLECTION
+        value: viewer_feedback

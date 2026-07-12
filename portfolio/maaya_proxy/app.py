@@ -2,12 +2,20 @@ import json
 import os
 import re
 import time
+from datetime import datetime, timezone
 
 import requests
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 from pypdf import PdfReader
+
+try:
+    from pymongo import MongoClient
+    from pymongo.errors import PyMongoError
+except ImportError:  # Keeps local dev usable before dependencies are installed.
+    MongoClient = None
+    PyMongoError = Exception
 
 
 load_dotenv()
@@ -38,6 +46,10 @@ MAX_RESUME_CONTEXT_CHARS = 3200
 GROQ_MAX_RETRIES = 2
 KNOWLEDGE_PATH = os.path.join(BASE_DIR, "maaya_knowledge.json")
 MAX_HISTORY_MESSAGES = 6
+MONGODB_URI = os.getenv("MONGODB_URI")
+MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "portfolio")
+MONGODB_FEEDBACK_COLLECTION = os.getenv("MONGODB_FEEDBACK_COLLECTION", "viewer_feedback")
+_mongo_client = None
 
 
 PORTFOLIO_CONTEXT = """
@@ -160,6 +172,19 @@ UNSAFE_PATTERNS = [
 ]
 
 SENSITIVE_OUTPUT_PATTERNS = [re.compile(pattern, re.IGNORECASE) for pattern in SECRET_PATTERNS]
+
+
+def get_feedback_collection():
+    global _mongo_client
+    if not MONGODB_URI or MongoClient is None:
+        return None
+    if _mongo_client is None:
+        _mongo_client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=5000)
+    return _mongo_client[MONGODB_DATABASE][MONGODB_FEEDBACK_COLLECTION]
+
+
+def sanitize_feedback_text(value, max_length):
+    return re.sub(r"\s+", " ", str(value or "").strip())[:max_length]
 
 
 def normalize_guardrail_text(value):
@@ -597,7 +622,47 @@ def health():
         "status": "ok",
         "service": "maaya_gateway",
         "providers": configured_providers(),
+        "feedback_storage": "mongodb" if MONGODB_URI else "not_configured",
     })
+
+
+@app.post("/api/feedback")
+def submit_feedback():
+    payload = request.get_json(silent=True) or {}
+    name = sanitize_feedback_text(payload.get("name"), 120)
+    email = sanitize_feedback_text(payload.get("email"), 160)
+    message = str(payload.get("message") or "").strip()
+    page = sanitize_feedback_text(payload.get("page"), 300)
+
+    if len(message) < 5:
+        return jsonify({"error": "Please write at least a short message."}), 400
+    if len(message) > 2000:
+        return jsonify({"error": "Please keep the message under 2000 characters."}), 400
+    if email and not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
+        return jsonify({"error": "Please enter a valid email address."}), 400
+
+    collection = get_feedback_collection()
+    if collection is None:
+        return jsonify({"error": "Feedback storage is not configured yet."}), 503
+
+    document = {
+        "name": name,
+        "email": email,
+        "message": message,
+        "page": page,
+        "origin": request.headers.get("Origin", ""),
+        "referrer": request.headers.get("Referer", ""),
+        "user_agent": request.headers.get("User-Agent", ""),
+        "created_at": datetime.now(timezone.utc),
+    }
+
+    try:
+        collection.insert_one(document)
+    except PyMongoError as error:
+        print(f"Feedback storage error: {error}")
+        return jsonify({"error": "Could not save feedback right now."}), 502
+
+    return jsonify({"status": "ok", "message": "Message received. Thank you!"})
 
 
 @app.post("/api/maaya")

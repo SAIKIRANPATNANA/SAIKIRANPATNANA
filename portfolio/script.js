@@ -394,7 +394,11 @@ const maayaForm = document.getElementById("maaya-form");
 const maayaInput = document.getElementById("maaya-input");
 const maayaSuggestionButtons = document.querySelectorAll("[data-maaya-question]");
 const maayaPresence = document.getElementById("maaya-presence");
+const feedbackForm = document.getElementById("contact-feedback-form");
+const feedbackStatus = document.getElementById("feedback-status");
 const MAAYA_API_URL = window.MAAYA_API_URL || "http://127.0.0.1:8008/api/maaya";
+const MAAYA_FEEDBACK_API_URL =
+  window.MAAYA_FEEDBACK_API_URL || MAAYA_API_URL.replace(/\/api\/maaya\/?$/, "/api/feedback");
 const MAAYA_MEMORY_KEY = "maaya-chat-history";
 const MAAYA_MAX_HISTORY_TURNS = 10;
 
@@ -838,6 +842,59 @@ async function getLiveMaayaReply(question) {
     guardrail: data.guardrail || { action: "pass", rail: "none" },
     gateway: data.gateway || null,
   };
+}
+
+
+function setFeedbackStatus(message, mode = "") {
+  if (!feedbackStatus) return;
+  feedbackStatus.textContent = message;
+  feedbackStatus.className = `feedback-status${mode ? ` ${mode}` : ""}`;
+}
+
+async function handleFeedbackSubmit(event) {
+  event.preventDefault();
+  if (!feedbackForm) return;
+
+  const submitButton = feedbackForm.querySelector('button[type="submit"]');
+  const formData = new FormData(feedbackForm);
+  const payload = {
+    name: String(formData.get("name") || "").trim(),
+    email: String(formData.get("email") || "").trim(),
+    message: String(formData.get("message") || "").trim(),
+    page: window.location.href,
+  };
+
+  if (payload.message.length < 5) {
+    setFeedbackStatus("Please write at least a short message.", "error");
+    return;
+  }
+
+  submitButton.disabled = true;
+  setFeedbackStatus("Sending your note...", "");
+
+  try {
+    const response = await fetch(MAAYA_FEEDBACK_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.error || "Feedback service is unavailable right now.");
+    }
+
+    feedbackForm.reset();
+    setFeedbackStatus(data.message || "Message received. Thank you!", "success");
+  } catch (error) {
+    setFeedbackStatus(error.message || "Could not send right now. Please try email.", "error");
+  } finally {
+    submitButton.disabled = false;
+  }
+}
+
+if (feedbackForm) {
+  feedbackForm.addEventListener("submit", handleFeedbackSubmit);
 }
 
 function formatGatewayLabel(gateway) {
