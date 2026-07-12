@@ -64,6 +64,35 @@
       ]
     },
     {
+      "slug": "llm-gateways",
+      "name": "LLM Gateways",
+      "domain": "Generative AI / LLMOps / Gateway Reliability",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/llm_gateways",
+      "what_it_does": "Explains and demonstrates how an LLM gateway such as Portkey sits between an application and LLM providers to add routing, observability, retries, timeouts, fallbacks, load balancing, caching, rate limiting, streaming, and production control.",
+      "why_it_matters": "It shows Sai Kiran understands production LLM reliability, not just prototype prompting. The project connects directly to real deployment problems like 429 rate limits, provider outages, slow responses, cost tracking, and provider switching.",
+      "stack": [
+        "Portkey",
+        "LLM Gateway",
+        "Groq",
+        "OpenAI-compatible APIs",
+        "Python",
+        "Observability",
+        "Retries and fallbacks"
+      ],
+      "architecture": [
+        "Application sends every model request to the gateway instead of directly calling one provider",
+        "Gateway applies config rules such as retry policy, timeout limits, routing mode, fallback targets, and cache behavior",
+        "Request metadata records user, session, feature, and environment information for analytics and debugging",
+        "Provider layer can route to Groq, OpenAI, NVIDIA, Anthropic, or another configured model without changing business logic",
+        "Response returns to the application with improved reliability and centralized monitoring"
+      ],
+      "implementation_notes": [
+        "Covers provider slug versus config ID differences in Portkey",
+        "Explains fallback routing, load balancing, request caching, rate limiting, and streaming patterns",
+        "Useful as a portfolio signal for LLMOps, production GenAI systems, and resilient assistant deployment"
+      ]
+    },
+    {
       "slug": "blood-report-parsing-iisc",
       "name": "Blood Report Parsing IISc",
       "domain": "Generative AI / Healthcare AI",

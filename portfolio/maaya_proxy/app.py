@@ -81,6 +81,7 @@ Important projects:
 - Sadhana GenAI Project: PDF chat, Q&A, MCQ generation, educational AI
 - Disease Diagnosis Dhanvantari: healthcare-oriented RAG exploration
 - Med Triage Agentic AI: medical triage assistant logic
+- LLM Gateways: Portkey-style LLM gateway concepts for provider routing, retries, timeouts, fallbacks, load balancing, caching, rate limiting, streaming, observability, and production reliability
 - AI News Generation: agentic AI workflow for AI news drafting and summarization
 - Blog Generation: long-form content generation workflow
 - RAG Evaluation: RAGAS-based TechNest RAG evaluation pipeline with product-catalog retrieval, Groq generation, Gemini embeddings, checkpoints, and Streamlit dashboards
@@ -125,7 +126,7 @@ PORTFOLIO_TERMS = {
     "leetcode", "dsa", "genai", "generative", "ai", "ml", "machine", "learning",
     "deep", "computer", "vision", "nlp", "rag", "agent", "agentic", "healthcare",
     "medical", "blood", "report", "ats", "gemini", "sadhana", "guardrails",
-    "evaluation", "ragas", "pskgpt", "transformers", "groq", "streamlit", "python",
+    "evaluation", "ragas", "pskgpt", "transformers", "gateway", "gateways", "portkey", "routing", "fallback", "groq", "streamlit", "python",
     "architecture", "workflow", "implementation", "built", "code", "tech", "stack",
     "contact", "linkedin", "profile", "achievement", "education", "about", "who"
 }
@@ -286,7 +287,7 @@ def relevant_project_links(project_links, question, limit=8):
 
     if any(term in normalized for term in ["project", "repo", "github", "link", "genai"]):
         preferred = [
-            "ai guardrails", "rag evaluation", "blood report parsing iisc",
+            "llm gateways", "ai guardrails", "rag evaluation", "blood report parsing iisc",
             "ats using gemini", "sadhana genai project", "pskgpt via transformers",
             "med triage agentic ai", "ai news generation"
         ]

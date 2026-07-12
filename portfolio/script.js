@@ -434,6 +434,7 @@ const maayaKnowledge = {
     "harassment bot": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot",
     "hybd cmr edtech": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech",
     "med triage agentic ai": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai",
+    "llm gateways": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/llm_gateways",
     "rag evaluation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/rag_evaluation",
     "sadhana genai project": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project",
     "stance detection": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/stance-detection",
@@ -468,6 +469,7 @@ const maayaKnowledge = {
     blood: "Blood Report Parsing IISc is a healthcare-focused GenAI project built around OCR, structured extraction, abnormality detection, and blood-report insight generation.",
     sadhana: "Sadhana GenAI Project focuses on PDF chat, MCQ generation, Q&A workflows, and learner-facing educational AI experiences.",
     ats: "ATS Using Gemini is a multimodal resume-analysis project built with Streamlit and Gemini Pro Vision for match analysis and keyword feedback.",
+    gateways: "LLM Gateways is a production-minded GenAI project using Portkey concepts for provider routing, retries, timeouts, fallbacks, observability, caching, rate limiting, load balancing, and streaming.",
   },
 };
 
@@ -733,6 +735,7 @@ If you want, I can also break this down by project or explain how he uses these 
 - [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
 - [Disease Diagnosis Dhanvantari](${maayaKnowledge.projectLinks["disease diagnosis dhanvantari"]})
 - [Med Triage Agentic AI](${maayaKnowledge.projectLinks["med triage agentic ai"]})
+- [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]})
 
 Resume: [Open CV](${maayaKnowledge.links.resume})`;
   }
@@ -744,6 +747,7 @@ Resume: [Open CV](${maayaKnowledge.links.resume})`;
 - [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
 - [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
 - [AI News Generation](${maayaKnowledge.projectLinks["ai news generation"]})
+- [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]})
 - [WhatsApp Chat Analyser](${maayaKnowledge.projectLinks["whatsapp chat analyser"]})
 
 If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.`;
@@ -777,8 +781,12 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
     return `${maayaKnowledge.projects.ats} Repo: [ATS Using Gemini](${maayaKnowledge.links.genaiRepo}/tree/main/ats-using-gemini).`;
   }
 
+  if (q.includes("gateway") || q.includes("portkey") || q.includes("fallback") || q.includes("routing")) {
+    return `${maayaKnowledge.projects.gateways} Repo: [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]}).`;
+  }
+
   if (q.includes("genai") || q.includes("generative ai") || q.includes("best project") || q.includes("strongest project")) {
-    return `His strongest GenAI portfolio signals are **Blood Report Parsing IISc**, **Sadhana GenAI Project**, **ATS Using Gemini**, **Med Triage Agentic AI**, and **Disease Diagnosis Dhanvantari**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
+    return `His strongest GenAI portfolio signals are **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
   }
 
   if (q.includes("contact") || q.includes("reach") || q.includes("linkedin") || q.includes("github")) {
