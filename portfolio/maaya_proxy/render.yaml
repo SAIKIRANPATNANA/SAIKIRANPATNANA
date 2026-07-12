@@ -9,6 +9,8 @@ services:
       - key: GROQ_MODEL
         value: llama-3.1-8b-instant
       - key: GEMINI_MODEL
-        value: gemini-1.5-flash
+        value: gemini-2.0-flash
+      - key: GEMINI_FALLBACK_MODELS
+        value: gemini-2.0-flash,gemini-2.5-flash
       - key: MAAYA_LLM_PROVIDERS
         value: groq,gemini

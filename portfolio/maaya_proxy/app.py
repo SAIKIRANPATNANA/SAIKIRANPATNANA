@@ -20,8 +20,13 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
 GEMINI_URL_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+GEMINI_FALLBACK_MODELS = [
+    item.strip()
+    for item in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-2.0-flash,gemini-2.5-flash").split(",")
+    if item.strip()
+]
 MAAYA_LLM_PROVIDERS = [
     item.strip().lower()
     for item in os.getenv("MAAYA_LLM_PROVIDERS", "groq,gemini").split(",")
@@ -29,10 +34,10 @@ MAAYA_LLM_PROVIDERS = [
 ]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "CV.pdf"))
-MAX_RESUME_CONTEXT_CHARS = 7000
+MAX_RESUME_CONTEXT_CHARS = 3200
 GROQ_MAX_RETRIES = 2
 KNOWLEDGE_PATH = os.path.join(BASE_DIR, "maaya_knowledge.json")
-MAX_HISTORY_MESSAGES = 10
+MAX_HISTORY_MESSAGES = 6
 
 
 PORTFOLIO_CONTEXT = """
@@ -235,47 +240,77 @@ def guardrail_response(result):
 
 
 
-def load_structured_knowledge():
-    if not os.path.exists(KNOWLEDGE_PATH):
-        return {}
-
-    try:
-        with open(KNOWLEDGE_PATH, "r", encoding="utf-8") as handle:
-            return json.load(handle)
-    except Exception as error:
-        print(f"Failed to read structured Maaya knowledge: {error}")
-        return {}
+def question_needs_resume(question):
+    normalized = normalize_guardrail_text(question)
+    return any(term in normalized for term in [
+        "resume", "cv", "internship", "experience", "education", "achievement",
+        "skill", "skills", "qualification", "background"
+    ])
 
 
-def format_structured_knowledge(knowledge):
-    if not knowledge:
-        return ""
+def relevant_project_links(project_links, question, limit=8):
+    normalized = normalize_guardrail_text(question)
+    matched = [
+        (name, url)
+        for name, url in project_links.items()
+        if name in normalized or any(part and part in normalized for part in name.split())
+    ]
 
-    persona = knowledge.get("persona", {})
-    profile = knowledge.get("profile", {})
-    projects = knowledge.get("projects", [])
+    if matched:
+        return matched[:limit]
 
-    persona_rules = "\n".join(
-        f"- {item}" for item in persona.get("style_rules", [])
-    )
-    strengths = "\n".join(
-        f"- {item}" for item in profile.get("strengths", [])
-    )
-    achievements = "\n".join(
-        f"- {item}" for item in profile.get("achievements", [])
-    )
-    experience = "\n".join(
-        f"- {item}" for item in profile.get("experience", [])
-    )
+    if any(term in normalized for term in ["project", "repo", "github", "link", "genai"]):
+        preferred = [
+            "ai guardrails", "rag evaluation", "blood report parsing iisc",
+            "ats using gemini", "sadhana genai project", "pskgpt via transformers",
+            "med triage agentic ai", "ai news generation"
+        ]
+        return [
+            (name, project_links[name])
+            for name in preferred
+            if name in project_links
+        ][:limit]
 
+    return []
+
+
+def project_matches_query(project, query):
+    haystack = " ".join([
+        project.get("slug", ""),
+        project.get("name", ""),
+        project.get("domain", ""),
+        project.get("what_it_does", ""),
+        " ".join(project.get("stack", [])),
+    ]).lower()
+    query_terms = set(re.findall(r"[a-z0-9]+", query.lower()))
+    project_terms = set(re.findall(r"[a-z0-9]+", haystack))
+    return bool(query_terms & project_terms)
+
+
+def select_relevant_projects(knowledge, query, limit=3):
+    projects = knowledge.get("projects", []) if knowledge else []
+    if not projects:
+        return []
+
+    matches = [project for project in projects if project_matches_query(project, query)]
+    if matches:
+        return matches[:limit]
+
+    if any(term in query.lower() for term in ["project", "genai", "strong", "best", "portfolio"]):
+        return projects[:limit]
+
+    return []
+
+
+def format_project_knowledge(projects):
     project_sections = []
     for project in projects:
-        stack = ", ".join(project.get("stack", []))
+        stack = ", ".join(project.get("stack", [])[:6])
         architecture = "\n".join(
-            f"  - {item}" for item in project.get("architecture", [])
+            f"  - {item}" for item in project.get("architecture", [])[:4]
         )
         implementation_notes = "\n".join(
-            f"  - {item}" for item in project.get("implementation_notes", [])
+            f"  - {item}" for item in project.get("implementation_notes", [])[:3]
         )
         project_sections.append(
             f"""Project: {project.get("name", "")}
@@ -290,6 +325,42 @@ def format_structured_knowledge(knowledge):
 {implementation_notes}
 """
         )
+    return "\n".join(project_sections)
+
+
+def load_structured_knowledge():
+    if not os.path.exists(KNOWLEDGE_PATH):
+        return {}
+
+    try:
+        with open(KNOWLEDGE_PATH, "r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except Exception as error:
+        print(f"Failed to read structured Maaya knowledge: {error}")
+        return {}
+
+
+def format_structured_knowledge(knowledge, query=""):
+    if not knowledge:
+        return ""
+
+    persona = knowledge.get("persona", {})
+    profile = knowledge.get("profile", {})
+    relevant_projects = select_relevant_projects(knowledge, query)
+
+    persona_rules = "\n".join(
+        f"- {item}" for item in persona.get("style_rules", [])[:4]
+    )
+    strengths = "\n".join(
+        f"- {item}" for item in profile.get("strengths", [])
+    )
+    achievements = "\n".join(
+        f"- {item}" for item in profile.get("achievements", [])
+    )
+    experience = "\n".join(
+        f"- {item}" for item in profile.get("experience", [])
+    )
+    project_context = format_project_knowledge(relevant_projects)
 
     return f"""
 Structured Maaya persona:
@@ -307,9 +378,10 @@ Structured Sai Kiran profile:
 - Experience:
 {experience}
 
-Structured flagship project knowledge:
-{chr(10).join(project_sections)}
+Relevant structured project knowledge:
+{project_context or "No specific project match. Use general portfolio facts and direct links."}
 """
+
 def load_resume_context():
     if not os.path.exists(RESUME_PATH):
         return ""
@@ -334,13 +406,25 @@ STRUCTURED_KNOWLEDGE = load_structured_knowledge()
 TRANSIENT_STATUS_CODES = {408, 409, 429, 500, 502, 503, 504}
 
 
+def unique_models(models):
+    unique = []
+    for model in models:
+        if model and model not in unique:
+            unique.append(model)
+    return unique
+
+
 def configured_providers():
     providers = []
     for provider in MAAYA_LLM_PROVIDERS:
         if provider == "groq" and GROQ_API_KEY:
             providers.append({"name": "groq", "model": GROQ_MODEL})
         elif provider == "gemini" and GEMINI_API_KEY:
-            providers.append({"name": "gemini", "model": GEMINI_MODEL})
+            providers.append({
+                "name": "gemini",
+                "model": GEMINI_MODEL,
+                "models": unique_models([GEMINI_MODEL, *GEMINI_FALLBACK_MODELS]),
+            })
     return providers
 
 
@@ -384,9 +468,9 @@ def messages_to_gemini_prompt(messages):
     return "\n\n---\n\n".join(sections)
 
 
-def call_gemini(messages, temperature=0.35):
+def call_gemini_model(model, messages, temperature=0.35):
     prompt = messages_to_gemini_prompt(messages)
-    url = GEMINI_URL_TEMPLATE.format(model=GEMINI_MODEL)
+    url = GEMINI_URL_TEMPLATE.format(model=model)
     response = requests.post(
         url,
         params={"key": GEMINI_API_KEY},
@@ -412,20 +496,39 @@ def call_gemini(messages, temperature=0.35):
     data = response.json()
     candidates = data.get("candidates") or []
     if not candidates:
-        raise ValueError("Gemini returned no candidates")
+        raise ValueError(f"Gemini model {model} returned no candidates")
 
     parts = candidates[0].get("content", {}).get("parts", [])
     answer = "".join(part.get("text", "") for part in parts).strip()
     if not answer:
-        raise ValueError("Gemini returned an empty answer")
+        raise ValueError(f"Gemini model {model} returned an empty answer")
     return answer
+
+
+def call_gemini(messages, temperature=0.35, models=None):
+    last_error = None
+    for model in unique_models(models or [GEMINI_MODEL, *GEMINI_FALLBACK_MODELS]):
+        try:
+            return call_gemini_model(model, messages, temperature), model
+        except requests.HTTPError as error:
+            last_error = error
+            status_code = getattr(error.response, "status_code", None)
+            if status_code != 404:
+                raise
+        except (requests.RequestException, ValueError, KeyError) as error:
+            last_error = error
+            raise
+
+    if last_error:
+        raise last_error
+    raise ValueError("No Gemini models configured")
 
 
 def call_provider(provider, messages, temperature):
     if provider["name"] == "groq":
-        return call_groq(messages, temperature)
+        return call_groq(messages, temperature), provider["model"]
     if provider["name"] == "gemini":
-        return call_gemini(messages, temperature)
+        return call_gemini(messages, temperature, provider.get("models"))
     raise ValueError(f"Unknown provider: {provider['name']}")
 
 
@@ -442,10 +545,10 @@ def call_llm_gateway(messages, temperature=0.35):
     for provider in providers:
         for attempt in range(GROQ_MAX_RETRIES + 1):
             try:
-                answer = call_provider(provider, messages, temperature)
+                answer, used_model = call_provider(provider, messages, temperature)
                 attempts.append({
                     "provider": provider["name"],
-                    "model": provider["model"],
+                    "model": used_model,
                     "attempt": attempt + 1,
                     "status": "ok",
                 })
@@ -453,7 +556,7 @@ def call_llm_gateway(messages, temperature=0.35):
                     "ok": True,
                     "answer": answer,
                     "provider": provider["name"],
-                    "model": provider["model"],
+                    "model": used_model,
                     "attempts": attempts,
                 }
             except requests.HTTPError as error:
@@ -554,7 +657,7 @@ Direct project links:
 """
 
     resume_context = ""
-    if RESUME_CONTEXT:
+    if RESUME_CONTEXT and question_needs_resume(question):
         resume_context = f"""
 Resume content reference:
 {RESUME_CONTEXT}
@@ -562,7 +665,7 @@ Resume content reference:
 
     structured_knowledge_context = ""
     if STRUCTURED_KNOWLEDGE:
-        structured_knowledge_context = format_structured_knowledge(STRUCTURED_KNOWLEDGE)
+        structured_knowledge_context = format_structured_knowledge(STRUCTURED_KNOWLEDGE, question)
 
     conversation_history = []
     for item in history[-MAX_HISTORY_MESSAGES:]:

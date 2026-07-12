@@ -92,6 +92,14 @@ The backend assembles:
 
 This context is passed to the LLM so answers stay grounded in Sai Kiran's actual portfolio.
 
+To stay reliable on free-tier model limits, Maaya does selective context assembly:
+
+- only relevant project knowledge is sent for project-specific questions
+- resume text is sent only for resume, CV, skills, experience, education, or achievement questions
+- direct project links are filtered to likely relevant links instead of sending every repo URL every time
+- recent chat history is capped so long sessions do not inflate the prompt
+
+
 ### 4. Resume-Aware Assistant
 
 The backend reads the portfolio resume PDF using `pypdf`, extracts text, and adds it to Maaya's model context. This lets visitors ask resume-specific questions such as:
@@ -143,7 +151,8 @@ Optional Gemini fallback:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key
-GEMINI_MODEL=gemini-1.5-flash
+GEMINI_MODEL=gemini-2.0-flash
+GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash
 ```
 
 Gateway order:
@@ -206,7 +215,7 @@ Expected response includes configured providers without exposing keys:
   "service": "maaya_gateway",
   "providers": [
     {"name": "groq", "model": "llama-3.1-8b-instant"},
-    {"name": "gemini", "model": "gemini-1.5-flash"}
+    {"name": "gemini", "model": "gemini-2.0-flash"}
   ]
 }
 ```
@@ -247,7 +256,8 @@ Render environment variables:
 GROQ_API_KEY=your_real_groq_key
 GROQ_MODEL=llama-3.1-8b-instant
 GEMINI_API_KEY=your_real_gemini_key
-GEMINI_MODEL=gemini-1.5-flash
+GEMINI_MODEL=gemini-2.0-flash
+GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash
 MAAYA_LLM_PROVIDERS=groq,gemini
 ```
 
