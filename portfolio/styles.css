@@ -1514,15 +1514,21 @@ h1 span {
 
 .contact {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
 }
 
+.contact-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .contact-actions {
-  width: min(520px, 100%);
+  width: min(330px, 100%);
   display: grid;
   gap: 1rem;
+  flex: 0 0 auto;
 }
 
 .contact-links {
@@ -1592,8 +1598,10 @@ h1 span {
 }
 
 .contact-feedback-form {
+  width: min(720px, 100%);
   display: grid;
   gap: 0.85rem;
+  margin-top: 1.35rem;
   padding: 1.1rem;
   border-radius: 1.6rem;
   border: 1px solid rgba(81, 246, 210, 0.12);
@@ -1658,9 +1666,13 @@ h1 span {
 
 .feedback-submit-row {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 0.85rem;
+}
+
+.feedback-submit-row .button {
+  white-space: nowrap;
 }
 
 .feedback-status.success {
@@ -1922,6 +1934,10 @@ h1 span {
 
   .contact {
     display: grid;
+  }
+
+  .contact-actions {
+    width: 100%;
   }
 
   .project-grid {

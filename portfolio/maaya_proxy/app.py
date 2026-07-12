@@ -641,7 +641,12 @@ def submit_feedback():
     if email and not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
         return jsonify({"error": "Please enter a valid email address."}), 400
 
-    collection = get_feedback_collection()
+    try:
+        collection = get_feedback_collection()
+    except Exception as error:
+        print(f"Feedback storage connection error: {error}")
+        return jsonify({"error": "Feedback storage is not reachable right now. Please use email for now."}), 503
+
     if collection is None:
         return jsonify({"error": "Feedback storage is not configured yet."}), 503
 
