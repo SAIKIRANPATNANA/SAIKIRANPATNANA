@@ -833,16 +833,38 @@ async function getLiveMaayaReply(question) {
   }
 
   const data = await response.json();
-  return data.answer || "Maaya is online, but the response came back empty.";
+  return {
+    answer: data.answer || "Maaya is online, but the response came back empty.",
+    guardrail: data.guardrail || { action: "pass", rail: "none" },
+  };
+}
+
+function describeMaayaGuardrail(guardrail) {
+  if (!guardrail || guardrail.action === "pass") return "";
+
+  const labels = {
+    privacy: "Privacy rail protected a possible secret.",
+    prompt_injection: "Instruction rail blocked a prompt override attempt.",
+    safety: "Safety rail redirected an unsafe request.",
+    topic: "Topic rail kept Maaya focused on Sai Kiran's portfolio.",
+    length: "Length rail asked for a shorter question.",
+  };
+
+  return labels[guardrail.rail] || "Maaya guardrails handled this safely.";
 }
 
 async function handleMaayaQuestion(question) {
   const typingBubble = createMaayaMessage("bot", "Maaya is thinking...");
 
   try {
-    const liveReply = await getLiveMaayaReply(question);
+    const liveResult = await getLiveMaayaReply(question);
+    const liveReply = liveResult.answer;
+    const guardrailNote = describeMaayaGuardrail(liveResult.guardrail);
     if (typingBubble) typingBubble.remove();
-    setMaayaPresence("live", "Live AI Ready");
+    setMaayaPresence("live", liveResult.guardrail?.action === "pass" ? "Live AI Ready" : "Guardrails Active");
+    if (guardrailNote) {
+      createMaayaStatusMessage(guardrailNote);
+    }
     appendMaayaHistory("bot", liveReply);
     createMaayaMessage("bot", liveReply, true);
   } catch (error) {
