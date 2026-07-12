@@ -8,3 +8,7 @@ services:
     envVars:
       - key: GROQ_MODEL
         value: llama-3.1-8b-instant
+      - key: GEMINI_MODEL
+        value: gemini-1.5-flash
+      - key: MAAYA_LLM_PROVIDERS
+        value: groq,gemini

@@ -19,6 +19,14 @@ CORS(app)
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+GEMINI_URL_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+MAAYA_LLM_PROVIDERS = [
+    item.strip().lower()
+    for item in os.getenv("MAAYA_LLM_PROVIDERS", "groq,gemini").split(",")
+    if item.strip()
+]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "CV.pdf"))
 MAX_RESUME_CONTEXT_CHARS = 7000
@@ -323,47 +331,170 @@ def load_resume_context():
 RESUME_CONTEXT = load_resume_context()
 STRUCTURED_KNOWLEDGE = load_structured_knowledge()
 
-def call_groq_with_retry(body):
-    last_response = None
-    last_exception = None
+TRANSIENT_STATUS_CODES = {408, 409, 429, 500, 502, 503, 504}
 
-    for attempt in range(GROQ_MAX_RETRIES + 1):
-        try:
-            response = requests.post(
-                GROQ_URL,
-                headers={
-                    "Authorization": f"Bearer {GROQ_API_KEY}",
-                    "Content-Type": "application/json",
-                },
-                json=body,
-                timeout=45,
-            )
-            last_response = response
 
-            if response.ok:
-                return response
+def configured_providers():
+    providers = []
+    for provider in MAAYA_LLM_PROVIDERS:
+        if provider == "groq" and GROQ_API_KEY:
+            providers.append({"name": "groq", "model": GROQ_MODEL})
+        elif provider == "gemini" and GEMINI_API_KEY:
+            providers.append({"name": "gemini", "model": GEMINI_MODEL})
+    return providers
 
-            # Retry transient upstream issues before falling back.
-            if response.status_code in {408, 409, 429, 500, 502, 503, 504} and attempt < GROQ_MAX_RETRIES:
-                time.sleep(1.2 * (attempt + 1))
-                continue
 
-            return response
-        except requests.RequestException as error:
-            last_exception = error
-            if attempt < GROQ_MAX_RETRIES:
-                time.sleep(1.2 * (attempt + 1))
-                continue
+def call_groq(messages, temperature=0.35):
+    body = {
+        "model": GROQ_MODEL,
+        "temperature": temperature,
+        "messages": messages,
+    }
+    response = requests.post(
+        GROQ_URL,
+        headers={
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json=body,
+        timeout=35,
+    )
 
-    if last_exception:
-        raise last_exception
+    if not response.ok:
+        raise requests.HTTPError(response.text[:800], response=response)
 
-    return last_response
+    data = response.json()
+    return data["choices"][0]["message"]["content"].strip()
+
+
+def messages_to_gemini_prompt(messages):
+    sections = []
+    for message in messages:
+        role = message.get("role", "user")
+        content = (message.get("content") or "").strip()
+        if not content:
+            continue
+        if role == "system":
+            sections.append(f"System context:\n{content}")
+        elif role == "assistant":
+            sections.append(f"Maaya previous answer:\n{content}")
+        else:
+            sections.append(f"Visitor question:\n{content}")
+
+    return "\n\n---\n\n".join(sections)
+
+
+def call_gemini(messages, temperature=0.35):
+    prompt = messages_to_gemini_prompt(messages)
+    url = GEMINI_URL_TEMPLATE.format(model=GEMINI_MODEL)
+    response = requests.post(
+        url,
+        params={"key": GEMINI_API_KEY},
+        headers={"Content-Type": "application/json"},
+        json={
+            "contents": [
+                {
+                    "role": "user",
+                    "parts": [{"text": prompt}],
+                }
+            ],
+            "generationConfig": {
+                "temperature": temperature,
+                "maxOutputTokens": 900,
+            },
+        },
+        timeout=35,
+    )
+
+    if not response.ok:
+        raise requests.HTTPError(response.text[:800], response=response)
+
+    data = response.json()
+    candidates = data.get("candidates") or []
+    if not candidates:
+        raise ValueError("Gemini returned no candidates")
+
+    parts = candidates[0].get("content", {}).get("parts", [])
+    answer = "".join(part.get("text", "") for part in parts).strip()
+    if not answer:
+        raise ValueError("Gemini returned an empty answer")
+    return answer
+
+
+def call_provider(provider, messages, temperature):
+    if provider["name"] == "groq":
+        return call_groq(messages, temperature)
+    if provider["name"] == "gemini":
+        return call_gemini(messages, temperature)
+    raise ValueError(f"Unknown provider: {provider['name']}")
+
+
+def call_llm_gateway(messages, temperature=0.35):
+    providers = configured_providers()
+    if not providers:
+        return {
+            "ok": False,
+            "error": "No LLM providers are configured",
+            "attempts": [],
+        }
+
+    attempts = []
+    for provider in providers:
+        for attempt in range(GROQ_MAX_RETRIES + 1):
+            try:
+                answer = call_provider(provider, messages, temperature)
+                attempts.append({
+                    "provider": provider["name"],
+                    "model": provider["model"],
+                    "attempt": attempt + 1,
+                    "status": "ok",
+                })
+                return {
+                    "ok": True,
+                    "answer": answer,
+                    "provider": provider["name"],
+                    "model": provider["model"],
+                    "attempts": attempts,
+                }
+            except requests.HTTPError as error:
+                status_code = getattr(error.response, "status_code", None)
+                attempts.append({
+                    "provider": provider["name"],
+                    "model": provider["model"],
+                    "attempt": attempt + 1,
+                    "status": "error",
+                    "status_code": status_code,
+                    "details": str(error)[:300],
+                })
+                if status_code not in TRANSIENT_STATUS_CODES:
+                    break
+                if attempt < GROQ_MAX_RETRIES:
+                    time.sleep(1.1 * (attempt + 1))
+            except (requests.RequestException, ValueError, KeyError) as error:
+                attempts.append({
+                    "provider": provider["name"],
+                    "model": provider["model"],
+                    "attempt": attempt + 1,
+                    "status": "error",
+                    "details": str(error)[:300],
+                })
+                if attempt < GROQ_MAX_RETRIES:
+                    time.sleep(1.1 * (attempt + 1))
+
+    return {
+        "ok": False,
+        "error": "All configured LLM providers failed",
+        "attempts": attempts,
+    }
 
 
 @app.get("/health")
 def health():
-    return jsonify({"status": "ok", "service": "maaya_proxy"})
+    return jsonify({
+        "status": "ok",
+        "service": "maaya_gateway",
+        "providers": configured_providers(),
+    })
 
 
 @app.post("/api/maaya")
@@ -382,8 +513,8 @@ def maaya_chat():
     if guardrail_result["action"] in {"block", "redirect"}:
         return guardrail_response(guardrail_result)
 
-    if not GROQ_API_KEY:
-        return jsonify({"error": "GROQ_API_KEY is not configured"}), 500
+    if not configured_providers():
+        return jsonify({"error": "No LLM providers are configured"}), 500
 
     project_link_lines = "\n".join(
         f"- {name}: {url}" for name, url in project_links.items()
@@ -445,46 +576,33 @@ Resume content reference:
             "content": content,
         })
 
-    body = {
-        "model": GROQ_MODEL,
-        "temperature": 0.35,
-        "messages": [
-            {"role": "system", "content": PORTFOLIO_CONTEXT},
-            {"role": "system", "content": GUARDRAIL_CONTEXT},
-            {"role": "system", "content": profile_context},
-            *([{"role": "system", "content": structured_knowledge_context}] if structured_knowledge_context else []),
-            *([{"role": "system", "content": resume_context}] if resume_context else []),
-            *conversation_history,
-            {"role": "user", "content": question},
-        ],
-    }
+    messages = [
+        {"role": "system", "content": PORTFOLIO_CONTEXT},
+        {"role": "system", "content": GUARDRAIL_CONTEXT},
+        {"role": "system", "content": profile_context},
+        *([{"role": "system", "content": structured_knowledge_context}] if structured_knowledge_context else []),
+        *([{"role": "system", "content": resume_context}] if resume_context else []),
+        *conversation_history,
+        {"role": "user", "content": question},
+    ]
 
-    try:
-        response = call_groq_with_retry(body)
-    except requests.RequestException as error:
-        print(f"Groq request exception: {error}")
+    gateway_result = call_llm_gateway(messages, temperature=0.35)
+    if not gateway_result["ok"]:
+        print("Maaya gateway failed:", gateway_result)
         return jsonify({
-            "error": "Groq request exception",
-            "details": str(error),
+            "error": gateway_result["error"],
+            "attempts": gateway_result["attempts"],
         }), 502
 
-    if not response.ok:
-        print(
-            "Groq request failed:",
-            response.status_code,
-            response.text[:600],
-        )
-        return jsonify({
-            "error": "Groq request failed",
-            "status_code": response.status_code,
-            "details": response.text,
-        }), 502
-
-    data = response.json()
-    answer = sanitize_output(data["choices"][0]["message"]["content"].strip())
+    answer = sanitize_output(gateway_result["answer"])
     return jsonify({
         "answer": answer,
         "guardrail": {"action": "pass", "rail": "none"},
+        "gateway": {
+            "provider": gateway_result["provider"],
+            "model": gateway_result["model"],
+            "attempts": gateway_result["attempts"],
+        },
     })
 
 

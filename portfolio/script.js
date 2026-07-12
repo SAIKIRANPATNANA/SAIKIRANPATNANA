@@ -836,7 +836,25 @@ async function getLiveMaayaReply(question) {
   return {
     answer: data.answer || "Maaya is online, but the response came back empty.",
     guardrail: data.guardrail || { action: "pass", rail: "none" },
+    gateway: data.gateway || null,
   };
+}
+
+function formatGatewayLabel(gateway) {
+  if (!gateway?.provider) return "Live AI Ready";
+  const providerName = gateway.provider.charAt(0).toUpperCase() + gateway.provider.slice(1);
+  return `Live AI: ${providerName}`;
+}
+
+function describeMaayaGateway(gateway) {
+  if (!gateway?.attempts || gateway.attempts.length <= 1) return "";
+  const failedProviders = gateway.attempts
+    .filter((attempt) => attempt.status === "error")
+    .map((attempt) => attempt.provider)
+    .filter((provider, index, providers) => providers.indexOf(provider) === index);
+
+  if (failedProviders.length === 0) return "";
+  return `Maaya gateway recovered through ${gateway.provider} after ${failedProviders.join(", ")} was unavailable.`;
 }
 
 function describeMaayaGuardrail(guardrail) {
@@ -860,10 +878,14 @@ async function handleMaayaQuestion(question) {
     const liveResult = await getLiveMaayaReply(question);
     const liveReply = liveResult.answer;
     const guardrailNote = describeMaayaGuardrail(liveResult.guardrail);
+    const gatewayNote = describeMaayaGateway(liveResult.gateway);
     if (typingBubble) typingBubble.remove();
-    setMaayaPresence("live", liveResult.guardrail?.action === "pass" ? "Live AI Ready" : "Guardrails Active");
+    setMaayaPresence("live", liveResult.guardrail?.action === "pass" ? formatGatewayLabel(liveResult.gateway) : "Guardrails Active");
     if (guardrailNote) {
       createMaayaStatusMessage(guardrailNote);
+    }
+    if (gatewayNote) {
+      createMaayaStatusMessage(gatewayNote);
     }
     appendMaayaHistory("bot", liveReply);
     createMaayaMessage("bot", liveReply, true);
