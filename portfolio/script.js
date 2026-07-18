@@ -427,6 +427,7 @@ const maayaKnowledge = {
     "ai news generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai",
     "ai guardrails": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails",
     "advanced rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_rag",
+    "advanced prod rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_prod_rag",
     "ats using gemini": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini",
     "blood report parsing iisc": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc",
     "blog generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blog-generation-agenticai",
@@ -472,6 +473,7 @@ const maayaKnowledge = {
     ats: "ATS Using Gemini is a multimodal resume-analysis project built with Streamlit and Gemini Pro Vision for match analysis and keyword feedback.",
     gateways: "LLM Gateways is a production-minded GenAI project using Portkey concepts for provider routing, retries, timeouts, fallbacks, observability, caching, rate limiting, load balancing, and streaming.",
     advancedRag: "Advanced RAG is an enterprise agentic RAG system with LangGraph planning, NeMo Guardrails, Portkey gateway fallback, Qdrant vector search, FlashRank reranking, Gemini embeddings, Logfire/LangSmith observability, and RAGAS evaluation.",
+    advancedProdRag: "Advanced Prod RAG is a production-ready enterprise RAG system with OpenAI/Anthropic routing via Portkey, Jina embeddings and reranking, Qdrant retrieval, Prometheus metrics, API auth, rate limiting, Neon/Upstash integrations, tests, and AWS deployment scripts.",
   },
 };
 
@@ -733,6 +735,7 @@ If you want, I can also break this down by project or explain how he uses these 
   if ((q.includes("cv") || q.includes("resume")) && (q.includes("project") || q.includes("link"))) {
     return `Here are some strong resume-aligned project links:
 
+- [Advanced Prod RAG](${maayaKnowledge.projectLinks["advanced prod rag"]})
 - [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]})
 - [Blood Report Parsing IISc](${maayaKnowledge.projectLinks["blood report parsing iisc"]})
 - [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
@@ -790,12 +793,16 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
     return `${maayaKnowledge.projects.gateways} Repo: [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]}).`;
   }
 
+  if (q.includes("advanced prod rag") || q.includes("production rag") || q.includes("jina") || q.includes("prometheus") || q.includes("upstash") || q.includes("neon")) {
+    return `${maayaKnowledge.projects.advancedProdRag} Repo: [Advanced Prod RAG](${maayaKnowledge.projectLinks["advanced prod rag"]}).`;
+  }
+
   if (q.includes("advanced rag") || q.includes("enterprise rag") || q.includes("qdrant") || q.includes("flashrank") || q.includes("langgraph")) {
     return `${maayaKnowledge.projects.advancedRag} Repo: [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]}).`;
   }
 
   if (q.includes("genai") || q.includes("generative ai") || q.includes("best project") || q.includes("strongest project")) {
-    return `His strongest GenAI portfolio signals are **Advanced RAG**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
+    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Advanced RAG**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
   }
 
   if (q.includes("contact") || q.includes("reach") || q.includes("linkedin") || q.includes("github")) {

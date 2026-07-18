@@ -83,6 +83,7 @@ Important projects:
 - Blood Report Parsing IISc: OCR, structured extraction, abnormality detection, blood report insights, healthcare AI
 - AI Guardrails: NeMo Guardrails, Colang flows, input/output rails, LLM safety, semantic intent matching
 - Advanced RAG: enterprise agentic RAG using LangGraph planner/retriever/responder nodes, NeMo Guardrails, Portkey LLM Gateway, Qdrant Cloud, FlashRank reranking, Gemini embeddings, Logfire/LangSmith observability, and RAGAS evals
+- Advanced Prod RAG: production-ready enterprise RAG using OpenAI/Anthropic via Portkey, Jina embeddings and reranking, Qdrant retrieval, Prometheus metrics, API auth, Redis-style rate limiting, Neon/Upstash integrations, tests, health checks, and AWS deployment scripts
 - ATS Using Gemini: multimodal resume analysis, Gemini Pro Vision, job-description fit analysis
 - Sadhana GenAI Project: PDF chat, Q&A, MCQ generation, educational AI
 - Disease Diagnosis Dhanvantari: healthcare-oriented RAG exploration
@@ -132,7 +133,7 @@ PORTFOLIO_TERMS = {
     "leetcode", "dsa", "genai", "generative", "ai", "ml", "machine", "learning",
     "deep", "computer", "vision", "nlp", "rag", "agent", "agentic", "healthcare",
     "medical", "blood", "report", "ats", "gemini", "sadhana", "guardrails",
-    "evaluation", "ragas", "advanced", "qdrant", "flashrank", "langgraph", "logfire", "langsmith", "pskgpt", "transformers", "gateway", "gateways", "portkey", "routing", "fallback", "groq", "streamlit", "python",
+    "evaluation", "ragas", "advanced", "production", "prod", "qdrant", "flashrank", "jina", "prometheus", "upstash", "neon", "langgraph", "logfire", "langsmith", "pskgpt", "transformers", "gateway", "gateways", "portkey", "routing", "fallback", "groq", "streamlit", "python",
     "architecture", "workflow", "implementation", "built", "code", "tech", "stack",
     "contact", "linkedin", "profile", "achievement", "education", "about", "who"
 }
@@ -293,7 +294,7 @@ def relevant_project_links(project_links, question, limit=8):
 
     if any(term in normalized for term in ["project", "repo", "github", "link", "genai"]):
         preferred = [
-            "advanced rag", "llm gateways", "ai guardrails", "rag evaluation", "blood report parsing iisc",
+            "advanced prod rag", "advanced rag", "llm gateways", "ai guardrails", "rag evaluation", "blood report parsing iisc",
             "ats using gemini", "sadhana genai project", "pskgpt via transformers",
             "med triage agentic ai", "ai news generation"
         ]

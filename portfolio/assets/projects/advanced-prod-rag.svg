@@ -1,0 +1,21 @@
+<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="220" rx="28" fill="#07111f"/>
+  <circle cx="60" cy="54" r="36" fill="#51f6d2" fill-opacity="0.14"/>
+  <circle cx="260" cy="162" r="48" fill="#ffd166" fill-opacity="0.13"/>
+  <rect x="42" y="42" width="72" height="42" rx="13" fill="#101a2e" stroke="#8cc6ff" stroke-width="3"/>
+  <rect x="42" y="136" width="72" height="42" rx="13" fill="#101a2e" stroke="#8cc6ff" stroke-width="3"/>
+  <rect x="206" y="42" width="72" height="42" rx="13" fill="#101a2e" stroke="#8cc6ff" stroke-width="3"/>
+  <rect x="206" y="136" width="72" height="42" rx="13" fill="#101a2e" stroke="#8cc6ff" stroke-width="3"/>
+  <rect x="120" y="78" width="80" height="64" rx="20" fill="#12243b" stroke="#51f6d2" stroke-width="4"/>
+  <path d="M114 63H134M186 63H206M114 157H134M186 157H206" stroke="#51f6d2" stroke-width="4" stroke-linecap="round"/>
+  <path d="M160 78V54M160 142V166" stroke="#ffd166" stroke-width="4" stroke-linecap="round"/>
+  <path d="M141 108H179" stroke="#ffd166" stroke-width="5" stroke-linecap="round"/>
+  <path d="M152 95L139 108L152 121" stroke="#ffd166" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M168 95L181 108L168 121" stroke="#ffd166" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M80 190C116 204 204 204 240 190" stroke="#51f6d2" stroke-width="4" stroke-linecap="round" stroke-dasharray="7 9"/>
+  <text x="78" y="68" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#eaf2ff">Auth</text>
+  <text x="242" y="68" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#eaf2ff">Jina</text>
+  <text x="78" y="162" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#eaf2ff">Metrics</text>
+  <text x="242" y="162" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#eaf2ff">AWS</text>
+  <text x="160" y="210" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#eaf2ff">Advanced Prod RAG</text>
+</svg>

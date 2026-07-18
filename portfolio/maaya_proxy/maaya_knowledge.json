@@ -150,6 +150,49 @@
       ]
     },
     {
+      "slug": "advanced-prod-rag",
+      "name": "Advanced Prod RAG",
+      "domain": "Generative AI / Production Enterprise RAG",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_prod_rag",
+      "what_it_does": "Extends enterprise agentic RAG into a production-ready system with OpenAI and Anthropic routed through Portkey, Jina embeddings and reranking, Qdrant vector retrieval, Prometheus metrics, auth, rate limiting, Neon/Upstash integrations, tests, health checks, and AWS deployment scripts.",
+      "why_it_matters": "It shows Sai Kiran moving from advanced RAG architecture into production engineering concerns: reliability, API safety, observability, deployment, connection health, evaluation automation, and scalable operations.",
+      "stack": [
+        "LangGraph",
+        "LangChain",
+        "FastAPI",
+        "Streamlit",
+        "Portkey",
+        "OpenAI",
+        "Anthropic",
+        "Jina AI embeddings",
+        "Jina AI Reranker",
+        "Qdrant Cloud",
+        "NeMo Guardrails",
+        "Prometheus",
+        "Neon",
+        "Upstash Redis",
+        "RAGAS",
+        "AWS deployment scripts",
+        "pytest"
+      ],
+      "architecture": [
+        "FastAPI exposes a synchronous /query endpoint for the LangGraph pipeline",
+        "Guardrails block off-topic, jailbreak, and prompt-injection requests before retrieval",
+        "Planner node routes conversational versus technical queries",
+        "Retriever uses Qdrant vector search with Jina embeddings and Jina reranking for higher-quality context",
+        "Responder generates answers through Portkey provider routing across OpenAI and Anthropic virtual providers",
+        "Prometheus metrics, health checks, auth, and rate limiting support production operations",
+        "RAGAS eval scripts and tests measure retrieval, answer quality, guardrails, auth, retry, rate limit, and health behavior",
+        "Deployment docs/scripts cover AWS-oriented environment, secrets, state, and task definitions"
+      ],
+      "implementation_notes": [
+        "Adds API-key protection and Redis/in-memory rate limiting on top of the RAG app",
+        "Uses Jina embeddings/reranking rather than the earlier Gemini/FlashRank setup",
+        "Includes local testing, deployment plan, AWS notes, Docker, compose, and automated test coverage",
+        "Useful signal for production GenAI, LLMOps, RAG reliability, and backend deployment readiness"
+      ]
+    },
+    {
       "slug": "advanced-rag",
       "name": "Advanced RAG",
       "domain": "Generative AI / Enterprise Agentic RAG",
