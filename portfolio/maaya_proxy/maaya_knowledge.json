@@ -150,6 +150,44 @@
       ]
     },
     {
+      "slug": "advanced-rag",
+      "name": "Advanced RAG",
+      "domain": "Generative AI / Enterprise Agentic RAG",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_rag",
+      "what_it_does": "Builds a production-grade enterprise RAG system that separates technical true data from noisy data using LangGraph agent planning, guarded retrieval, semantic reranking, LLM gateway routing, observability, and RAGAS evaluation.",
+      "why_it_matters": "It is one of Sai Kiran's strongest production-minded GenAI projects because it combines RAG, agents, guardrails, gateways, reranking, tracing, and evaluation instead of stopping at a simple vector-search demo.",
+      "stack": [
+        "LangGraph",
+        "LangChain",
+        "FastAPI",
+        "Streamlit",
+        "NeMo Guardrails",
+        "Portkey LLM Gateway",
+        "Groq",
+        "Qdrant Cloud",
+        "FlashRank",
+        "Gemini embeddings",
+        "Pydantic Logfire",
+        "LangSmith",
+        "RAGAS"
+      ],
+      "architecture": [
+        "Documents are parsed locally from PDF, HTML, TXT, DOCX, and PPTX files",
+        "Gemini embeddings index chunks into Qdrant Cloud for vector search",
+        "FastAPI query endpoint runs a NeMo Guardrails safety gate before retrieval",
+        "LangGraph planner classifies whether a request is conversational or technical",
+        "Retriever node performs Qdrant vector search and FlashRank local reranking",
+        "Responder node generates the final answer through Portkey gateway routing with Groq fallback",
+        "MemorySaver supports conversation history while Logfire and LangSmith trace each node",
+        "RAGAS evaluation suite scores faithfulness, relevancy, precision, recall, correctness, and guardrail behavior"
+      ],
+      "implementation_notes": [
+        "Uses true-data versus noisy-data design to test retrieval robustness",
+        "Includes separate docs for ingestion, node intelligence, observability, FlashRank reranking, guardrails, LLM gateway, and eval pipeline",
+        "Shows production RAG thinking across reliability, safety, observability, and measurable answer quality"
+      ]
+    },
+    {
       "slug": "llm-gateways",
       "name": "LLM Gateways",
       "domain": "Generative AI / LLMOps / Gateway Reliability",
