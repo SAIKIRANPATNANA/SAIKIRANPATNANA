@@ -23,6 +23,7 @@
       "prompt engineering for system prompts, user prompts, role separation, prompt chaining, structured-output prompting, and constraint-based prompting",
       "LLM evaluation and control with temperature/top-p/top-k awareness, prompt ablations, consistency testing, hallucination reduction, output validation, and JSON validity checks",
       "RAG workflows with embeddings, vector databases, semantic retrieval, chunking strategies, grounded generation, retrieval control, and context management",
+      "LLM fine-tuning and alignment learning across LoRA/QLoRA, instruction tuning, RLHF, DPO, ORPO, GRPO, Axolotl, Unsloth, LLaMA Factory, and OpenAI/Gemini fine-tuning",
       "LLM application building across extraction, classification, Q&A, conversational analysis, healthcare AI, education AI, and resume intelligence",
       "production-aware LLM thinking around latency, token efficiency, cost-aware generation, prompt injection defense, guardrails, and multi-agent orchestration",
       "problem solving with 700+ LeetCode solves"
@@ -118,7 +119,15 @@
         "GGUF",
         "INT4/INT8 concepts",
         "low-latency inference trade-offs",
-        "multi-agent orchestration"
+        "multi-agent orchestration",
+        "LoRA and QLoRA",
+        "RLHF",
+        "DPO",
+        "ORPO",
+        "GRPO",
+        "Axolotl",
+        "Unsloth",
+        "LLaMA Factory"
       ]
     }
   },

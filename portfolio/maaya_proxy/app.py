@@ -68,10 +68,10 @@ Portfolio facts:
 - Name: Sai Kiran Patnana
 - Latest resume positioning: Prompt Engineer | LLM Applications | Evaluation and RAG
 - Education: B.Tech CSE at IIIT RGUKT Nuzvid, CGPA 9.3/10, 2023-2027; PUC CGPA 10/10, 2021-2023
-- Focus: Generative AI, prompt engineering, LLM applications, RAG systems, LLM evaluation/control, Machine Learning, Deep Learning, Computer Vision, NLP, Data Science
-- Strengths: system/user prompt design, structured-output prompting, prompt chaining, retrieval control, guardrails, hallucination reduction, output validation, RAG workflows, multimodal applications, healthcare-oriented AI, polished portfolio presentation
+- Focus: Generative AI, prompt engineering, LLM applications, RAG systems, LLM evaluation/control, LLM fine-tuning/alignment, Machine Learning, Deep Learning, Computer Vision, NLP, Data Science
+- Strengths: system/user prompt design, structured-output prompting, prompt chaining, retrieval control, guardrails, hallucination reduction, output validation, RAG workflows, LLM fine-tuning concepts, multimodal applications, healthcare-oriented AI, polished portfolio presentation
 - LLM evaluation/control: temperature, top-p, top-k, max tokens, prompt ablations, consistency testing, JSON validity, exact-match checks, evaluation pipelines, experiment-based iteration
-- Tooling: Gemini, LangChain, FAISS, SQLite, Streamlit, Flask, Tesseract OCR, Python, SQL, Git, Jupyter; familiarity with GPT, Claude, LLaMA, Mistral, and Qwen families
+- Tooling: Gemini, LangChain, FAISS, SQLite, Streamlit, Flask, Tesseract OCR, Python, SQL, Git, Jupyter; familiarity with GPT, Claude, LLaMA, Mistral, Qwen, Hugging Face, LoRA/QLoRA, Axolotl, Unsloth, LLaMA Factory, RLHF, DPO, ORPO, and GRPO concepts
 - DSA: 700+ LeetCode problems solved
 - Key achievement: Top 8 Finalist at IISc Bangalore OpenHack 2025 from 2000+ teams
 - Additional achievements: 1st Prize at Branch Project Expo; 2nd Prize at Mega Expo TechFest
@@ -724,6 +724,7 @@ Primary links:
 - Python Projects Hub: {links.get('pythonRepo', '')}
 - DSA Learning: {links.get('dsa', '')}
 - Generative AI Learning: {links.get('genaiLearning', '')}
+- LLM Fine-Tuning Learning: https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING/tree/main/LLM_FINETUNING
 - AI Core Learning: {links.get('aiCoreLearning', '')}
 - MLOps and Deployment Learning: {links.get('mlopsLearning', '')}
 - Data Foundations: {links.get('dataFoundations', '')}

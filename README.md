@@ -243,7 +243,7 @@ For now, my data-centric analysis and predictive case studies are represented in
 Beyond projects, I keep a structured set of public learning repositories that document the systems, tools, and foundations I am actively growing through hands-on study.
 
 ### 🧭 Learning Repositories
-- **[Generative AI Learning](https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING)**: RAG systems, agentic AI workflows, Gemini experiments, prompt-driven applications, and multimodal learning builds
+- **[Generative AI Learning](https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING)**: RAG systems, agentic workflows, Gemini experiments, prompt-driven apps, multimodal learning, and LLM fine-tuning/alignment with LoRA, QLoRA, RLHF, DPO, ORPO, GRPO, Axolotl, Unsloth, and LLaMA Factory
 - **[AI Core Learning](https://github.com/SAIKIRANPATNANA/AI_CORE_LEARNING)**: machine learning and deep learning foundations, feature engineering, CNNs, transfer learning, YOLO, and architecture-level experimentation
 - **[MLOps and Deployment Learning](https://github.com/SAIKIRANPATNANA/MLOPS_AND_DEPLOYMENT_LEARNING)**: MLflow, Docker, reproducible workflows, deployment thinking, and production-oriented ML structure
 - **[Data Foundations](https://github.com/SAIKIRANPATNANA/DATA_FOUNDATIONS)**: PySpark, SQL/MySQL, structured data workflows, and data-processing foundations for AI systems

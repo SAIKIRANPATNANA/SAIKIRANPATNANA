@@ -417,6 +417,7 @@ const maayaKnowledge = {
     pythonRepo: "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS",
     dsa: "https://github.com/SAIKIRANPATNANA/DSA_LEARNING",
     genaiLearning: "https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING",
+    llmFinetuningLearning: "https://github.com/SAIKIRANPATNANA/GENERATIVE_AI_LEARNING/tree/main/LLM_FINETUNING",
     aiCoreLearning: "https://github.com/SAIKIRANPATNANA/AI_CORE_LEARNING",
     mlopsLearning: "https://github.com/SAIKIRANPATNANA/MLOPS_AND_DEPLOYMENT_LEARNING",
     dataFoundations: "https://github.com/SAIKIRANPATNANA/DATA_FOUNDATIONS",
@@ -710,10 +711,15 @@ If you want, I can also break this down by project or explain how he uses these 
 - [Resume](${maayaKnowledge.links.resume})`;
     }
 
+    if (q.includes("fine tuning") || q.includes("finetuning") || q.includes("lora") || q.includes("qlora") || q.includes("rlhf") || q.includes("dpo") || q.includes("orpo") || q.includes("grpo")) {
+      return `Sai Kiran has a dedicated **LLM Fine-Tuning Learning** track covering Hugging Face workflows, domain/instruction fine-tuning, LoRA/QLoRA, Axolotl, Unsloth, LLaMA Factory, OpenAI/Gemini fine-tuning, RLHF, DPO, ORPO, GRPO, quantization, embedding fine-tuning, and multimodal fine-tuning. Open it here: [LLM Fine-Tuning Learning](${maayaKnowledge.links.llmFinetuningLearning}).`;
+    }
+
     if (q.includes("learning")) {
       return `Here are the learning repositories:
 
 - [Generative AI Learning](${maayaKnowledge.links.genaiLearning})
+- [LLM Fine-Tuning Learning](${maayaKnowledge.links.llmFinetuningLearning})
 - [AI Core Learning](${maayaKnowledge.links.aiCoreLearning})
 - [MLOps and Deployment Learning](${maayaKnowledge.links.mlopsLearning})
 - [Data Foundations](${maayaKnowledge.links.dataFoundations})
