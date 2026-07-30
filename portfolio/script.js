@@ -427,6 +427,7 @@ const maayaKnowledge = {
   projectLinks: {
     "ai news generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai",
     "ai guardrails": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails",
+    "agentic memory": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/agentic_memory",
     "advanced rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_rag",
     "advanced prod rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_prod_rag",
     "ats using gemini": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini",
@@ -475,6 +476,7 @@ const maayaKnowledge = {
     gateways: "LLM Gateways is a production-minded GenAI project using Portkey concepts for provider routing, retries, timeouts, fallbacks, observability, caching, rate limiting, load balancing, and streaming.",
     advancedRag: "Advanced RAG is an enterprise agentic RAG system with LangGraph planning, NeMo Guardrails, Portkey gateway fallback, Qdrant vector search, FlashRank reranking, Gemini embeddings, Logfire/LangSmith observability, and RAGAS evaluation.",
     advancedProdRag: "Advanced Prod RAG is a production-ready enterprise RAG system with OpenAI/Anthropic routing via Portkey, Jina embeddings and reranking, Qdrant retrieval, Prometheus metrics, API auth, rate limiting, Neon/Upstash integrations, tests, and AWS deployment scripts.",
+    agenticMemory: "Agentic Memory is an AI Memory Lab built with Streamlit, Groq, LangChain memory patterns, FAISS, and fastembed to compare short-term memory, long-term memory, vector-store memory, entity memory, episodic/semantic/procedural memory, self-reflection, memory routing, and cost behavior.",
   },
 };
 
@@ -742,6 +744,7 @@ If you want, I can also break this down by project or explain how he uses these 
     return `Here are some strong resume-aligned project links:
 
 - [Advanced Prod RAG](${maayaKnowledge.projectLinks["advanced prod rag"]})
+- [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]})
 - [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]})
 - [Blood Report Parsing IISc](${maayaKnowledge.projectLinks["blood report parsing iisc"]})
 - [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
@@ -761,6 +764,7 @@ Resume: [Open CV](${maayaKnowledge.links.resume})`;
 - [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
 - [AI News Generation](${maayaKnowledge.projectLinks["ai news generation"]})
 - [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]})
+- [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]})
 - [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]})
 - [WhatsApp Chat Analyser](${maayaKnowledge.projectLinks["whatsapp chat analyser"]})
 
@@ -799,6 +803,10 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
     return `${maayaKnowledge.projects.gateways} Repo: [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]}).`;
   }
 
+  if (q.includes("agentic memory") || q.includes("ai memory") || q.includes("memory lab") || q.includes("short-term memory") || q.includes("long-term memory") || q.includes("entity memory") || q.includes("vector memory")) {
+    return `${maayaKnowledge.projects.agenticMemory} Repo: [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]}).`;
+  }
+
   if (q.includes("advanced prod rag") || q.includes("production rag") || q.includes("jina") || q.includes("prometheus") || q.includes("upstash") || q.includes("neon")) {
     return `${maayaKnowledge.projects.advancedProdRag} Repo: [Advanced Prod RAG](${maayaKnowledge.projectLinks["advanced prod rag"]}).`;
   }
@@ -808,7 +816,7 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
   }
 
   if (q.includes("genai") || q.includes("generative ai") || q.includes("best project") || q.includes("strongest project")) {
-    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Advanced RAG**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
+    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Advanced RAG**, **Agentic Memory**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
   }
 
   if (q.includes("contact") || q.includes("reach") || q.includes("linkedin") || q.includes("github")) {

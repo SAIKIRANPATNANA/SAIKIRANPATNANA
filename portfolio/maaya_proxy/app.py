@@ -82,6 +82,7 @@ Portfolio facts:
 Important projects:
 - Blood Report Parsing IISc: OCR, structured extraction, abnormality detection, blood report insights, healthcare AI
 - AI Guardrails: NeMo Guardrails, Colang flows, input/output rails, LLM safety, semantic intent matching
+- Agentic Memory: AI Memory Lab using Streamlit, Groq, LangChain memory patterns, FAISS, fastembed, cost tracking, and diagrams to compare short-term and long-term LLM memory strategies
 - Advanced RAG: enterprise agentic RAG using LangGraph planner/retriever/responder nodes, NeMo Guardrails, Portkey LLM Gateway, Qdrant Cloud, FlashRank reranking, Gemini embeddings, Logfire/LangSmith observability, and RAGAS evals
 - Advanced Prod RAG: production-ready enterprise RAG using OpenAI/Anthropic via Portkey, Jina embeddings and reranking, Qdrant retrieval, Prometheus metrics, API auth, Redis-style rate limiting, Neon/Upstash integrations, tests, health checks, and AWS deployment scripts
 - ATS Using Gemini: multimodal resume analysis, Gemini Pro Vision, job-description fit analysis

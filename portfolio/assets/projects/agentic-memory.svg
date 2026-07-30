@@ -1,0 +1,33 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="640" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111f"/>
+      <stop offset="0.52" stop-color="#0d2430"/>
+      <stop offset="1" stop-color="#11243a"/>
+    </linearGradient>
+    <linearGradient id="node" x1="150" y1="88" x2="500" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66f2d5"/>
+      <stop offset="1" stop-color="#f6d365"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.25 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.6 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="640" height="420" rx="34" fill="url(#bg)"/>
+  <path d="M70 330C130 250 180 265 240 205C312 132 372 110 470 85" stroke="#66f2d5" stroke-opacity="0.24" stroke-width="2"/>
+  <path d="M118 122H522" stroke="#d9e7ff" stroke-opacity="0.08"/>
+  <path d="M118 210H522" stroke="#d9e7ff" stroke-opacity="0.08"/>
+  <path d="M118 298H522" stroke="#d9e7ff" stroke-opacity="0.08"/>
+  <circle cx="320" cy="210" r="88" fill="#0b1728" stroke="url(#node)" stroke-width="5" filter="url(#glow)"/>
+  <path d="M292 169C274 182 270 210 286 229C294 238 294 253 286 262" stroke="#66f2d5" stroke-width="9" stroke-linecap="round"/>
+  <path d="M348 169C366 182 370 210 354 229C346 238 346 253 354 262" stroke="#f6d365" stroke-width="9" stroke-linecap="round"/>
+  <path d="M287 197H353M287 224H353M300 251H340" stroke="#d9e7ff" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="168" cy="130" r="26" fill="#11243a" stroke="#66f2d5" stroke-width="3"/>
+  <circle cx="472" cy="128" r="26" fill="#11243a" stroke="#f6d365" stroke-width="3"/>
+  <circle cx="168" cy="292" r="26" fill="#11243a" stroke="#f6d365" stroke-width="3"/>
+  <circle cx="472" cy="292" r="26" fill="#11243a" stroke="#66f2d5" stroke-width="3"/>
+  <path d="M194 140L268 185M446 141L372 185M194 282L270 238M446 282L370 238" stroke="#d9e7ff" stroke-opacity="0.42" stroke-width="3"/>
+  <text x="320" y="370" text-anchor="middle" fill="#d9e7ff" font-family="Orbitron, Rajdhani, Arial, sans-serif" font-size="31" font-weight="700">AGENTIC MEMORY</text>
+</svg>

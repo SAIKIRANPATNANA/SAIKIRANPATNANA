@@ -159,6 +159,37 @@
       ]
     },
     {
+      "slug": "agentic-memory",
+      "name": "Agentic Memory",
+      "domain": "Generative AI / LLM Memory Systems",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/agentic_memory",
+      "what_it_does": "AI Memory Lab is a hands-on Streamlit app for demonstrating short-term and long-term LLM memory techniques with live Groq calls, LangChain memory patterns, FAISS vector memory, fastembed embeddings, cost tracking, comparison runs, and Mermaid architecture diagrams.",
+      "why_it_matters": "It shows Sai Kiran understands one of the most important gaps in practical agents: how memory changes context, cost, recall, routing, and behavior across single and multi-session conversations.",
+      "stack": [
+        "Streamlit",
+        "Groq",
+        "LangChain",
+        "LangChain classic memory APIs",
+        "FAISS",
+        "fastembed",
+        "Mermaid diagrams",
+        "Python"
+      ],
+      "architecture": [
+        "Short-term pages replay the same scripted conversation through no memory, buffer, sliding window, summary, summary buffer, token buffer, vector store, and entity memory strategies",
+        "Comparison page runs all short-term techniques and reports memory/cost behavior side by side",
+        "Long-term pages run a two-session experiment where Session 1 is compressed into artifacts and Session 2 receives only extracted memory",
+        "Episodic, semantic, procedural, self-reflection, and routing modules expose extraction and injection logic through a shared interface",
+        "Cost tracker counts visible and hidden LLM calls so memory trade-offs are measurable rather than theoretical"
+      ],
+      "implementation_notes": [
+        "Uses Groq BYOK for fast live LLM demos",
+        "Uses fastembed and FAISS for local vector-store memory without paid embedding APIs",
+        "Includes SHORT_TERM_MEMORY.md and LONG_TERM_MEMORY.md architecture diagrams for teaching and presentation",
+        "Useful signal for agentic AI, LLM memory design, context engineering, and evaluation-aware demos"
+      ]
+    },
+    {
       "slug": "advanced-prod-rag",
       "name": "Advanced Prod RAG",
       "domain": "Generative AI / Production Enterprise RAG",
