@@ -90,6 +90,7 @@ Important projects:
 - Disease Diagnosis Dhanvantari: healthcare-oriented RAG exploration
 - Med Triage Agentic AI: medical triage assistant logic
 - LLM Gateways: Portkey-style LLM gateway concepts for provider routing, retries, timeouts, fallbacks, load balancing, caching, rate limiting, streaming, observability, and production reliability
+- Multimodal RAG via Diff OCR: document-intelligence RAG suite comparing Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR layout strategies with Qdrant hybrid retrieval, RRF fusion, reranking, Groq generation, FastAPI, and Streamlit BYOK workbenches
 - AI News Generation: agentic AI workflow for AI news drafting and summarization
 - Blog Generation: long-form content generation workflow
 - RAG Evaluation: RAGAS-based TechNest RAG evaluation pipeline with product-catalog retrieval, Groq generation, Gemini embeddings, checkpoints, and Streamlit dashboards

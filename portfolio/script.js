@@ -438,6 +438,7 @@ const maayaKnowledge = {
     "harassment bot": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harassment-bot",
     "hybd cmr edtech": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/hybd_cmr_edtech",
     "med triage agentic ai": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/med-triage-agenticai",
+    "multimodal rag via diff ocr": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/multimodal_rag_via_diff_ocr",
     "llm gateways": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/llm_gateways",
     "rag evaluation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/rag_evaluation",
     "sadhana genai project": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/sadhana-gen-ai-project",
@@ -477,6 +478,7 @@ const maayaKnowledge = {
     advancedRag: "Advanced RAG is an enterprise agentic RAG system with LangGraph planning, NeMo Guardrails, Portkey gateway fallback, Qdrant vector search, FlashRank reranking, Gemini embeddings, Logfire/LangSmith observability, and RAGAS evaluation.",
     advancedProdRag: "Advanced Prod RAG is a production-ready enterprise RAG system with OpenAI/Anthropic routing via Portkey, Jina embeddings and reranking, Qdrant retrieval, Prometheus metrics, API auth, rate limiting, Neon/Upstash integrations, tests, and AWS deployment scripts.",
     agenticMemory: "Agentic Memory is an AI Memory Lab built with Streamlit, Groq, LangChain memory patterns, FAISS, and fastembed to compare short-term memory, long-term memory, vector-store memory, entity memory, episodic/semantic/procedural memory, self-reflection, memory routing, and cost behavior.",
+    multimodalRagOcr: "Multimodal RAG via Diff OCR is a document-intelligence suite comparing IBM Docling, Baidu Unlimited-OCR/PaddleOCR, and GLM-OCR + PP-DocLayout-V3 for parsing complex PDFs, then using Qdrant hybrid dense+sparse retrieval, RRF fusion, reranking, Groq generation, FastAPI, and Streamlit BYOK workbenches.",
   },
 };
 
@@ -751,6 +753,7 @@ If you want, I can also break this down by project or explain how he uses these 
 - [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
 - [Disease Diagnosis Dhanvantari](${maayaKnowledge.projectLinks["disease diagnosis dhanvantari"]})
 - [Med Triage Agentic AI](${maayaKnowledge.projectLinks["med triage agentic ai"]})
+- [Multimodal RAG via Diff OCR](${maayaKnowledge.projectLinks["multimodal rag via diff ocr"]})
 - [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]})
 
 Resume: [Open CV](${maayaKnowledge.links.resume})`;
@@ -765,6 +768,7 @@ Resume: [Open CV](${maayaKnowledge.links.resume})`;
 - [AI News Generation](${maayaKnowledge.projectLinks["ai news generation"]})
 - [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]})
 - [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]})
+- [Multimodal RAG via Diff OCR](${maayaKnowledge.projectLinks["multimodal rag via diff ocr"]})
 - [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]})
 - [WhatsApp Chat Analyser](${maayaKnowledge.projectLinks["whatsapp chat analyser"]})
 
@@ -803,6 +807,10 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
     return `${maayaKnowledge.projects.gateways} Repo: [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]}).`;
   }
 
+  if (q.includes("multimodal rag") || q.includes("ocr") || q.includes("docling") || q.includes("paddleocr") || q.includes("glm-ocr") || q.includes("document intelligence")) {
+    return `${maayaKnowledge.projects.multimodalRagOcr} Repo: [Multimodal RAG via Diff OCR](${maayaKnowledge.projectLinks["multimodal rag via diff ocr"]}).`;
+  }
+
   if (q.includes("agentic memory") || q.includes("ai memory") || q.includes("memory lab") || q.includes("short-term memory") || q.includes("long-term memory") || q.includes("entity memory") || q.includes("vector memory")) {
     return `${maayaKnowledge.projects.agenticMemory} Repo: [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]}).`;
   }
@@ -816,7 +824,7 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
   }
 
   if (q.includes("genai") || q.includes("generative ai") || q.includes("best project") || q.includes("strongest project")) {
-    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Advanced RAG**, **Agentic Memory**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
+    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Advanced RAG**, **Multimodal RAG via Diff OCR**, **Agentic Memory**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
   }
 
   if (q.includes("contact") || q.includes("reach") || q.includes("linkedin") || q.includes("github")) {

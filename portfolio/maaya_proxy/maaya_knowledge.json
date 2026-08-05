@@ -190,6 +190,46 @@
       ]
     },
     {
+      "slug": "multimodal-rag-via-diff-ocr",
+      "name": "Multimodal RAG via Diff OCR",
+      "domain": "Generative AI / Multimodal RAG / Document Intelligence",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/multimodal_rag_via_diff_ocr",
+      "what_it_does": "Compares multiple OCR and document parsing strategies for complex PDFs and images, including IBM Docling, Baidu Unlimited-OCR/PaddleOCR, and GLM-OCR with PP-DocLayout-V3, then indexes parsed multimodal chunks into a hybrid RAG pipeline.",
+      "why_it_matters": "It demonstrates Sai Kiran moving beyond text-only RAG into document intelligence: tables, formulas, figures, diagrams, bounding boxes, dense+sparse retrieval, RRF fusion, reranking, and production APIs.",
+      "stack": [
+        "Docling",
+        "PaddleOCR",
+        "Unlimited-OCR",
+        "GLM-OCR",
+        "PP-DocLayout-V3",
+        "PyMuPDF",
+        "Qdrant",
+        "Dense embeddings",
+        "BM25 sparse retrieval",
+        "RRF fusion",
+        "BGE reranker",
+        "Groq Llama 3.3 70B",
+        "FastAPI",
+        "Streamlit",
+        "uv",
+        "Python"
+      ],
+      "architecture": [
+        "Root suite compares three OCR/document parsing paradigms across Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR + layout detection",
+        "Parsing extracts layout-aware text, tables, formulas, images, figures, and bounding boxes from complex documents",
+        "Chunking preserves multimodal elements such as tables, formulas, and figures as meaningful retrieval units",
+        "Qdrant stores dense semantic vectors plus sparse BM25-style vectors for hybrid retrieval",
+        "Reciprocal Rank Fusion combines dense and sparse retrieval candidates before cross-encoder reranking",
+        "FastAPI and Streamlit BYOK workbenches expose search, generation, filtering, benchmark queries, and document intelligence demos"
+      ],
+      "implementation_notes": [
+        "Includes Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR variants for comparing parsing trade-offs",
+        "Uses Groq generation and Qdrant retrieval with local/cloud-friendly configuration patterns",
+        "Strong portfolio signal for multimodal RAG, OCR strategy comparison, document parsing, and retrieval engineering",
+        "Includes architecture/workflow documentation for system overview, ingestion, retrieval, reranking, APIs, and cloud-vs-local modes"
+      ]
+    },
+    {
       "slug": "advanced-prod-rag",
       "name": "Advanced Prod RAG",
       "domain": "Generative AI / Production Enterprise RAG",
