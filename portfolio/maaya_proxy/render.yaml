@@ -16,6 +16,12 @@ services:
         value: gemini-2.0-flash,gemini-2.5-flash
       - key: MAAYA_LLM_PROVIDERS
         value: groq,gemini
+      - key: MAAYA_LLM_TIMEOUT
+        value: "18"
+      - key: MAAYA_GATEWAY_RETRIES
+        value: "1"
+      - key: MAAYA_GATEWAY_RETRY_DELAY
+        value: "0.25"
       - key: LLAMA_GUARD_ENABLED
         value: "1"
       - key: LLAMA_GUARD_MODEL

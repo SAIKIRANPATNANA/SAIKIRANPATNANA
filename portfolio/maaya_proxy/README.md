@@ -47,6 +47,9 @@ Provider order is controlled by:
 
 ```env
 MAAYA_LLM_PROVIDERS=groq,gemini
+MAAYA_LLM_TIMEOUT=18
+MAAYA_GATEWAY_RETRIES=1
+MAAYA_GATEWAY_RETRY_DELAY=0.25
 ```
 
 Current supported providers:
@@ -187,6 +190,9 @@ Gateway order:
 
 ```env
 MAAYA_LLM_PROVIDERS=groq,gemini
+MAAYA_LLM_TIMEOUT=18
+MAAYA_GATEWAY_RETRIES=1
+MAAYA_GATEWAY_RETRY_DELAY=0.25
 ```
 
 Local development only:
@@ -291,6 +297,9 @@ GEMINI_API_KEY=your_real_gemini_key
 GEMINI_MODEL=gemini-2.0-flash
 GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash
 MAAYA_LLM_PROVIDERS=groq,gemini
+MAAYA_LLM_TIMEOUT=18
+MAAYA_GATEWAY_RETRIES=1
+MAAYA_GATEWAY_RETRY_DELAY=0.25
 LANGSMITH_TRACING=false
 LANGSMITH_API_KEY=your_langsmith_api_key
 LANGSMITH_PROJECT=maaya-portfolio-assistant

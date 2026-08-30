@@ -54,7 +54,9 @@ MAAYA_LLM_PROVIDERS = [
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_PATH = os.path.normpath(os.path.join(BASE_DIR, "..", "CV.pdf"))
 MAX_RESUME_CONTEXT_CHARS = 3200
-GROQ_MAX_RETRIES = 2
+MAAYA_LLM_TIMEOUT = int(os.getenv("MAAYA_LLM_TIMEOUT", "18"))
+MAAYA_GATEWAY_RETRIES = int(os.getenv("MAAYA_GATEWAY_RETRIES", os.getenv("GROQ_MAX_RETRIES", "1")))
+MAAYA_GATEWAY_RETRY_DELAY = float(os.getenv("MAAYA_GATEWAY_RETRY_DELAY", "0.25"))
 LLAMA_GUARD_ENABLED = os.getenv("LLAMA_GUARD_ENABLED", "1") == "1"
 LLAMA_GUARD_MODEL = os.getenv("LLAMA_GUARD_MODEL", "openai/gpt-oss-safeguard-20b")
 LLAMA_GUARD_TIMEOUT = int(os.getenv("LLAMA_GUARD_TIMEOUT", "12"))
@@ -696,7 +698,7 @@ def call_groq_model(model, messages, temperature=0.35):
             "Content-Type": "application/json",
         },
         json=body,
-        timeout=35,
+        timeout=MAAYA_LLM_TIMEOUT,
     )
 
     if not response.ok:
@@ -718,7 +720,7 @@ def call_groq(messages, temperature=0.35, models=None):
                 raise
         except (requests.RequestException, ValueError, KeyError) as error:
             last_error = error
-            raise
+            continue
 
     if last_error:
         raise last_error
@@ -762,7 +764,7 @@ def call_gemini_model(model, messages, temperature=0.35):
                 "maxOutputTokens": 900,
             },
         },
-        timeout=35,
+        timeout=MAAYA_LLM_TIMEOUT,
     )
 
     if not response.ok:
@@ -788,11 +790,11 @@ def call_gemini(messages, temperature=0.35, models=None):
         except requests.HTTPError as error:
             last_error = error
             status_code = getattr(error.response, "status_code", None)
-            if status_code != 404:
+            if status_code not in TRANSIENT_STATUS_CODES and status_code != 404:
                 raise
         except (requests.RequestException, ValueError, KeyError) as error:
             last_error = error
-            raise
+            continue
 
     if last_error:
         raise last_error
@@ -819,7 +821,7 @@ def call_llm_gateway(messages, temperature=0.35):
 
     attempts = []
     for provider in providers:
-        for attempt in range(GROQ_MAX_RETRIES + 1):
+        for attempt in range(MAAYA_GATEWAY_RETRIES + 1):
             try:
                 answer, used_model = call_provider(provider, messages, temperature)
                 attempts.append({
@@ -847,8 +849,8 @@ def call_llm_gateway(messages, temperature=0.35):
                 })
                 if status_code not in TRANSIENT_STATUS_CODES:
                     break
-                if attempt < GROQ_MAX_RETRIES:
-                    time.sleep(1.1 * (attempt + 1))
+                if attempt < MAAYA_GATEWAY_RETRIES and MAAYA_GATEWAY_RETRY_DELAY > 0:
+                    time.sleep(MAAYA_GATEWAY_RETRY_DELAY * (attempt + 1))
             except (requests.RequestException, ValueError, KeyError) as error:
                 attempts.append({
                     "provider": provider["name"],
@@ -857,8 +859,8 @@ def call_llm_gateway(messages, temperature=0.35):
                     "status": "error",
                     "details": str(error)[:300],
                 })
-                if attempt < GROQ_MAX_RETRIES:
-                    time.sleep(1.1 * (attempt + 1))
+                if attempt < MAAYA_GATEWAY_RETRIES and MAAYA_GATEWAY_RETRY_DELAY > 0:
+                    time.sleep(MAAYA_GATEWAY_RETRY_DELAY * (attempt + 1))
 
     return {
         "ok": False,
@@ -873,6 +875,11 @@ def health():
         "status": "ok",
         "service": "maaya_gateway",
         "providers": configured_providers(),
+        "gateway": {
+            "llm_timeout_seconds": MAAYA_LLM_TIMEOUT,
+            "retries": MAAYA_GATEWAY_RETRIES,
+            "retry_delay_seconds": MAAYA_GATEWAY_RETRY_DELAY,
+        },
         "guardrails": {
             "deterministic": True,
             "llama_guard_enabled": LLAMA_GUARD_ENABLED and bool(GROQ_API_KEY),
