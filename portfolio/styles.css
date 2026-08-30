@@ -3366,7 +3366,8 @@ h1 span {
   flex: 1 1 auto;
   min-height: 0;
   max-height: min(336px, 42dvh);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3381,10 +3382,13 @@ h1 span {
   border-radius: 20px;
   line-height: 1.6;
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .maaya-message p {
   margin: 0;
+  max-width: 100%;
 }
 
 .maaya-message ul,
@@ -3402,10 +3406,35 @@ h1 span {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   font-size: 0.86em;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .maaya-message a {
   color: var(--teal);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.maaya-link-list {
+  display: grid;
+  gap: 0.65rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.maaya-link-list li {
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.62rem 0.7rem;
+  border: 1px solid rgba(81, 246, 210, 0.14);
+  border-radius: 14px;
+  background: rgba(8, 17, 31, 0.58);
+}
+
+.maaya-link-list span {
+  color: var(--muted);
+  font-size: 0.9em;
 }
 
 .maaya-message.user {

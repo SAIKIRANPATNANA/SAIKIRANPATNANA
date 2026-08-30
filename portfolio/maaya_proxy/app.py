@@ -18,6 +18,12 @@ except ImportError:  # Keeps local dev usable before dependencies are installed.
     PyMongoError = Exception
 
 
+try:
+    from langsmith import traceable
+except ImportError:  # Observability is optional for local/dev installs.
+    traceable = None
+
+
 load_dotenv()
 
 
@@ -57,6 +63,8 @@ MAX_HISTORY_MESSAGES = 6
 MONGODB_URI = os.getenv("MONGODB_URI")
 MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "portfolio")
 MONGODB_FEEDBACK_COLLECTION = os.getenv("MONGODB_FEEDBACK_COLLECTION", "viewer_feedback")
+LANGSMITH_TRACING_ENABLED = os.getenv("LANGSMITH_TRACING", os.getenv("LANGSMITH_TRACING_V2", "false")).lower() == "true"
+LANGSMITH_PROJECT_NAME = os.getenv("LANGSMITH_PROJECT", "maaya-portfolio-assistant")
 _mongo_client = None
 
 
@@ -119,7 +127,7 @@ Behavior:
 - When answering about skills, respond with only the most relevant skills first, not a long essay.
 - When answering about a project, explain what it does, how it works at a high level, and the main tools used.
 - If asked for more detail, expand into pipeline, data flow, components, and implementation choices.
-- Prefer clean markdown with short bullets when helpful.
+- Prefer clean markdown with short bullets when helpful. Do not use markdown tables in chat answers; use bullets with named links instead.
 - If asked for a project link, repo, profile, portfolio, resume, LeetCode, or learning repository, provide the direct link whenever it is available in the supplied profile context.
 - When multiple relevant links exist, give the best direct link first, then optionally mention the repository hub.
 - If asked about contact or links, provide the relevant GitHub, LinkedIn, LeetCode, or resume guidance.
@@ -193,6 +201,51 @@ UNSAFE_PATTERNS = [
 ]
 
 SENSITIVE_OUTPUT_PATTERNS = [re.compile(pattern, re.IGNORECASE) for pattern in SECRET_PATTERNS]
+
+
+def summarize_for_trace(value):
+    if isinstance(value, str):
+        return {"type": "text", "chars": len(value), "words": len(value.split())}
+    if isinstance(value, list):
+        return {"type": "list", "items": len(value)}
+    if isinstance(value, dict):
+        return {"type": "dict", "keys": sorted(value.keys())[:12]}
+    return {"type": type(value).__name__}
+
+
+def redacted_trace_inputs(inputs):
+    return {key: summarize_for_trace(value) for key, value in (inputs or {}).items()}
+
+
+def redacted_trace_outputs(outputs):
+    if isinstance(outputs, dict):
+        return {
+            "type": "dict",
+            "ok": outputs.get("ok"),
+            "provider": outputs.get("provider"),
+            "model": outputs.get("model"),
+            "rail": outputs.get("rail"),
+            "action": outputs.get("action"),
+            "attempts": len(outputs.get("attempts", [])) if isinstance(outputs.get("attempts"), list) else None,
+            "answer": summarize_for_trace(outputs.get("answer", "")) if "answer" in outputs else None,
+        }
+    return summarize_for_trace(outputs)
+
+
+def safe_trace(name, run_type="chain"):
+    if traceable is None:
+        def decorator(func):
+            return func
+
+        return decorator
+
+    return traceable(
+        name=name,
+        run_type=run_type,
+        project_name=LANGSMITH_PROJECT_NAME,
+        process_inputs=redacted_trace_inputs,
+        process_outputs=redacted_trace_outputs,
+    )
 
 
 def get_feedback_collection():
@@ -310,6 +363,7 @@ def _parse_guard_classifier(content):
         return {"violation": 0, "category": None, "rationale": cleaned[:240]}
 
 
+@safe_trace("maaya_safeguard_classifier", run_type="llm")
 def check_llama_guard(text, policy):
     if not LLAMA_GUARD_ENABLED or not GROQ_API_KEY or not LLAMA_GUARD_MODEL:
         return {"ok": True, "enabled": False, "violation": 0, "category": None, "rationale": "disabled"}
@@ -348,6 +402,7 @@ def is_portfolio_scoped(value):
     return bool(words & PORTFOLIO_TERMS) or bool(words & GREETING_TERMS) or matches_any(SOCIAL_PATTERNS, value)
 
 
+@safe_trace("maaya_input_guardrails", run_type="chain")
 def run_input_guardrails(question):
     normalized = normalize_guardrail_text(question)
 
@@ -410,6 +465,7 @@ def sanitize_output(answer):
     return cleaned.strip()
 
 
+@safe_trace("maaya_output_guardrails", run_type="chain")
 def run_output_guardrails(answer):
     cleaned = sanitize_output(answer)
     llama_guard = check_llama_guard(cleaned, LLAMA_GUARD_OUTPUT_POLICY)
@@ -533,6 +589,7 @@ def load_structured_knowledge():
         return {}
 
 
+@safe_trace("maaya_context_assembly", run_type="retriever")
 def format_structured_knowledge(knowledge, query=""):
     if not knowledge:
         return ""
@@ -625,6 +682,7 @@ def configured_providers():
     return providers
 
 
+@safe_trace("maaya_groq_call", run_type="llm")
 def call_groq_model(model, messages, temperature=0.35):
     body = {
         "model": model,
@@ -684,6 +742,7 @@ def messages_to_gemini_prompt(messages):
     return "\n\n---\n\n".join(sections)
 
 
+@safe_trace("maaya_gemini_call", run_type="llm")
 def call_gemini_model(model, messages, temperature=0.35):
     prompt = messages_to_gemini_prompt(messages)
     url = GEMINI_URL_TEMPLATE.format(model=model)
@@ -748,6 +807,7 @@ def call_provider(provider, messages, temperature):
     raise ValueError(f"Unknown provider: {provider['name']}")
 
 
+@safe_trace("maaya_llm_gateway", run_type="chain")
 def call_llm_gateway(messages, temperature=0.35):
     providers = configured_providers()
     if not providers:
@@ -819,6 +879,11 @@ def health():
             "llama_guard_model": LLAMA_GUARD_MODEL if LLAMA_GUARD_ENABLED else None,
         },
         "feedback_storage": "mongodb" if MONGODB_URI else "not_configured",
+        "observability": {
+            "langsmith_tracing": LANGSMITH_TRACING_ENABLED,
+            "langsmith_project": LANGSMITH_PROJECT_NAME if LANGSMITH_TRACING_ENABLED else None,
+            "content_redacted": True,
+        },
     })
 
 

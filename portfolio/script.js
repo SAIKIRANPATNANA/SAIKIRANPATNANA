@@ -495,18 +495,48 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function compactUrlLabel(url) {
+  return url
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .replace(/\/$/, "");
+}
+
 function renderInlineMarkdown(text) {
   return text
     .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
     .replace(/\[([^\]]+)\]\((\.\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
+    .replace(/&lt;(https?:\/\/[^&\s]+)&gt;/g, (match, url) => `<a href="${url}" target="_blank" rel="noreferrer">${compactUrlLabel(url)}</a>`)
     .replace(/(^|[\s(>])((https?:\/\/)[^\s<]+)/g, (match, prefix, url) => {
       const trimmedUrl = url.replace(/[.,!?;:]+$/, "");
       const trailing = url.slice(trimmedUrl.length);
-      return `${prefix}<a href="${trimmedUrl}" target="_blank" rel="noreferrer">${trimmedUrl}</a>${trailing}`;
+      return `${prefix}<a href="${trimmedUrl}" target="_blank" rel="noreferrer">${compactUrlLabel(trimmedUrl)}</a>${trailing}`;
     })
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function isMarkdownTable(lines) {
+  return lines.length >= 2 && lines.every((line) => line.includes("|")) && lines.some((line) => /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line));
+}
+
+function renderMarkdownTableAsCards(lines) {
+  const rows = lines
+    .filter((line) => !/^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line))
+    .map((line) => line.replace(/^\||\|$/g, "").split("|").map((cell) => cell.trim()))
+    .filter((cells) => cells.length > 1);
+
+  const bodyRows = rows.length > 1 ? rows.slice(1) : rows;
+  const items = bodyRows
+    .map((cells) => {
+      const title = renderInlineMarkdown(cells[0] || "Project");
+      const detail = renderInlineMarkdown(cells.slice(1).filter(Boolean).join(" - "));
+      return `<li><strong>${title}</strong>${detail ? `<span>${detail}</span>` : ""}</li>`;
+    })
+    .join("");
+
+  return items ? `<ul class="maaya-link-list">${items}</ul>` : "";
 }
 
 function markdownToHtml(markdown) {
@@ -521,6 +551,10 @@ function markdownToHtml(markdown) {
       const lines = trimmed.split("\n").map((line) => line.trim()).filter(Boolean);
       const bulletLines = lines.filter((line) => /^[-*]\s+/.test(line));
       const numberedLines = lines.filter((line) => /^\d+\.\s+/.test(line));
+
+      if (isMarkdownTable(lines)) {
+        return renderMarkdownTableAsCards(lines);
+      }
 
       if (bulletLines.length === lines.length) {
         const items = lines
@@ -542,6 +576,7 @@ function markdownToHtml(markdown) {
     })
     .join("");
 }
+
 
 function createMaayaMessage(role, content, useMarkdown = false) {
   if (!maayaChat) return;

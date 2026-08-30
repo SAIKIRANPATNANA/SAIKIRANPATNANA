@@ -28,3 +28,9 @@ services:
         value: portfolio
       - key: MONGODB_FEEDBACK_COLLECTION
         value: viewer_feedback
+      - key: LANGSMITH_TRACING
+        value: "false"
+      - key: LANGSMITH_PROJECT
+        value: maaya-portfolio-assistant
+      - key: LANGSMITH_API_KEY
+        sync: false

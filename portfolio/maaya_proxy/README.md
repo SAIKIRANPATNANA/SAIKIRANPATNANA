@@ -127,7 +127,30 @@ The frontend stores recent chat history in `sessionStorage` and sends recent tur
 
 This is session memory, not permanent user tracking.
 
-### 7. Local Knowledge Fallback
+
+### 7. LangSmith Observability
+
+Maaya supports optional LangSmith tracing for production observability. To avoid leaking visitor questions, resume context, prompts, or answers by default, the trace processors redact content and store only metadata such as text length, provider/model, guardrail rail, status, and attempt counts.
+
+Tracked areas:
+
+- input guardrails and safeguard classification
+- context assembly from profile, links, resume, and structured project knowledge
+- LLM gateway routing and provider attempts
+- Groq/Gemini provider calls
+- output guardrails before the response reaches the UI
+
+Enable it only after adding your LangSmith key:
+
+```env
+LANGSMITH_TRACING=true
+LANGSMITH_API_KEY=your_langsmith_api_key
+LANGSMITH_PROJECT=maaya-portfolio-assistant
+```
+
+If LangSmith is disabled or unavailable, Maaya keeps working normally.
+
+### 8. Local Knowledge Fallback
 
 If the deployed backend or all configured LLM providers fail, the frontend uses a built-in local portfolio knowledge base. This keeps the chat from going completely blank, although answers are simpler than live LLM responses.
 
@@ -268,6 +291,9 @@ GEMINI_API_KEY=your_real_gemini_key
 GEMINI_MODEL=gemini-2.0-flash
 GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash
 MAAYA_LLM_PROVIDERS=groq,gemini
+LANGSMITH_TRACING=false
+LANGSMITH_API_KEY=your_langsmith_api_key
+LANGSMITH_PROJECT=maaya-portfolio-assistant
 ```
 
 Do not commit real keys. Do not put keys in frontend JavaScript.
