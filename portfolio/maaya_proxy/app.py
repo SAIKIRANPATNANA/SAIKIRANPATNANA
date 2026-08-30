@@ -58,7 +58,13 @@ MAAYA_LLM_TIMEOUT = int(os.getenv("MAAYA_LLM_TIMEOUT", "18"))
 MAAYA_GATEWAY_RETRIES = int(os.getenv("MAAYA_GATEWAY_RETRIES", os.getenv("GROQ_MAX_RETRIES", "1")))
 MAAYA_GATEWAY_RETRY_DELAY = float(os.getenv("MAAYA_GATEWAY_RETRY_DELAY", "0.25"))
 LLAMA_GUARD_ENABLED = os.getenv("LLAMA_GUARD_ENABLED", "1") == "1"
-LLAMA_GUARD_MODEL = os.getenv("LLAMA_GUARD_MODEL", "openai/gpt-oss-safeguard-20b")
+DEFAULT_LLAMA_GUARD_MODEL = "openai/gpt-oss-safeguard-20"
+DECOMMISSIONED_GUARD_MODELS = {
+    "meta-llama/llama-guard-4-12b",
+    "openai/gpt-oss-safeguard-20b",
+}
+CONFIGURED_LLAMA_GUARD_MODEL = os.getenv("LLAMA_GUARD_MODEL", DEFAULT_LLAMA_GUARD_MODEL).strip()
+LLAMA_GUARD_MODEL = DEFAULT_LLAMA_GUARD_MODEL if CONFIGURED_LLAMA_GUARD_MODEL in DECOMMISSIONED_GUARD_MODELS else CONFIGURED_LLAMA_GUARD_MODEL
 LLAMA_GUARD_TIMEOUT = int(os.getenv("LLAMA_GUARD_TIMEOUT", "12"))
 KNOWLEDGE_PATH = os.path.join(BASE_DIR, "maaya_knowledge.json")
 MAX_HISTORY_MESSAGES = 6
@@ -884,6 +890,7 @@ def health():
             "deterministic": True,
             "llama_guard_enabled": LLAMA_GUARD_ENABLED and bool(GROQ_API_KEY),
             "llama_guard_model": LLAMA_GUARD_MODEL if LLAMA_GUARD_ENABLED else None,
+            "configured_llama_guard_model": CONFIGURED_LLAMA_GUARD_MODEL if LLAMA_GUARD_ENABLED else None,
         },
         "feedback_storage": "mongodb" if MONGODB_URI else "not_configured",
         "observability": {

@@ -174,7 +174,7 @@ GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=openai/gpt-oss-120b
 GROQ_FALLBACK_MODELS=openai/gpt-oss-120b,openai/gpt-oss-20b
 LLAMA_GUARD_ENABLED=1
-LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20b
+LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20
 LLAMA_GUARD_TIMEOUT=12
 ```
 
@@ -291,7 +291,7 @@ GROQ_API_KEY=your_real_groq_key
 GROQ_MODEL=openai/gpt-oss-120b
 GROQ_FALLBACK_MODELS=openai/gpt-oss-120b,openai/gpt-oss-20b
 LLAMA_GUARD_ENABLED=1
-LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20b
+LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20
 LLAMA_GUARD_TIMEOUT=12
 GEMINI_API_KEY=your_real_gemini_key
 GEMINI_MODEL=gemini-2.0-flash

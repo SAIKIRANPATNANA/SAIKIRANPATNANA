@@ -25,7 +25,7 @@ services:
       - key: LLAMA_GUARD_ENABLED
         value: "1"
       - key: LLAMA_GUARD_MODEL
-        value: openai/gpt-oss-safeguard-20b
+        value: openai/gpt-oss-safeguard-20
       - key: LLAMA_GUARD_TIMEOUT
         value: "12"
       - key: MONGODB_URI
