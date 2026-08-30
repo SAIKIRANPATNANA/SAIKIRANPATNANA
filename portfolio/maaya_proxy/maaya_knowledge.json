@@ -223,7 +223,7 @@
         "BM25 sparse retrieval",
         "RRF fusion",
         "BGE reranker",
-        "Groq Llama 3.3 70B",
+        "Groq GPT-OSS 120B",
         "FastAPI",
         "Streamlit",
         "uv",
