@@ -428,8 +428,10 @@ const maayaKnowledge = {
     "ai news generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ainews-generation-agenticai",
     "ai guardrails": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails",
     "agentic memory": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/agentic_memory",
-    "advanced rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_rag",
     "advanced prod rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_prod_rag",
+    "loop engineering demo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/loop_engineering_demo",
+    "harness engineering demo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harness_engineering_demo",
+    "google okf rag": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/google_okf",
     "ats using gemini": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ats-using-gemini",
     "blood report parsing iisc": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blood-report-parsing-iisc",
     "blog generation": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/blog-generation-agenticai",
@@ -475,8 +477,10 @@ const maayaKnowledge = {
     sadhana: "Sadhana GenAI Project focuses on PDF chat, MCQ generation, Q&A workflows, and learner-facing educational AI experiences.",
     ats: "ATS Using Gemini is a multimodal resume-analysis project built with Streamlit and Gemini Pro Vision for match analysis and keyword feedback.",
     gateways: "LLM Gateways is a production-minded GenAI project using Portkey concepts for provider routing, retries, timeouts, fallbacks, observability, caching, rate limiting, load balancing, and streaming.",
-    advancedRag: "Advanced RAG is an enterprise agentic RAG system with LangGraph planning, NeMo Guardrails, Portkey gateway fallback, Qdrant vector search, FlashRank reranking, Gemini embeddings, Logfire/LangSmith observability, and RAGAS evaluation.",
     advancedProdRag: "Advanced Prod RAG is a production-ready enterprise RAG system with OpenAI/Anthropic routing via Portkey, Jina embeddings and reranking, Qdrant retrieval, Prometheus metrics, API auth, rate limiting, Neon/Upstash integrations, tests, and AWS deployment scripts.",
+    loopEngineering: "Loop Engineering Demo is a TestSprite-powered closed-loop debugging project that demonstrates build, browser verification, failure artifact inspection, code fix, deploy, and rerun flow around an intentional checkout discount regression.",
+    harnessEngineering: "Harness Engineering Demo is a LangGraph multi-agent support system with deterministic safety guardrails, routing, technical/billing/general specialist agents, and a reviewer agent that improves final answers.",
+    googleOkf: "Google OKF RAG compares Basic RAG, Google Open Knowledge Format graph retrieval, and Hybrid RAG on multi-hop curriculum questions using LangGraph, FAISS, Jina embeddings/reranking, Groq generation, openevals, and LangSmith experiments.",
     agenticMemory: "Agentic Memory is an AI Memory Lab built with Streamlit, Groq, LangChain memory patterns, FAISS, and fastembed to compare short-term memory, long-term memory, vector-store memory, entity memory, episodic/semantic/procedural memory, self-reflection, memory routing, and cost behavior.",
     multimodalRagOcr: "Multimodal RAG via Diff OCR is a document-intelligence suite comparing IBM Docling, Baidu Unlimited-OCR/PaddleOCR, and GLM-OCR + PP-DocLayout-V3 for parsing complex PDFs, then using Qdrant hybrid dense+sparse retrieval, RRF fusion, reranking, Groq generation, FastAPI, and Streamlit BYOK workbenches.",
   },
@@ -747,7 +751,9 @@ If you want, I can also break this down by project or explain how he uses these 
 
 - [Advanced Prod RAG](${maayaKnowledge.projectLinks["advanced prod rag"]})
 - [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]})
-- [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]})
+- [Loop Engineering Demo](${maayaKnowledge.projectLinks["loop engineering demo"]})
+- [Harness Engineering Demo](${maayaKnowledge.projectLinks["harness engineering demo"]})
+- [Google OKF RAG](${maayaKnowledge.projectLinks["google okf rag"]})
 - [Blood Report Parsing IISc](${maayaKnowledge.projectLinks["blood report parsing iisc"]})
 - [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
 - [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
@@ -766,8 +772,10 @@ Resume: [Open CV](${maayaKnowledge.links.resume})`;
 - [ATS Using Gemini](${maayaKnowledge.projectLinks["ats using gemini"]})
 - [Sadhana GenAI Project](${maayaKnowledge.projectLinks["sadhana genai project"]})
 - [AI News Generation](${maayaKnowledge.projectLinks["ai news generation"]})
-- [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]})
 - [Agentic Memory](${maayaKnowledge.projectLinks["agentic memory"]})
+- [Loop Engineering Demo](${maayaKnowledge.projectLinks["loop engineering demo"]})
+- [Harness Engineering Demo](${maayaKnowledge.projectLinks["harness engineering demo"]})
+- [Google OKF RAG](${maayaKnowledge.projectLinks["google okf rag"]})
 - [Multimodal RAG via Diff OCR](${maayaKnowledge.projectLinks["multimodal rag via diff ocr"]})
 - [LLM Gateways](${maayaKnowledge.projectLinks["llm gateways"]})
 - [WhatsApp Chat Analyser](${maayaKnowledge.projectLinks["whatsapp chat analyser"]})
@@ -819,12 +827,20 @@ If you want, I can also list project links by domain like GenAI, ML, CV, or NLP.
     return `${maayaKnowledge.projects.advancedProdRag} Repo: [Advanced Prod RAG](${maayaKnowledge.projectLinks["advanced prod rag"]}).`;
   }
 
-  if (q.includes("advanced rag") || q.includes("enterprise rag") || q.includes("qdrant") || q.includes("flashrank") || q.includes("langgraph")) {
-    return `${maayaKnowledge.projects.advancedRag} Repo: [Advanced RAG](${maayaKnowledge.projectLinks["advanced rag"]}).`;
+  if (q.includes("loop engineering") || q.includes("testsprite") || q.includes("closed loop")) {
+    return `${maayaKnowledge.projects.loopEngineering} Repo: [Loop Engineering Demo](${maayaKnowledge.projectLinks["loop engineering demo"]}).`;
+  }
+
+  if (q.includes("harness engineering") || q.includes("support harness") || q.includes("specialist agent") || q.includes("reviewer agent")) {
+    return `${maayaKnowledge.projects.harnessEngineering} Repo: [Harness Engineering Demo](${maayaKnowledge.projectLinks["harness engineering demo"]}).`;
+  }
+
+  if (q.includes("google okf") || q.includes("okf") || q.includes("open knowledge format") || q.includes("hybrid rag")) {
+    return `${maayaKnowledge.projects.googleOkf} Repo: [Google OKF RAG](${maayaKnowledge.projectLinks["google okf rag"]}).`;
   }
 
   if (q.includes("genai") || q.includes("generative ai") || q.includes("best project") || q.includes("strongest project")) {
-    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Advanced RAG**, **Multimodal RAG via Diff OCR**, **Agentic Memory**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, **Sadhana GenAI Project**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
+    return `His strongest GenAI portfolio signals are **Advanced Prod RAG**, **Google OKF RAG**, **Multimodal RAG via Diff OCR**, **Agentic Memory**, **Loop Engineering Demo**, **Harness Engineering Demo**, **Blood Report Parsing IISc**, **LLM Gateways**, **RAG Evaluation**, **AI Guardrails**, and **ATS Using Gemini**. Full collection: [GenAI Projects](${maayaKnowledge.links.genaiRepo}).`;
   }
 
   if (q.includes("contact") || q.includes("reach") || q.includes("linkedin") || q.includes("github")) {

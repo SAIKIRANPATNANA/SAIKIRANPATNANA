@@ -58,7 +58,7 @@ If Groq fails due to timeout, rate limit, or upstream issues, Maaya tries Gemini
 
 ### 2. Guardrails
 
-Inspired by Sai Kiran's `AI Guardrails` project, Maaya has deterministic rails before and after the model call.
+Inspired by Sai Kiran's `AI Guardrails` project, Maaya now uses a two-layer safety design: deterministic rails first, then an optional Llama Guard style classifier through Groq.
 
 Input rails handle:
 
@@ -74,6 +74,7 @@ Output rails handle:
 - secret-like text redaction
 - refusal to expose hidden instructions
 - cleaner, safer responses
+- optional Llama Guard review of draft answers before they are shown
 
 The frontend also receives guardrail metadata and can show `Guardrails Active` when a rail triggers.
 
@@ -145,6 +146,9 @@ Required for Groq:
 ```env
 GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=llama-3.1-8b-instant
+LLAMA_GUARD_ENABLED=1
+LLAMA_GUARD_MODEL=meta-llama/llama-guard-4-12b
+LLAMA_GUARD_TIMEOUT=12
 ```
 
 Optional Gemini fallback:
@@ -255,6 +259,9 @@ Render environment variables:
 ```env
 GROQ_API_KEY=your_real_groq_key
 GROQ_MODEL=llama-3.1-8b-instant
+LLAMA_GUARD_ENABLED=1
+LLAMA_GUARD_MODEL=meta-llama/llama-guard-4-12b
+LLAMA_GUARD_TIMEOUT=12
 GEMINI_API_KEY=your_real_gemini_key
 GEMINI_MODEL=gemini-2.0-flash
 GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash

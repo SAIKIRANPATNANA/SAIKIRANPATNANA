@@ -133,103 +133,6 @@
   },
   "projects": [
     {
-      "slug": "ai-guardrails",
-      "name": "AI Guardrails",
-      "domain": "Generative AI / LLM Safety",
-      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails",
-      "what_it_does": "Explores NeMo Guardrails as a safety and control layer around LLMs using input rails, dialog rails, output rails, Colang flows, and policy-driven behavior.",
-      "why_it_matters": "It shows Sai Kiran's awareness of responsible GenAI deployment, where building the assistant is not enough; controlling what it sees, says, and does matters.",
-      "stack": [
-        "NeMo Guardrails",
-        "Colang",
-        "FastEmbed",
-        "LLM safety",
-        "Python"
-      ],
-      "architecture": [
-        "User message enters systematic input rails",
-        "Intent classification checks whether a guardrail flow should run",
-        "Defined Colang flows block, redirect, or control the conversation",
-        "LLM response passes through systematic output rails before reaching the user"
-      ],
-      "implementation_notes": [
-        "Focuses on safer and more controllable LLM application behavior",
-        "Covers topical control, jailbreak resistance, sensitive data handling, and response policy design",
-        "Useful portfolio signal for production-minded GenAI work"
-      ]
-    },
-    {
-      "slug": "agentic-memory",
-      "name": "Agentic Memory",
-      "domain": "Generative AI / LLM Memory Systems",
-      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/agentic_memory",
-      "what_it_does": "AI Memory Lab is a hands-on Streamlit app for demonstrating short-term and long-term LLM memory techniques with live Groq calls, LangChain memory patterns, FAISS vector memory, fastembed embeddings, cost tracking, comparison runs, and Mermaid architecture diagrams.",
-      "why_it_matters": "It shows Sai Kiran understands one of the most important gaps in practical agents: how memory changes context, cost, recall, routing, and behavior across single and multi-session conversations.",
-      "stack": [
-        "Streamlit",
-        "Groq",
-        "LangChain",
-        "LangChain classic memory APIs",
-        "FAISS",
-        "fastembed",
-        "Mermaid diagrams",
-        "Python"
-      ],
-      "architecture": [
-        "Short-term pages replay the same scripted conversation through no memory, buffer, sliding window, summary, summary buffer, token buffer, vector store, and entity memory strategies",
-        "Comparison page runs all short-term techniques and reports memory/cost behavior side by side",
-        "Long-term pages run a two-session experiment where Session 1 is compressed into artifacts and Session 2 receives only extracted memory",
-        "Episodic, semantic, procedural, self-reflection, and routing modules expose extraction and injection logic through a shared interface",
-        "Cost tracker counts visible and hidden LLM calls so memory trade-offs are measurable rather than theoretical"
-      ],
-      "implementation_notes": [
-        "Uses Groq BYOK for fast live LLM demos",
-        "Uses fastembed and FAISS for local vector-store memory without paid embedding APIs",
-        "Includes SHORT_TERM_MEMORY.md and LONG_TERM_MEMORY.md architecture diagrams for teaching and presentation",
-        "Useful signal for agentic AI, LLM memory design, context engineering, and evaluation-aware demos"
-      ]
-    },
-    {
-      "slug": "multimodal-rag-via-diff-ocr",
-      "name": "Multimodal RAG via Diff OCR",
-      "domain": "Generative AI / Multimodal RAG / Document Intelligence",
-      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/multimodal_rag_via_diff_ocr",
-      "what_it_does": "Compares multiple OCR and document parsing strategies for complex PDFs and images, including IBM Docling, Baidu Unlimited-OCR/PaddleOCR, and GLM-OCR with PP-DocLayout-V3, then indexes parsed multimodal chunks into a hybrid RAG pipeline.",
-      "why_it_matters": "It demonstrates Sai Kiran moving beyond text-only RAG into document intelligence: tables, formulas, figures, diagrams, bounding boxes, dense+sparse retrieval, RRF fusion, reranking, and production APIs.",
-      "stack": [
-        "Docling",
-        "PaddleOCR",
-        "Unlimited-OCR",
-        "GLM-OCR",
-        "PP-DocLayout-V3",
-        "PyMuPDF",
-        "Qdrant",
-        "Dense embeddings",
-        "BM25 sparse retrieval",
-        "RRF fusion",
-        "BGE reranker",
-        "Groq Llama 3.3 70B",
-        "FastAPI",
-        "Streamlit",
-        "uv",
-        "Python"
-      ],
-      "architecture": [
-        "Root suite compares three OCR/document parsing paradigms across Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR + layout detection",
-        "Parsing extracts layout-aware text, tables, formulas, images, figures, and bounding boxes from complex documents",
-        "Chunking preserves multimodal elements such as tables, formulas, and figures as meaningful retrieval units",
-        "Qdrant stores dense semantic vectors plus sparse BM25-style vectors for hybrid retrieval",
-        "Reciprocal Rank Fusion combines dense and sparse retrieval candidates before cross-encoder reranking",
-        "FastAPI and Streamlit BYOK workbenches expose search, generation, filtering, benchmark queries, and document intelligence demos"
-      ],
-      "implementation_notes": [
-        "Includes Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR variants for comparing parsing trade-offs",
-        "Uses Groq generation and Qdrant retrieval with local/cloud-friendly configuration patterns",
-        "Strong portfolio signal for multimodal RAG, OCR strategy comparison, document parsing, and retrieval engineering",
-        "Includes architecture/workflow documentation for system overview, ingestion, retrieval, reranking, APIs, and cloud-vs-local modes"
-      ]
-    },
-    {
       "slug": "advanced-prod-rag",
       "name": "Advanced Prod RAG",
       "domain": "Generative AI / Production Enterprise RAG",
@@ -273,41 +176,183 @@
       ]
     },
     {
-      "slug": "advanced-rag",
-      "name": "Advanced RAG",
-      "domain": "Generative AI / Enterprise Agentic RAG",
-      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/advanced_rag",
-      "what_it_does": "Builds a production-grade enterprise RAG system that separates technical true data from noisy data using LangGraph agent planning, guarded retrieval, semantic reranking, LLM gateway routing, observability, and RAGAS evaluation.",
-      "why_it_matters": "It is one of Sai Kiran's strongest production-minded GenAI projects because it combines RAG, agents, guardrails, gateways, reranking, tracing, and evaluation instead of stopping at a simple vector-search demo.",
+      "slug": "google-okf-rag",
+      "name": "Google OKF RAG",
+      "domain": "Generative AI / RAG / Knowledge Representation",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/google_okf",
+      "what_it_does": "Compares Basic RAG, Google Open Knowledge Format graph retrieval, and Hybrid RAG on a curriculum knowledge base with measured LLM-as-judge results.",
+      "why_it_matters": "Demonstrates that graph-organized knowledge can outperform plain vector retrieval on multi-hop questions where facts are scattered across documents.",
       "stack": [
+        "Google OKF",
         "LangGraph",
-        "LangChain",
-        "FastAPI",
-        "Streamlit",
-        "NeMo Guardrails",
-        "Portkey LLM Gateway",
+        "FAISS",
+        "Jina Embeddings",
+        "Jina Reranker",
         "Groq",
-        "Qdrant Cloud",
-        "FlashRank",
-        "Gemini embeddings",
-        "Pydantic Logfire",
-        "LangSmith",
-        "RAGAS"
+        "openevals",
+        "LangSmith"
       ],
       "architecture": [
-        "Documents are parsed locally from PDF, HTML, TXT, DOCX, and PPTX files",
-        "Gemini embeddings index chunks into Qdrant Cloud for vector search",
-        "FastAPI query endpoint runs a NeMo Guardrails safety gate before retrieval",
-        "LangGraph planner classifies whether a request is conversational or technical",
-        "Retriever node performs Qdrant vector search and FlashRank local reranking",
-        "Responder node generates the final answer through Portkey gateway routing with Groq fallback",
-        "MemorySaver supports conversation history while Logfire and LangSmith trace each node",
-        "RAGAS evaluation suite scores faithfulness, relevancy, precision, recall, correctness, and guardrail behavior"
+        "Raw markdown documents feed Basic RAG through FAISS and reranking.",
+        "Curated OKF concept graph supports graph traversal retrieval.",
+        "Hybrid RAG fuses vector and OKF evidence.",
+        "Evaluation compares helpfulness and correctness across fixed questions."
       ],
       "implementation_notes": [
-        "Uses true-data versus noisy-data design to test retrieval robustness",
-        "Includes separate docs for ingestion, node intelligence, observability, FlashRank reranking, guardrails, LLM gateway, and eval pipeline",
-        "Shows production RAG thinking across reliability, safety, observability, and measurable answer quality"
+        "Designed as a teaching/demo system, not just a chatbot.",
+        "Shows retrieved evidence before each answer for transparency.",
+        "Uses independent LLM judging and LangSmith experiments for comparison."
+      ]
+    },
+    {
+      "slug": "multimodal-rag-via-diff-ocr",
+      "name": "Multimodal RAG via Diff OCR",
+      "domain": "Generative AI / Multimodal RAG / Document Intelligence",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/multimodal_rag_via_diff_ocr",
+      "what_it_does": "Compares multiple OCR and document parsing strategies for complex PDFs and images, including IBM Docling, Baidu Unlimited-OCR/PaddleOCR, and GLM-OCR with PP-DocLayout-V3, then indexes parsed multimodal chunks into a hybrid RAG pipeline.",
+      "why_it_matters": "It demonstrates Sai Kiran moving beyond text-only RAG into document intelligence: tables, formulas, figures, diagrams, bounding boxes, dense+sparse retrieval, RRF fusion, reranking, and production APIs.",
+      "stack": [
+        "Docling",
+        "PaddleOCR",
+        "Unlimited-OCR",
+        "GLM-OCR",
+        "PP-DocLayout-V3",
+        "PyMuPDF",
+        "Qdrant",
+        "Dense embeddings",
+        "BM25 sparse retrieval",
+        "RRF fusion",
+        "BGE reranker",
+        "Groq Llama 3.3 70B",
+        "FastAPI",
+        "Streamlit",
+        "uv",
+        "Python"
+      ],
+      "architecture": [
+        "Root suite compares three OCR/document parsing paradigms across Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR + layout detection",
+        "Parsing extracts layout-aware text, tables, formulas, images, figures, and bounding boxes from complex documents",
+        "Chunking preserves multimodal elements such as tables, formulas, and figures as meaningful retrieval units",
+        "Qdrant stores dense semantic vectors plus sparse BM25-style vectors for hybrid retrieval",
+        "Reciprocal Rank Fusion combines dense and sparse retrieval candidates before cross-encoder reranking",
+        "FastAPI and Streamlit BYOK workbenches expose search, generation, filtering, benchmark queries, and document intelligence demos"
+      ],
+      "implementation_notes": [
+        "Includes Docling, Unlimited-OCR/PaddleOCR, and GLM-OCR variants for comparing parsing trade-offs",
+        "Uses Groq generation and Qdrant retrieval with local/cloud-friendly configuration patterns",
+        "Strong portfolio signal for multimodal RAG, OCR strategy comparison, document parsing, and retrieval engineering",
+        "Includes architecture/workflow documentation for system overview, ingestion, retrieval, reranking, APIs, and cloud-vs-local modes"
+      ]
+    },
+    {
+      "slug": "agentic-memory",
+      "name": "Agentic Memory",
+      "domain": "Generative AI / LLM Memory Systems",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/agentic_memory",
+      "what_it_does": "AI Memory Lab is a hands-on Streamlit app for demonstrating short-term and long-term LLM memory techniques with live Groq calls, LangChain memory patterns, FAISS vector memory, fastembed embeddings, cost tracking, comparison runs, and Mermaid architecture diagrams.",
+      "why_it_matters": "It shows Sai Kiran understands one of the most important gaps in practical agents: how memory changes context, cost, recall, routing, and behavior across single and multi-session conversations.",
+      "stack": [
+        "Streamlit",
+        "Groq",
+        "LangChain",
+        "LangChain classic memory APIs",
+        "FAISS",
+        "fastembed",
+        "Mermaid diagrams",
+        "Python"
+      ],
+      "architecture": [
+        "Short-term pages replay the same scripted conversation through no memory, buffer, sliding window, summary, summary buffer, token buffer, vector store, and entity memory strategies",
+        "Comparison page runs all short-term techniques and reports memory/cost behavior side by side",
+        "Long-term pages run a two-session experiment where Session 1 is compressed into artifacts and Session 2 receives only extracted memory",
+        "Episodic, semantic, procedural, self-reflection, and routing modules expose extraction and injection logic through a shared interface",
+        "Cost tracker counts visible and hidden LLM calls so memory trade-offs are measurable rather than theoretical"
+      ],
+      "implementation_notes": [
+        "Uses Groq BYOK for fast live LLM demos",
+        "Uses fastembed and FAISS for local vector-store memory without paid embedding APIs",
+        "Includes SHORT_TERM_MEMORY.md and LONG_TERM_MEMORY.md architecture diagrams for teaching and presentation",
+        "Useful signal for agentic AI, LLM memory design, context engineering, and evaluation-aware demos"
+      ]
+    },
+    {
+      "slug": "loop-engineering-demo",
+      "name": "Loop Engineering Demo",
+      "domain": "Generative AI / Agentic Software Engineering / Test Automation",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/loop_engineering_demo",
+      "what_it_does": "Demonstrates a closed-loop coding-agent workflow around a checkout discount regression using TestSprite evidence and a small JavaScript app.",
+      "why_it_matters": "Shows how modern AI-assisted engineering can move from failing user behavior to verified fixes through test feedback, failure artifacts, deployment, and reruns.",
+      "stack": [
+        "JavaScript",
+        "TestSprite",
+        "Vercel",
+        "HTML",
+        "CSS",
+        "Agentic Debugging"
+      ],
+      "architecture": [
+        "Frontend checkout app contains an intentional SAVE20 discount regression.",
+        "TestSprite plan validates expected checkout behavior against the live app.",
+        "Failure bundle provides snapshots, evidence JSON, video, and generated repro code.",
+        "The engineering loop fixes the issue, redeploys, and reruns validation."
+      ],
+      "implementation_notes": [
+        "Uses zero-dependency JavaScript for a clear debugging story.",
+        "Documents build, verify, inspect, fix, deploy, and rerun as the core loop.",
+        "Project-level ignore keeps generated TestSprite failure artifacts out of Git."
+      ]
+    },
+    {
+      "slug": "harness-engineering-demo",
+      "name": "Harness Engineering Demo",
+      "domain": "Generative AI / Multi-Agent Systems / Harness Engineering",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/harness_engineering_demo",
+      "what_it_does": "Implements a LangGraph customer-support harness that routes a request to technical, billing, or general agents and reviews the draft before returning it.",
+      "why_it_matters": "Shows how production assistants can be structured as controlled agent graphs instead of a single loose chatbot prompt.",
+      "stack": [
+        "LangGraph",
+        "Groq",
+        "FastAPI",
+        "Python",
+        "Pydantic",
+        "Multi-Agent Routing"
+      ],
+      "architecture": [
+        "Guardrail node blocks credential and payment-card unsafe requests.",
+        "Router node chooses the specialist path with deterministic rules.",
+        "Technical, billing, and general agents create draft answers.",
+        "Reviewer agent checks clarity, relevance, safety, and unsupported promises."
+      ],
+      "implementation_notes": [
+        "Uses typed state to make the graph traceable.",
+        "Separates routing, generation, and review responsibilities.",
+        "Returns trace metadata so the path through the harness is observable."
+      ]
+    },
+    {
+      "slug": "ai-guardrails",
+      "name": "AI Guardrails",
+      "domain": "Generative AI / LLM Safety",
+      "repo": "https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/ai_guardrails",
+      "what_it_does": "Explores NeMo Guardrails as a safety and control layer around LLMs using input rails, dialog rails, output rails, Colang flows, and policy-driven behavior.",
+      "why_it_matters": "It shows Sai Kiran's awareness of responsible GenAI deployment, where building the assistant is not enough; controlling what it sees, says, and does matters.",
+      "stack": [
+        "NeMo Guardrails",
+        "Colang",
+        "FastEmbed",
+        "LLM safety",
+        "Python"
+      ],
+      "architecture": [
+        "User message enters systematic input rails",
+        "Intent classification checks whether a guardrail flow should run",
+        "Defined Colang flows block, redirect, or control the conversation",
+        "LLM response passes through systematic output rails before reaching the user"
+      ],
+      "implementation_notes": [
+        "Focuses on safer and more controllable LLM application behavior",
+        "Covers topical control, jailbreak resistance, sensitive data handling, and response policy design",
+        "Useful portfolio signal for production-minded GenAI work"
       ]
     },
     {
