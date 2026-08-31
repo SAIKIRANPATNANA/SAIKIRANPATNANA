@@ -1020,6 +1020,8 @@ function describeMaayaGuardrail(guardrail) {
     safety: "Safety rail redirected an unsafe request.",
     topic: "Topic rail kept Maaya focused on Sai Kiran's portfolio.",
     length: "Length rail asked for a shorter question.",
+    safeguard_input: "Safeguard classifier blocked an unsafe request.",
+    safeguard_output: "Safeguard classifier caught an unsafe draft answer.",
   };
 
   return labels[guardrail.rail] || "Maaya guardrails handled this safely.";

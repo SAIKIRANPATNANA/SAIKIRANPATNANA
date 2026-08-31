@@ -22,11 +22,11 @@ services:
         value: "1"
       - key: MAAYA_GATEWAY_RETRY_DELAY
         value: "0.25"
-      - key: LLAMA_GUARD_ENABLED
+      - key: SAFEGUARD_ENABLED
         value: "1"
-      - key: LLAMA_GUARD_MODEL
+      - key: SAFEGUARD_MODEL
         value: openai/gpt-oss-safeguard-20
-      - key: LLAMA_GUARD_TIMEOUT
+      - key: SAFEGUARD_TIMEOUT
         value: "12"
       - key: MONGODB_URI
         sync: false

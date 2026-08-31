@@ -61,7 +61,7 @@ If Groq fails due to timeout, rate limit, or upstream issues, Maaya tries Gemini
 
 ### 2. Guardrails
 
-Inspired by Sai Kiran's `AI Guardrails` project, Maaya now uses a two-layer safety design: deterministic rails first, then an optional Llama Guard style/GPT-OSS Safeguard classifier through Groq.
+Inspired by Sai Kiran's `AI Guardrails` project, Maaya now uses a two-layer safety design: deterministic rails first, then an optional GPT-OSS Safeguard classifier through Groq.
 
 Input rails handle:
 
@@ -77,9 +77,11 @@ Output rails handle:
 - secret-like text redaction
 - refusal to expose hidden instructions
 - cleaner, safer responses
-- optional Llama Guard review of draft answers before they are shown
+- optional safeguard classifier review of draft answers before they are shown
 
 The frontend also receives guardrail metadata and can show `Guardrails Active` when a rail triggers.
+
+Backward compatibility: old Render variables named `LLAMA_GUARD_ENABLED`, `LLAMA_GUARD_MODEL`, and `LLAMA_GUARD_TIMEOUT` are still accepted as aliases, but new deployments should use `SAFEGUARD_*`.
 
 ### 3. RAG-Style Context Assembly
 
@@ -173,9 +175,9 @@ Required for Groq:
 GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=openai/gpt-oss-120b
 GROQ_FALLBACK_MODELS=openai/gpt-oss-120b,openai/gpt-oss-20b
-LLAMA_GUARD_ENABLED=1
-LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20
-LLAMA_GUARD_TIMEOUT=12
+SAFEGUARD_ENABLED=1
+SAFEGUARD_MODEL=openai/gpt-oss-safeguard-20
+SAFEGUARD_TIMEOUT=12
 ```
 
 Optional Gemini fallback:
@@ -290,9 +292,9 @@ Render environment variables:
 GROQ_API_KEY=your_real_groq_key
 GROQ_MODEL=openai/gpt-oss-120b
 GROQ_FALLBACK_MODELS=openai/gpt-oss-120b,openai/gpt-oss-20b
-LLAMA_GUARD_ENABLED=1
-LLAMA_GUARD_MODEL=openai/gpt-oss-safeguard-20
-LLAMA_GUARD_TIMEOUT=12
+SAFEGUARD_ENABLED=1
+SAFEGUARD_MODEL=openai/gpt-oss-safeguard-20
+SAFEGUARD_TIMEOUT=12
 GEMINI_API_KEY=your_real_gemini_key
 GEMINI_MODEL=gemini-2.0-flash
 GEMINI_FALLBACK_MODELS=gemini-2.0-flash,gemini-2.5-flash
