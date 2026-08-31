@@ -135,7 +135,7 @@ This is session memory, not permanent user tracking.
 
 ### 7. LangSmith Observability
 
-Maaya supports optional LangSmith tracing for production observability. To avoid leaking visitor questions, resume context, prompts, or answers by default, the trace processors redact content and store only metadata such as text length, provider/model, guardrail rail, status, and attempt counts.
+Maaya supports optional LangSmith tracing for production observability. By default, traces are redacted and store metadata such as text length, provider/model, guardrail rail, status, and attempt counts. For live debugging, set `LANGSMITH_CAPTURE_CONTENT=true` to save the real user inputs, prompts, and model responses in LangSmith.
 
 Tracked areas:
 
@@ -149,6 +149,7 @@ Enable it only after adding your LangSmith key:
 
 ```env
 LANGSMITH_TRACING=true
+LANGSMITH_CAPTURE_CONTENT=true
 LANGSMITH_API_KEY=your_langsmith_api_key
 LANGSMITH_PROJECT=maaya-portfolio-assistant
 ```
@@ -303,6 +304,7 @@ MAAYA_LLM_TIMEOUT=18
 MAAYA_GATEWAY_RETRIES=1
 MAAYA_GATEWAY_RETRY_DELAY=0.25
 LANGSMITH_TRACING=false
+LANGSMITH_CAPTURE_CONTENT=false
 LANGSMITH_API_KEY=your_langsmith_api_key
 LANGSMITH_PROJECT=maaya-portfolio-assistant
 ```

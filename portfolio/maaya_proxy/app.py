@@ -72,6 +72,7 @@ MONGODB_URI = os.getenv("MONGODB_URI")
 MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "portfolio")
 MONGODB_FEEDBACK_COLLECTION = os.getenv("MONGODB_FEEDBACK_COLLECTION", "viewer_feedback")
 LANGSMITH_TRACING_ENABLED = os.getenv("LANGSMITH_TRACING", os.getenv("LANGSMITH_TRACING_V2", "false")).lower() == "true"
+LANGSMITH_CAPTURE_CONTENT = os.getenv("LANGSMITH_CAPTURE_CONTENT", "false").lower() == "true"
 LANGSMITH_PROJECT_NAME = os.getenv("LANGSMITH_PROJECT", "maaya-portfolio-assistant")
 _mongo_client = None
 
@@ -247,13 +248,17 @@ def safe_trace(name, run_type="chain"):
 
         return decorator
 
-    return traceable(
-        name=name,
-        run_type=run_type,
-        project_name=LANGSMITH_PROJECT_NAME,
-        process_inputs=redacted_trace_inputs,
-        process_outputs=redacted_trace_outputs,
-    )
+    trace_options = {
+        "name": name,
+        "run_type": run_type,
+        "project_name": LANGSMITH_PROJECT_NAME,
+    }
+    if not LANGSMITH_CAPTURE_CONTENT:
+        trace_options.update({
+            "process_inputs": redacted_trace_inputs,
+            "process_outputs": redacted_trace_outputs,
+        })
+    return traceable(**trace_options)
 
 
 def get_feedback_collection():
@@ -897,7 +902,8 @@ def health():
         "observability": {
             "langsmith_tracing": LANGSMITH_TRACING_ENABLED,
             "langsmith_project": LANGSMITH_PROJECT_NAME if LANGSMITH_TRACING_ENABLED else None,
-            "content_redacted": True,
+            "capture_content": LANGSMITH_CAPTURE_CONTENT,
+            "content_redacted": not LANGSMITH_CAPTURE_CONTENT,
         },
     })
 
