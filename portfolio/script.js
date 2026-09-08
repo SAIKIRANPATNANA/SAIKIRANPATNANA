@@ -471,8 +471,13 @@ const maayaKnowledge = {
     "telegram bot": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/telegram-bot",
     "tic tac toe": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/tit-tac-toe",
     "virtual voice assistant": "https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/virtual-voice-assistant",
+    "speech noise suppression": "https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/speech-noise-suppression",
+    "voice based gender detection": "https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection",
+    "voice gender classification v2": "https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection",
   },
   projects: {
+    speechNoiseSuppression: "Speech Noise Suppression is a deep learning speech enhancement system in PyTorch using 2D Convolutional U-Nets with skip connections to predict Ideal Ratio Masks on STFT spectrograms, accompanied by an interactive Streamlit audio player.",
+    voiceGender: "Voice Gender Classification v2 is a modern Audio AI pipeline featuring STFT & Mel Spectrograms, 2D CNNs, 360-dim multi-moment statistical feature engineering, GroupKFold speaker leakage prevention, SNR noise robustness stress-testing, and a real-time Streamlit dashboard.",
     blood: "Blood Report Parsing IISc is a healthcare-focused GenAI project built around OCR, structured extraction, abnormality detection, and blood-report insight generation.",
     sadhana: "Sadhana GenAI Project focuses on PDF chat, MCQ generation, Q&A workflows, and learner-facing educational AI experiences.",
     ats: "ATS Using Gemini is a multimodal resume-analysis project built with Streamlit and Gemini Pro Vision for match analysis and keyword feedback.",

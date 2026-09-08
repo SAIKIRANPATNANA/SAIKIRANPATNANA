@@ -210,7 +210,8 @@ These sections now map to my grouped GitHub repositories, making it easier to ex
 - [Gender Age Detector](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/gender-age-detector) - age and gender prediction from images.
 - [Pedestrian Detection](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/pedestrian-detection) - scene understanding and detection work.
 - [Sign Language Recognition](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/sign-language-recognition) - sequence and gesture recognition with DL.
-- [Voice Based Gender Detection](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection) - audio classification and speech-based prediction.
+- [Speech Noise Suppression](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/speech-noise-suppression) - deep learning speech enhancement from scratch in PyTorch using 2D Convolutional U-Nets, STFT/iSTFT, Ideal Ratio Masking (IRM), and an interactive Streamlit audio denoiser.
+- [Voice Based Gender Detection](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection) - modern Audio AI pipeline with STFT/Mel spectrograms, 2D CNNs, 360-dim multi-moment feature engineering, speaker leakage prevention, and live Streamlit cybernetic studio.
 
 ### ⚙️ Machine Learning Projects
 **Repository Hub:** [ML_PROJECTS](https://github.com/SAIKIRANPATNANA/ML_PROJECTS)

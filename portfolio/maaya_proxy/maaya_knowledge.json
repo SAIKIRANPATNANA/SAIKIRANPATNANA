@@ -587,6 +587,68 @@
         "Good mix of data processing and user-facing output",
         "Practical and easy for visitors to understand quickly"
       ]
+    },
+    {
+      "slug": "speech-noise-suppression",
+      "name": "Speech Noise Suppression",
+      "domain": "Deep Learning / Audio DSP / Speech Enhancement",
+      "repo": "https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/speech-noise-suppression",
+      "what_it_does": "Removes complex background acoustic noise from corrupted speech recordings in real time using a custom 2D Convolutional U-Net trained to predict Ideal Ratio Masks (IRM) on STFT spectrograms.",
+      "why_it_matters": "It demonstrates deep learning speech enhancement built from scratch in PyTorch without relying on pre-trained black-box models, integrating DSP fundamentals (STFT, iSTFT, phase preservation), objective audio metrics (SNR, SI-SDR, LSD), and an interactive Streamlit audio player.",
+      "stack": [
+        "PyTorch",
+        "2D U-Net",
+        "STFT / iSTFT",
+        "Ideal Ratio Masking (IRM)",
+        "librosa",
+        "soundfile",
+        "Streamlit",
+        "Python"
+      ],
+      "architecture": [
+        "Time-domain audio is converted to 2D time-frequency representations via Short-Time Fourier Transform (STFT)",
+        "Magnitude spectrogram is extracted while preserving original noisy phase for reconstruction",
+        "PyTorch 2D Convolutional U-Net with skip connections (6.2M parameters) predicts an Ideal Ratio Mask M(f, t) in [0, 1]",
+        "Predicted mask is point-wise multiplied with noisy magnitude to suppress noise and retain clean speech formants",
+        "Inverse STFT (iSTFT) overlap-add synthesizes enhanced, clean speech waveform in real time"
+      ],
+      "implementation_notes": [
+        "Includes automated unit test suite asserting mathematical STFT roundtrip and SNR mixing precision (< 10^-4 error)",
+        "Accompanied by interactive Streamlit web studio allowing real-time noise injection (White, Pink, 60Hz Hum, Babble) and live A/B audio comparison",
+        "Features comprehensive 4-panel spectrogram comparisons and SNR/SI-SDR improvement metric scorecards"
+      ]
+    },
+    {
+      "slug": "voice-based-gender-detection",
+      "name": "Voice Gender Classification v2",
+      "domain": "Deep Learning / Audio AI / Digital Signal Processing",
+      "repo": "https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection",
+      "what_it_does": "Educational and modular Audio AI system teaching Digital Signal Processing (DSP), psychoacoustics, spectral representations, 2D CNN spectrogram classification, speaker leakage prevention, and noise robustness analysis.",
+      "why_it_matters": "It completely modernizes an internship proof-of-concept into a rigorous Computer Science & Audio AI curriculum, demonstrating why treating audio as a 2D image spectrogram with CNNs beats naive 1D tabular temporal averaging.",
+      "stack": [
+        "PyTorch",
+        "2D CNN",
+        "Log-Mel Spectrograms",
+        "STFT / FFT",
+        "MFCCs",
+        "scikit-learn",
+        "GroupKFold",
+        "Streamlit",
+        "Python"
+      ],
+      "architecture": [
+        "Audio loading, RMS normalization, peak scaling, and energy-based Voice Activity Detection (VAD)",
+        "Spectral transformations converting 1D audio into 1D FFT frequency notes and 2D Log-Mel Spectrograms",
+        "Multi-moment feature engineering extracting 360 acoustic statistics (mean, std, min, max, skew, kurtosis, deltas) across MFCCs",
+        "Deep 2D Convolutional Neural Network trained directly on 80-band Mel Spectrograms with Global Average Pooling",
+        "Strict GroupShuffleSplit / GroupKFold cross-validation preventing cross-utterance speaker leakage",
+        "Chaos Noise Lab stress-testing models under injected Gaussian noise from +20 dB down to -5 dB SNR"
+      ],
+      "implementation_notes": [
+        "Includes 12 Colab-ready educational notebooks covering the complete Audio AI journey step-by-step",
+        "Features a cybernetic dark-themed Streamlit dashboard with live browser microphone recording (st.audio_input)",
+        "Prediction Arena compares 2D CNN vs 360-dim Random Forest vs Baseline MLP side by side with real-time acoustic scorecards"
+      ]
     }
   ]
 }

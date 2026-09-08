@@ -1,16 +1,60 @@
 <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="320" height="220" rx="28" fill="#0C1325"/>
   <rect x="20" y="20" width="280" height="180" rx="22" fill="url(#bg)"/>
-  <circle cx="70" cy="58" r="22" fill="#F8C86A" fill-opacity=".12"/>
-  <circle cx="252" cy="54" r="18" fill="#F87171" fill-opacity=".12"/>
-  <path d="M88 120H118L156 88V152L118 120H88Z" fill="#0F172A" stroke="#F8C86A" stroke-width="4" stroke-linejoin="round"/>
-<path d="M188 96C198 104 204 116 204 120C204 124 198 136 188 144" stroke="#F87171" stroke-width="6" stroke-linecap="round"/>
-<path d="M208 82C224 94 234 110 234 120C234 130 224 146 208 158" stroke="#F87171" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="70" cy="56" r="24" fill="#F8C86A" fill-opacity=".14"/>
+  <circle cx="252" cy="54" r="22" fill="#F87171" fill-opacity=".14"/>
 
-  <rect x="42" y="174" width="110" height="22" rx="11" fill="#0F172A" fill-opacity=".82"/>
-  <rect x="160" y="174" width="118" height="22" rx="11" fill="#0F172A" fill-opacity=".82"/>
-  <text x="56" y="189" fill="#F8C86A" font-family="Arial, sans-serif" font-size="12" font-weight="700">Voice</text>
-  <text x="174" y="189" fill="#F87171" font-family="Arial, sans-serif" font-size="12" font-weight="700">Audio DL</text>
+  <!-- Audio Analysis Dashboard Window -->
+  <rect x="44" y="48" width="232" height="110" rx="16" fill="#0F172A" stroke="#253858" stroke-width="2"/>
+
+  <!-- Left: Microphone & VAD Voice Boundary -->
+  <rect x="62" y="66" width="16" height="26" rx="8" fill="#1E293B" stroke="#F8C86A" stroke-width="2"/>
+  <path d="M 56 76 C 56 90, 84 90, 84 76" stroke="#F8C86A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 70 90 V 99" stroke="#F8C86A" stroke-width="2"/>
+  <path d="M 62 99 H 78" stroke="#F8C86A" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="70" cy="59" r="2.5" fill="#63F1D4"/>
+  <text x="70" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="#63F1D4" letter-spacing="0.5">VAD ACT</text>
+
+  <!-- Center: Fundamental Pitch F0 Contours (Female vs Male Pitch) -->
+  <text x="152" y="67" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#F87171">F₀ ~ 210Hz (♀)</text>
+  <path d="M 98 80 C 108 67, 118 93, 128 80 C 138 67, 148 93, 158 80 C 168 67, 178 93, 188 80 C 198 67, 204 88, 208 80" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 98 98 C 114 84, 130 112, 146 98 C 162 84, 178 112, 194 98 C 202 91, 206 103, 208 98" stroke="#63F1D4" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="152" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#63F1D4">F₀ ~ 120Hz (♂)</text>
+
+  <!-- Right: 2D Mel Spectrogram Frequency Bins -->
+  <!-- Col 1 -->
+  <rect x="221" y="66" width="4.5" height="10" rx="2" fill="#F87171" fill-opacity=".9"/>
+  <rect x="221" y="79" width="4.5" height="12" rx="2" fill="#F8C86A" fill-opacity=".85"/>
+  <rect x="221" y="94" width="4.5" height="14" rx="2" fill="#63F1D4" fill-opacity=".9"/>
+
+  <!-- Col 2 -->
+  <rect x="229" y="71" width="4.5" height="8" rx="2" fill="#F87171" fill-opacity=".6"/>
+  <rect x="229" y="82" width="4.5" height="16" rx="2" fill="#F8C86A" fill-opacity=".95"/>
+  <rect x="229" y="101" width="4.5" height="7" rx="2" fill="#63F1D4" fill-opacity=".7"/>
+
+  <!-- Col 3 -->
+  <rect x="237" y="63" width="4.5" height="14" rx="2" fill="#F87171" fill-opacity=".95"/>
+  <rect x="237" y="80" width="4.5" height="9" rx="2" fill="#F8C86A" fill-opacity=".7"/>
+  <rect x="237" y="92" width="4.5" height="16" rx="2" fill="#63F1D4" fill-opacity=".9"/>
+
+  <!-- Col 4 -->
+  <rect x="245" y="68" width="4.5" height="10" rx="2" fill="#F87171" fill-opacity=".75"/>
+  <rect x="245" y="81" width="4.5" height="14" rx="2" fill="#F8C86A" fill-opacity=".9"/>
+  <rect x="245" y="98" width="4.5" height="10" rx="2" fill="#63F1D4" fill-opacity=".8"/>
+
+  <!-- Col 5 -->
+  <rect x="253" y="65" width="4.5" height="12" rx="2" fill="#F87171" fill-opacity=".85"/>
+  <rect x="253" y="80" width="4.5" height="11" rx="2" fill="#F8C86A" fill-opacity=".8"/>
+  <rect x="253" y="94" width="4.5" height="14" rx="2" fill="#63F1D4" fill-opacity=".95"/>
+
+  <text x="240" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="#F8C86A" letter-spacing="0.5">MEL BANDS</text>
+
+  <!-- Bottom Pills -->
+  <rect x="42" y="174" width="112" height="22" rx="11" fill="#0F172A" fill-opacity=".88"/>
+  <rect x="162" y="174" width="116" height="22" rx="11" fill="#0F172A" fill-opacity=".88"/>
+  <text x="98" y="189" text-anchor="middle" fill="#F8C86A" font-family="Arial, sans-serif" font-size="12" font-weight="700">Voice Gender</text>
+  <text x="220" y="189" text-anchor="middle" fill="#F87171" font-family="Arial, sans-serif" font-size="12" font-weight="700">2D CNN Audio</text>
+
   <defs>
     <linearGradient id="bg" x1="28" y1="24" x2="286" y2="196" gradientUnits="userSpaceOnUse">
       <stop stop-color="#111E38"/>
