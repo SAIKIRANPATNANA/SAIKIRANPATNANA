@@ -62,8 +62,10 @@ function createStars() {
   }
 }
 
+let starfieldActive = true;
+
 function renderStars() {
-  if (!ctx || !canvas) return;
+  if (!ctx || !canvas || !starfieldActive) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (const star of stars) {
@@ -81,6 +83,17 @@ function renderStars() {
 
   requestAnimationFrame(renderStars);
 }
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    starfieldActive = false;
+  } else {
+    if (!starfieldActive) {
+      starfieldActive = true;
+      requestAnimationFrame(renderStars);
+    }
+  }
+});
 
 if (canvas && ctx) {
   resizeCanvas();
@@ -182,8 +195,44 @@ async function unlockAudio() {
   audioUnlocked = true;
 }
 
+let isSfxMuted = localStorage.getItem("psk_portfolio_sfx_muted") === "true";
+const soundToggle = document.getElementById("sound-toggle");
+
+function updateSoundToggleUI() {
+  if (!soundToggle) return;
+  const icon = soundToggle.querySelector(".sound-icon");
+  const label = soundToggle.querySelector(".sound-label");
+  if (isSfxMuted) {
+    soundToggle.classList.add("muted");
+    soundToggle.setAttribute("aria-pressed", "false");
+    if (icon) icon.textContent = "🔇";
+    if (label) label.textContent = "SFX OFF";
+  } else {
+    soundToggle.classList.remove("muted");
+    soundToggle.setAttribute("aria-pressed", "true");
+    if (icon) icon.textContent = "🔊";
+    if (label) label.textContent = "SFX ON";
+  }
+}
+
+if (soundToggle) {
+  updateSoundToggleUI();
+  soundToggle.addEventListener("click", async () => {
+    if (!audioUnlocked && isSfxMuted) {
+      await unlockAudio();
+    }
+    isSfxMuted = !isSfxMuted;
+    localStorage.setItem("psk_portfolio_sfx_muted", String(isSfxMuted));
+    updateSoundToggleUI();
+    if (!isSfxMuted) {
+      if (!audioUnlocked) await unlockAudio();
+      playButtonSound();
+    }
+  });
+}
+
 function createTone(frequency, type, duration, volume, delay = 0) {
-  if (!audioUnlocked) {
+  if (!audioUnlocked || isSfxMuted) {
     return;
   }
 
@@ -224,26 +273,187 @@ function playModalCloseSound() {
   createTone(420, "triangle", 0.14, 0.035, 0.04);
 }
 
-const tabButtons = document.querySelectorAll(".tab-button");
+// --------------------------------------------------------------------------
+// Real-time Project Search, Filter Pills & Master Expand/Collapse
+// --------------------------------------------------------------------------
+
 const projectCards = document.querySelectorAll(".project-card");
+const projectSections = document.querySelectorAll(".project-domain-section");
 const projectToggles = document.querySelectorAll(".project-toggle");
+const projectSearchInput = document.getElementById("project-search");
+const searchClearBtn = document.getElementById("search-clear");
+const filterPills = document.querySelectorAll("#domain-filters .filter-pill");
+const expandCollapseAllBtn = document.getElementById("expand-collapse-all");
+const searchStatus = document.getElementById("search-status");
 
-tabButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
+let activeDomainFilter = "all";
+let activeSearchQuery = "";
 
-    tabButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    playTabSound();
+function applyProjectFilters() {
+  let totalMatchCount = 0;
+  let matchingDomainsCount = 0;
+  const isFilteringActive = activeSearchQuery.length > 0 || activeDomainFilter !== "all";
 
-    projectCards.forEach((card) => {
-      const category = card.dataset.category;
-      const show = filter === "all" || category === filter || category === "all";
-      card.classList.toggle("hidden", !show);
+  projectSections.forEach((section) => {
+    const cardsInSection = section.querySelectorAll(".project-card");
+    let sectionMatchCount = 0;
+
+    cardsInSection.forEach((card) => {
+      const domain = (card.dataset.domain || "").toLowerCase();
+      const title = (card.dataset.title || "").toLowerCase();
+      const stack = (card.dataset.stack || "").toLowerCase();
+      const highlights = (card.dataset.highlights || "").toLowerCase();
+      const description = (card.dataset.description || "").toLowerCase();
+
+      // Domain Match
+      let domainMatches = false;
+      if (activeDomainFilter === "all") {
+        domainMatches = true;
+      } else {
+        const filterLower = activeDomainFilter.toLowerCase();
+        domainMatches = domain.includes(filterLower) || filterLower.includes(domain);
+      }
+
+      // Search Query Match
+      let queryMatches = false;
+      if (!activeSearchQuery) {
+        queryMatches = true;
+      } else {
+        queryMatches =
+          title.includes(activeSearchQuery) ||
+          stack.includes(activeSearchQuery) ||
+          highlights.includes(activeSearchQuery) ||
+          description.includes(activeSearchQuery) ||
+          domain.includes(activeSearchQuery);
+      }
+
+      const matches = domainMatches && queryMatches;
+      card.classList.toggle("hidden", !matches);
+
+      if (matches) {
+        sectionMatchCount += 1;
+        totalMatchCount += 1;
+      }
     });
+
+    const toggleBtn = section.querySelector(".project-toggle");
+
+    if (isFilteringActive) {
+      if (sectionMatchCount > 0) {
+        section.classList.remove("search-hidden");
+        section.classList.add("is-open");
+        matchingDomainsCount += 1;
+        if (toggleBtn) {
+          toggleBtn.setAttribute("aria-expanded", "true");
+          toggleBtn.textContent = "Hide Projects";
+        }
+      } else {
+        section.classList.add("search-hidden");
+      }
+    } else {
+      section.classList.remove("search-hidden");
+    }
+  });
+
+  // Master Expand / Collapse Button Sync
+  if (expandCollapseAllBtn) {
+    const visibleSections = Array.from(projectSections).filter(
+      (s) => !s.classList.contains("search-hidden")
+    );
+    const allOpen = visibleSections.length > 0 && visibleSections.every((s) => s.classList.contains("is-open"));
+    expandCollapseAllBtn.setAttribute("aria-expanded", String(allOpen));
+    const icon = expandCollapseAllBtn.querySelector(".toggle-icon");
+    const label = expandCollapseAllBtn.querySelector(".toggle-text");
+    if (icon) icon.textContent = allOpen ? "⊟" : "⊞";
+    if (label) label.textContent = allOpen ? "Collapse All" : "Expand All";
+  }
+
+  // Update Status Text
+  if (searchStatus) {
+    if (activeSearchQuery) {
+      if (totalMatchCount > 0) {
+        searchStatus.innerHTML = `Showing <strong>${totalMatchCount}</strong> project${totalMatchCount === 1 ? "" : "s"} matching "<strong>${escapeHtml(activeSearchQuery)}</strong>" across ${matchingDomainsCount} domain${matchingDomainsCount === 1 ? "" : "s"}`;
+      } else {
+        searchStatus.innerHTML = `No projects found matching "<strong>${escapeHtml(activeSearchQuery)}</strong>". Try searching for PyTorch, RAG, Vision, Audio, or Agents.`;
+      }
+    } else if (activeDomainFilter !== "all") {
+      searchStatus.innerHTML = `Showing all <strong>${totalMatchCount}</strong> projects in <strong>${escapeHtml(activeDomainFilter)}</strong>`;
+    } else {
+      searchStatus.textContent = "Showing all 54 projects across 6 specialized AI domains";
+    }
+  }
+}
+
+// Search input listener
+if (projectSearchInput) {
+  projectSearchInput.addEventListener("input", () => {
+    activeSearchQuery = projectSearchInput.value.trim().toLowerCase();
+    if (searchClearBtn) {
+      searchClearBtn.style.display = activeSearchQuery ? "flex" : "none";
+    }
+    applyProjectFilters();
+  });
+
+  projectSearchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      projectSearchInput.value = "";
+      activeSearchQuery = "";
+      if (searchClearBtn) searchClearBtn.style.display = "none";
+      applyProjectFilters();
+    }
+  });
+}
+
+// Clear search button
+if (searchClearBtn) {
+  searchClearBtn.addEventListener("click", () => {
+    if (projectSearchInput) {
+      projectSearchInput.value = "";
+      projectSearchInput.focus();
+    }
+    activeSearchQuery = "";
+    searchClearBtn.style.display = "none";
+    applyProjectFilters();
+    playButtonSound();
+  });
+}
+
+// Domain filter pills
+filterPills.forEach((pill) => {
+  pill.addEventListener("click", () => {
+    filterPills.forEach((p) => p.classList.remove("active"));
+    pill.classList.add("active");
+    activeDomainFilter = pill.dataset.filter || "all";
+    applyProjectFilters();
+    playTabSound();
   });
 });
 
+// Master Expand / Collapse All
+if (expandCollapseAllBtn) {
+  expandCollapseAllBtn.addEventListener("click", () => {
+    const isCurrentlyExpanded = expandCollapseAllBtn.getAttribute("aria-expanded") === "true";
+    const targetState = !isCurrentlyExpanded;
+
+    projectSections.forEach((section) => {
+      section.classList.toggle("is-open", targetState);
+      const toggleBtn = section.querySelector(".project-toggle");
+      if (toggleBtn) {
+        toggleBtn.setAttribute("aria-expanded", String(targetState));
+        toggleBtn.textContent = targetState ? "Hide Projects" : "View Projects";
+      }
+    });
+
+    expandCollapseAllBtn.setAttribute("aria-expanded", String(targetState));
+    const icon = expandCollapseAllBtn.querySelector(".toggle-icon");
+    const label = expandCollapseAllBtn.querySelector(".toggle-text");
+    if (icon) icon.textContent = targetState ? "⊟" : "⊞";
+    if (label) label.textContent = targetState ? "Collapse All" : "Expand All";
+    playButtonSound();
+  });
+}
+
+// Individual Section Toggles
 projectToggles.forEach((button) => {
   button.addEventListener("click", () => {
     const section = button.closest(".project-domain-section");
@@ -251,6 +461,18 @@ projectToggles.forEach((button) => {
     button.setAttribute("aria-expanded", String(isOpen));
     button.textContent = isOpen ? "Hide Projects" : "View Projects";
     playButtonSound();
+
+    if (expandCollapseAllBtn) {
+      const visibleSections = Array.from(projectSections).filter(
+        (s) => !s.classList.contains("search-hidden")
+      );
+      const allOpen = visibleSections.length > 0 && visibleSections.every((s) => s.classList.contains("is-open"));
+      expandCollapseAllBtn.setAttribute("aria-expanded", String(allOpen));
+      const icon = expandCollapseAllBtn.querySelector(".toggle-icon");
+      const label = expandCollapseAllBtn.querySelector(".toggle-text");
+      if (icon) icon.textContent = allOpen ? "⊟" : "⊞";
+      if (label) label.textContent = allOpen ? "Collapse All" : "Expand All";
+    }
   });
 });
 
@@ -313,6 +535,10 @@ function closePhotoModal() {
 
 document.querySelectorAll(".project-card").forEach((card) => {
   card.addEventListener("click", (event) => {
+    if (event.target.closest(".project-direct-link")) {
+      event.stopPropagation();
+      return;
+    }
     const clickedButton = event.target.closest(".card-link") || event.target.closest(".project-card");
     if (!clickedButton) {
       return;
@@ -1101,6 +1327,23 @@ maayaSuggestionButtons.forEach((button) => {
     createMaayaMessage("user", question);
     handleMaayaQuestion(question);
     openMaaya();
+  });
+});
+
+const maayaQuickChips = document.querySelectorAll("#maaya-quick-prompts .prompt-chip");
+maayaQuickChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const promptText = chip.dataset.prompt || chip.textContent.trim();
+    if (!promptText) return;
+    if (maayaInput) {
+      maayaInput.value = promptText;
+    }
+    appendMaayaHistory("user", promptText);
+    createMaayaMessage("user", promptText);
+    if (maayaInput) maayaInput.value = "";
+    handleMaayaQuestion(promptText);
+    openMaaya();
+    playButtonSound();
   });
 });
 
