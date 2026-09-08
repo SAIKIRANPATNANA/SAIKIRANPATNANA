@@ -43,7 +43,7 @@
 
 </div>
 
-## 🌌 Profile Snapshot
+## 🌌 Profile Snapshot & Engineering Analytics
 
 <p align="center">
   <img src="https://img.shields.io/badge/AI%20Builder-Projects%20Across%20ML%2C%20DL%2C%20CV%2C%20NLP%20%26%20GenAI-0F766E?style=for-the-badge" alt="AI Builder" />
@@ -52,7 +52,21 @@
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=SAIKIRANPATNANA&theme=transparent&ring=0F766E&fire=F59E0B&currStreakLabel=1D4ED8&sideLabels=334155&dates=64748B&border=CBD5E1" alt="GitHub Streak" />
+  <a href="https://github.com/SAIKIRANPATNANA">
+    <img src="https://github-readme-stats-eight-theta.vercel.app/api?username=SAIKIRANPATNANA&show_icons=true&bg_color=0D1117&title_color=51F6D2&text_color=94A3B8&icon_color=38BDF8&border_color=1E293B" alt="Sai Kiran's GitHub Stats" />
+  </a>
+  <a href="https://github.com/SAIKIRANPATNANA">
+    <img src="https://streak-stats.demolab.com?user=SAIKIRANPATNANA&theme=dark&background=0D1117&ring=51F6D2&fire=38BDF8&currStreakLabel=51F6D2&sideLabels=94A3B8&dates=64748B&border=1E293B" alt="Sai Kiran's GitHub Streak" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/SAIKIRANPATNANA">
+    <img src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=SAIKIRANPATNANA&layout=compact&bg_color=0D1117&title_color=51F6D2&text_color=94A3B8&border_color=1E293B" alt="Top Languages" />
+  </a>
+  <a href="https://leetcode.com/u/saikiranpatnana5143/">
+    <img src="https://leetcard.jacoblin.cool/saikiranpatnana5143?theme=dark&font=Karma" alt="Sai Kiran's LeetCode Stats" />
+  </a>
 </p>
 
 <div align="center">
@@ -133,7 +147,7 @@ Creating modern AI applications with LLMs, prompt engineering, RAG pipelines, an
 ## Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,cpp,tensorflow,pytorch,opencv,git,github&theme=light" alt="Skill Icons" />
+  <img src="https://skillicons.dev/icons?i=python,cpp,pytorch,tensorflow,opencv,fastapi,docker,postgres,redis,git,github,linux&perline=12&theme=dark" alt="Skill Icons" />
 </p>
 
 ### Languages
@@ -176,65 +190,6 @@ A curated selection of production-grade architectures, deep learning models, and
 | 🎙️ **[Speech Noise Suppression](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/speech-noise-suppression)** | **Audio AI Speech Enhancement**<br>From scratch in PyTorch. Predicts Ideal Ratio Masks (IRM) on 2D STFT spectrograms to eliminate acoustic noise in real time. | `PyTorch` `2D Convolutional U-Net` `STFT / iSTFT` `Ideal Ratio Masking (IRM)` `Librosa DSP` `Streamlit Studio` | [![Code](https://img.shields.io/badge/GitHub-Repo-1D4ED8?style=flat-square&logo=github)](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/speech-noise-suppression) |
 | 🧬 **[Voice Gender Classification v2](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection)** | **Modern Audio AI Pipeline**<br>2D Spectrogram CNNs, 360-dim multi-moment statistical features, GroupKFold speaker leakage prevention, and SNR noise stress-testing. | `PyTorch` `2D Audio CNN` `Mel Spectrograms` `DSP Moments` `GroupKFold` `Streamlit Live Studio` | [![Code](https://img.shields.io/badge/GitHub-Repo-7C3AED?style=flat-square&logo=github)](https://github.com/SAIKIRANPATNANA/DL_PROJECTS/tree/main/voice-based-gender-detection) |
 | 📄 **[Multimodal RAG via Diff OCR](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/multimodal_rag_via_diff_ocr)** | **Document Intelligence Suite**<br>Comparative OCR (Docling vs PaddleOCR vs GLM-OCR) with Qdrant hybrid search, RRF fusion, and FastAPI APIs. | `IBM Docling` `PaddleOCR` `GLM-OCR` `Qdrant Dense+Sparse` `RRF Fusion` `Groq LLM` `FastAPI` `Streamlit` | [![Code](https://img.shields.io/badge/GitHub-Repo-0284C7?style=flat-square&logo=github)](https://github.com/SAIKIRANPATNANA/GENAI_PROJECTS/tree/main/multimodal_rag_via_diff_ocr) |
-
----
-
-### 📐 Flagship System Architectures
-
-#### 1. Enterprise Production RAG System Architecture
-```mermaid
-flowchart LR
-    subgraph Ingestion ["1. Multimodal Document Ingestion"]
-        PDF["Enterprise PDFs & Docs"] --> Chunk["Semantic Chunking"]
-        Chunk --> DenseEmb["Jina AI Embeddings (1024-d)"]
-        Chunk --> SparseEmb["BM25 / Sparse Tokens"]
-    end
-
-    subgraph Storage ["2. Hybrid Vector Indexing"]
-        DenseEmb --> Qdrant[("Qdrant Vector DB")]
-        SparseEmb --> Qdrant
-    end
-
-    subgraph Retrieval ["3. Two-Stage Retrieval & Rerank"]
-        Query["User Query"] --> Gateway["Portkey AI Gateway"]
-        Gateway --> Search["Dense + Sparse Hybrid Search"]
-        Qdrant --> Search
-        Search --> Rerank["Jina Cross-Encoder Reranker"]
-    end
-
-    subgraph Generation ["4. Guardrails & Observability"]
-        Rerank --> Context["Top-K Verified Context"]
-        Context --> LLM["Anthropic / OpenAI LLM"]
-        LLM --> Response["Verified Grounded Answer"]
-        Gateway -.-> Metrics["Prometheus & Redis Telemetry"]
-    end
-```
-
-#### 2. Deep Learning Audio AI Pipeline (Noise Suppression & Speech Classification)
-```mermaid
-flowchart TD
-    subgraph Input ["1. Audio Ingestion & Digital Signal Processing"]
-        WAV["Raw Audio Stream (.WAV)"] --> Resample["Resample (16 kHz) & Normalize"]
-        Resample --> STFT["Short-Time Fourier Transform (STFT)"]
-        STFT --> MagSpec["Magnitude Spectrogram |X(t, f)|"]
-        STFT --> Phase["Phase Spectrum ∠X(t, f)"]
-        Resample --> Mel["Mel-Scale Filterbanks (80/128 bands)"]
-    end
-
-    subgraph Models ["2. Deep Neural Architectures"]
-        MagSpec --> UNet["2D Convolutional U-Net\n(Encoder-Decoder + Skip Connections)"]
-        Mel --> CNN["2D Audio CNN\n(BatchNorm + Dropout + Global Pooling)"]
-    end
-
-    subgraph Tasks ["3. Audio AI Inference & Output"]
-        UNet --> IRM["Ideal Ratio Mask (IRM) Prediction"]
-        IRM --> Denoise["|Y| = |X| ⊙ Mask\niSTFT Reconstruction with Phase"]
-        Denoise --> CleanAudio["Clean Reconstructed Audio WAV"]
-
-        CNN --> Logits["Acoustic Feature Aggregation\n(Mean, Std, Skewness, Kurtosis)"]
-        Logits --> Classifier["Gender Classification\n(Speaker-Leakage-Free via GroupKFold)"]
-    end
-```
 
 ---
 
@@ -323,10 +278,6 @@ For now, my data-centric analysis and predictive case studies are represented in
 - [Telegram Bot](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/telegram-bot) - chat automation and bot workflow.
 - [Tic Tac Toe](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/tit-tac-toe) - a turn-based Python game focused on grid logic and interaction handling.
 - [Virtual Voice Assistant](https://github.com/SAIKIRANPATNANA/PYTHON_PROJECTS/tree/main/virtual-voice-assistant) - voice-enabled assistant experimentation.
-
-<p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=SAIKIRANPATNANA&bg_color=ffffff&color=0F766E&line=1D4ED8&point=7C3AED&area=true&hide_border=true" alt="Contribution Graph" />
-</p>
 
 ## Learning Journey
 
