@@ -195,44 +195,21 @@ async function unlockAudio() {
   audioUnlocked = true;
 }
 
-let isSfxMuted = localStorage.getItem("psk_portfolio_sfx_muted") === "true";
-const soundToggle = document.getElementById("sound-toggle");
-
-function updateSoundToggleUI() {
-  if (!soundToggle) return;
-  const icon = soundToggle.querySelector(".sound-icon");
-  const label = soundToggle.querySelector(".sound-label");
-  if (isSfxMuted) {
-    soundToggle.classList.add("muted");
-    soundToggle.setAttribute("aria-pressed", "false");
-    if (icon) icon.textContent = "🔇";
-    if (label) label.textContent = "SFX OFF";
-  } else {
-    soundToggle.classList.remove("muted");
-    soundToggle.setAttribute("aria-pressed", "true");
-    if (icon) icon.textContent = "🔊";
-    if (label) label.textContent = "SFX ON";
-  }
-}
-
-if (soundToggle) {
-  updateSoundToggleUI();
-  soundToggle.addEventListener("click", async () => {
-    if (!audioUnlocked && isSfxMuted) {
-      await unlockAudio();
-    }
-    isSfxMuted = !isSfxMuted;
-    localStorage.setItem("psk_portfolio_sfx_muted", String(isSfxMuted));
-    updateSoundToggleUI();
-    if (!isSfxMuted) {
-      if (!audioUnlocked) await unlockAudio();
-      playButtonSound();
-    }
-  });
-}
+// Sound is enabled by default. Browsers require a user gesture to initialize AudioContext.
+["pointerdown", "click", "touchstart", "keydown"].forEach((eventType) => {
+  window.addEventListener(
+    eventType,
+    async () => {
+      if (!audioUnlocked) {
+        await unlockAudio();
+      }
+    },
+    { once: true, passive: true }
+  );
+});
 
 function createTone(frequency, type, duration, volume, delay = 0) {
-  if (!audioUnlocked || isSfxMuted) {
+  if (!audioUnlocked) {
     return;
   }
 
